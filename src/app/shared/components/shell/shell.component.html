@@ -1,0 +1,13 @@
+<nz-layout class="layout-container">
+  <app-header [logoUrl]="logoUrl" [logoLinkTitle]="logoLinkTitle">
+    <div rightSlot class="actions">
+      <i class="action-icon" nz-icon nzType="question-circle"></i>
+      <i class="action-icon" nz-icon nzType="bell"></i>
+      <nz-avatar class="avatar" nzIcon="user"></nz-avatar>
+    </div>
+  </app-header>
+
+  <nz-content class="layout-content">
+    <ng-content></ng-content>
+  </nz-content>
+</nz-layout>

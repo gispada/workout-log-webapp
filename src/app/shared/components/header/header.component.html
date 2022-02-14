@@ -1,0 +1,13 @@
+<nz-header class="header">
+  <div *ngIf="logoUrl" class="logo">
+    <a routerLink="/" [title]="logoLinkTitle"><img [src]="logoUrl" alt="Logo" /></a>
+  </div>
+
+  <div class="left-slot">
+    <ng-content select="[leftSlot]"></ng-content>
+  </div>
+
+  <div class="right-slot">
+    <ng-content select="[rightSlot]"></ng-content>
+  </div>
+</nz-header>

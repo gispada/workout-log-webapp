@@ -1,0 +1,9 @@
+@use 'text';
+
+html {
+  font-size: 62.5%;
+}
+
+p {
+  font-size: text.$base-size;
+}

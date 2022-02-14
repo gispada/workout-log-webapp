@@ -1,0 +1,24 @@
+@use '~src/style/colors';
+
+.actions {
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  & > *:not(:last-child) {
+    margin-right: 2.8rem;
+  }
+}
+
+.action-icon {
+  font-size: 2.4rem;
+  color: colors.$light-text;
+}
+
+.layout-container {
+  min-height: 100vh;
+}
+
+.layout-content {
+  background-color: colors.$background-secondary;
+}
