@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core'
+import { SideMenuItem } from '@shared/types'
 
 @Component({
   selector: 'app-shell',
@@ -8,4 +9,5 @@ import { Component, Input } from '@angular/core'
 export class ShellComponent {
   @Input() logoUrl?: string
   @Input() logoLinkTitle?: string
+  @Input() sideMenu!: SideMenuItem[]
 }

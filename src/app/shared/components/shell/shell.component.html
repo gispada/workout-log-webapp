@@ -1,13 +1,32 @@
 <nz-layout class="layout-container">
-  <app-header [logoUrl]="logoUrl" [logoLinkTitle]="logoLinkTitle">
-    <div rightSlot class="actions">
-      <i class="action-icon" nz-icon nzType="question-circle"></i>
-      <i class="action-icon" nz-icon nzType="bell"></i>
-      <nz-avatar class="avatar" nzIcon="user"></nz-avatar>
+  <nz-sider nzCollapsible class="layout-sidemenu" [nzWidth]="240">
+    <div class="sider-logo">
+      <a routerLink="/" [title]="logoLinkTitle"><img [src]="logoUrl" alt="Logo" /></a>
     </div>
-  </app-header>
 
-  <nz-content class="layout-content">
-    <ng-content></ng-content>
-  </nz-content>
+    <ul nz-menu [nzInlineIndent]="14" nzTheme="dark" nzMode="inline">
+      <li class="menu-item" *ngFor="let item of sideMenu" nz-menu-item>
+        <a [routerLink]="[item.linkUrl]" [title]="item.title">
+          <div class="anticon">
+            <fa-icon [icon]="item.icon"></fa-icon>
+          </div>
+          <span>{{ item.title }}</span>
+        </a>
+      </li>
+    </ul>
+  </nz-sider>
+
+  <nz-layout>
+    <app-header>
+      <div rightSlot class="actions">
+        <fa-icon class="action-icon" [icon]="['far', 'circle-question']"></fa-icon>
+        <fa-icon class="action-icon" [icon]="['far', 'bell']"></fa-icon>
+        <nz-avatar class="avatar" nzText="JD"></nz-avatar>
+      </div>
+    </app-header>
+
+    <nz-content class="layout-content">
+      <ng-content></ng-content>
+    </nz-content>
+  </nz-layout>
 </nz-layout>

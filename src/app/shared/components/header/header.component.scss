@@ -3,7 +3,7 @@
 .header {
   display: flex;
   background-color: colors.$background-primary;
-  border-bottom: 1px solid rgba(colors.$white, 0.2);
+  border-bottom: 1px solid colors.$border;
 }
 
 .logo,

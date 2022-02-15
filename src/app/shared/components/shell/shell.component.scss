@@ -1,4 +1,7 @@
 @use '~src/style/colors';
+@use '~src/style/text';
+
+$antd-header-height: 64px; // Antd fixed header height
 
 .actions {
   display: flex;
@@ -21,4 +24,72 @@
 
 .layout-content {
   background-color: colors.$background-secondary;
+}
+
+.layout-sidemenu {
+  background-color: colors.$background-primary;
+
+  ul {
+    padding: 1rem;
+    background: none;
+  }
+
+  &,
+  ::ng-deep .ant-layout-sider-trigger {
+    border-right: 1px solid colors.$border;
+  }
+}
+
+.sider-logo {
+  height: $antd-header-height;
+  border-bottom: 1px solid colors.$border;
+  img {
+    height: 100%;
+    padding: 1rem 2.4rem;
+  }
+}
+
+// -------------------- Menu style -------------------- //
+.menu-item {
+  font-size: text.$base-size;
+  margin: 2.6rem 0;
+  border-radius: 0.8rem;
+  height: 4.8rem;
+  line-height: 4.8rem;
+
+  a {
+    display: flex;
+    align-items: center;
+  }
+
+  .anticon {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    color: colors.$light-text;
+  }
+
+  span {
+    padding-left: 1rem;
+    color: colors.$light-text;
+  }
+}
+
+.ant-menu-item-selected {
+  background-color: colors.$highlight !important;
+  .anticon,
+  span {
+    color: colors.$white;
+  }
+}
+
+.ant-menu-inline-collapsed {
+  .menu-item {
+    padding: 0 25%;
+  }
+  .anticon {
+    font-size: 2.4rem !important;
+    min-width: 30px; // Workaround to center icons in collapsed menu
+
+  }
 }
