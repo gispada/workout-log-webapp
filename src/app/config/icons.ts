@@ -1,8 +1,18 @@
-import { IconDefinition } from '@ant-design/icons-angular'
+import { faBell, faCircleQuestion } from '@fortawesome/free-regular-svg-icons'
 import {
-  UserOutline,
-  BellOutline,
-  QuestionCircleOutline
-} from '@ant-design/icons-angular/icons'
+  faDumbbell,
+  faGear,
+  faCalendarDays,
+  faChartLine,
+  faHouse
+} from '@fortawesome/free-solid-svg-icons'
 
-export const icons: IconDefinition[] = [UserOutline, BellOutline, QuestionCircleOutline]
+export const icons = [
+  faDumbbell,
+  faChartLine,
+  faCircleQuestion,
+  faGear,
+  faCalendarDays,
+  faBell,
+  faHouse
+]
