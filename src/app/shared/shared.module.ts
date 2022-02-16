@@ -9,6 +9,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon'
 import { NzMenuModule } from 'ng-zorro-antd/menu'
 import { NzSelectModule } from 'ng-zorro-antd/select'
 import { NzInputModule } from 'ng-zorro-antd/input'
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number'
 
 import { HeaderComponent } from './components/header/header.component'
 import { ShellComponent } from './components/shell/shell.component'
@@ -27,6 +28,6 @@ import { SelectComponent } from './components/select/select.component'
     NzSelectModule,
     FontAwesomeModule
   ],
-  exports: [ShellComponent, SelectComponent, NzInputModule]
+  exports: [ShellComponent, SelectComponent, NzInputModule, NzInputNumberModule]
 })
 export class SharedModule {}

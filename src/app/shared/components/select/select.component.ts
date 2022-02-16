@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { isFiniteNumber } from '@shared/utils'
 import { Nullable } from '@shared/types'
 
 type Option = { label: string; value: string }
@@ -18,6 +19,6 @@ export class SelectComponent {
   @Output() valueChange = new EventEmitter<Option['value']>()
 
   getWidth() {
-    return Number.isFinite(this.width) ? `${this.width}rem` : this.width
+    return isFiniteNumber(this.width) ? `${this.width}rem` : this.width
   }
 }
