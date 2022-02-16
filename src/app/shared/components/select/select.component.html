@@ -1,0 +1,12 @@
+<nz-select
+  [(ngModel)]="value"
+  [nzDisabled]="disabled"
+  nzSize="large"
+  [ngStyle]="{ width: getWidth() }"
+>
+  <nz-option
+    *ngFor="let option of options"
+    [nzValue]="option.value"
+    [nzLabel]="option.label"
+  ></nz-option>
+</nz-select>

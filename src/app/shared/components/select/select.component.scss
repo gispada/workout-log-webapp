@@ -1,0 +1,10 @@
+@use '~src/style/colors';
+
+::ng-deep .ant-select-selection-item,
+::ng-deep .ant-select-item-option {
+  color: colors.$light-text;
+}
+
+::ng-deep .ant-select-dropdown {
+  border: 1px solid colors.$border;
+}
