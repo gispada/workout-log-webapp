@@ -1,6 +1,9 @@
 @use '~src/style/colors';
 
-::ng-deep .ant-select-selection-item,
+::ng-deep .ant-select-selection-item {
+  color: colors.$white;
+}
+
 ::ng-deep .ant-select-item-option {
   color: colors.$light-text;
 }

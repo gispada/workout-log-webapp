@@ -5,3 +5,5 @@ export type SideMenuItem = {
   icon: IconProp
   linkUrl: string
 }
+
+export type Nullable<T> = T | null

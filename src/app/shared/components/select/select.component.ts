@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { Nullable } from '@shared/types'
 
 type Option = { label: string; value: string }
 
@@ -10,6 +11,7 @@ type Option = { label: string; value: string }
 export class SelectComponent {
   @Input() options!: Option[]
   @Input() width: string | number = 'auto'
+  @Input() placeholder: Nullable<string> = null
   @Input() value?: Option['value']
   @Input() disabled?: boolean
 
