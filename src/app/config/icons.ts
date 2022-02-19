@@ -4,7 +4,11 @@ import {
   faGear,
   faCalendarDays,
   faChartLine,
-  faHouse
+  faHouse,
+  faUser,
+  faLock,
+  faEye,
+  faEyeSlash
 } from '@fortawesome/free-solid-svg-icons'
 
 export const icons = [
@@ -14,5 +18,9 @@ export const icons = [
   faGear,
   faCalendarDays,
   faBell,
-  faHouse
+  faHouse,
+  faUser,
+  faLock,
+  faEye,
+  faEyeSlash
 ]

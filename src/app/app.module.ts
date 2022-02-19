@@ -6,7 +6,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome'
 
-import { SharedModule } from '@shared/shared.module'
+//import { SharedModule } from '@shared/shared.module'
+import { AuthModule } from '@auth/auth.module'
 import { icons } from './config/icons'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -30,7 +31,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    SharedModule
+    AuthModule
   ],
   bootstrap: [AppComponent]
 })

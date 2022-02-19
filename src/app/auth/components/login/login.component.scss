@@ -1,0 +1,17 @@
+@use '~src/style/colors';
+
+.header {
+  margin-bottom: 4rem;
+  h1 {
+    margin-bottom: 0;
+  }
+  p {
+    color: colors.$light-text;
+    line-height: 1;
+  }
+}
+
+.password-visibility {
+  cursor: pointer;
+  color: colors.$light-text;
+}

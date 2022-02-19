@@ -1,0 +1,29 @@
+@use '~src/style/colors';
+
+$antd-header-height: 64px; // Antd fixed header height
+
+.app-logo {
+  height: $antd-header-height;
+  img {
+    height: 100%;
+    padding: 1rem 0;
+  }
+}
+
+.content {
+  height: calc(100% - $antd-header-height);
+  background-color: colors.$background-secondary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  border: 1px solid colors.$border;
+  background-color: colors.$background-primary;
+  padding: 4rem 8rem;
+  flex: 1;
+  max-width: 48rem;
+  height: 52rem;
+  border-radius: 1rem;
+}

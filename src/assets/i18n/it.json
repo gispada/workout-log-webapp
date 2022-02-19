@@ -5,5 +5,17 @@
     "Logs": "Diario",
     "Statistics": "Statistiche",
     "Settings": "Impostazioni"
+  },
+  "Login": {
+    "Header": "Benvenuto/a!",
+    "SubHeader": "Accedi al tuo account.",
+    "UsernameText": "Username",
+    "PasswordText": "Password",
+    "SubmitButton": "Accedi",
+    "AlternateButton": "Registrati ora"
+  },
+  "Errors": {
+    "InvalidUsername": "Lo username non può essere vuoto.",
+    "InvalidPassword": "La password deve contenere almeno 6 caratteri."
   }
 }

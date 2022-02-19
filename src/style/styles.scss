@@ -21,6 +21,25 @@ body {
   font-family: 'Metropolis', sans-serif;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; // Firefox
+  font-weight: 700;
+}
+
+h1 {
+  font-size: text.$large-size;
+}
+
 p {
   font-size: text.$base-size;
+}
+
+.ant-input-affix-wrapper {
+  .ant-input {
+    border-radius: 0;
+  }
+  .ant-input-prefix {
+    margin-right: 0.8rem;
+  }
 }

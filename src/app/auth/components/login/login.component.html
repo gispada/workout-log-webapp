@@ -1,0 +1,69 @@
+<app-auth-container>
+  <ng-template #userIcon>
+    <fa-icon icon="user"></fa-icon>
+  </ng-template>
+  <ng-template #lockIcon>
+    <fa-icon icon="lock"></fa-icon>
+  </ng-template>
+  <ng-template #passwordVisibilityIcon>
+    <fa-icon
+      class="password-visibility"
+      [icon]="passwordVisible ? 'eye-slash' : 'eye'"
+      (click)="passwordVisible = !passwordVisible"
+    ></fa-icon>
+  </ng-template>
+
+  <div class="header">
+    <h1>{{ 'Login.Header' | translate }}</h1>
+    <p>{{ 'Login.SubHeader' | translate }}</p>
+  </div>
+
+  <form nz-form nzLayout="vertical" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="'Errors.InvalidUsername' | translate">
+        <nz-input-group nzSize="large" [nzPrefix]="userIcon">
+          <input
+            nz-input
+            formControlName="username"
+            [placeholder]="'Login.UsernameText' | translate"
+            autocomplete="off"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="'Errors.InvalidPassword' | translate">
+        <nz-input-group
+          nzSize="large"
+          [nzPrefix]="lockIcon"
+          [nzSuffix]="passwordVisibilityIcon"
+        >
+          <input
+            nz-input
+            [type]="passwordVisible ? 'text' : 'password'"
+            formControlName="password"
+            [placeholder]="'Login.PasswordText' | translate"
+            autocomplete="off"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzBlock nzType="primary" nzSize="large">
+          {{ 'Login.SubmitButton' | translate }}
+        </button>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzBlock nzType="text">
+          {{ 'Login.AlternateButton' | translate }}
+        </button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</app-auth-container>

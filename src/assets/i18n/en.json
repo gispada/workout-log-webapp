@@ -5,5 +5,17 @@
     "Logs": "Logs",
     "Statistics": "Statistics",
     "Settings": "Settings"
+  },
+  "Login": {
+    "Header": "Welcome back!",
+    "SubHeader": "Login to your account.",
+    "UsernameText": "Username",
+    "PasswordText": "Password",
+    "SubmitButton": "Log in",
+    "AlternateButton": "Register now"
+  },
+  "Errors": {
+    "InvalidUsername": "Username can not be empty.",
+    "InvalidPassword": "Password must be at least 6 characters long."
   }
 }

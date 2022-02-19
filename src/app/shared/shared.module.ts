@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
-import { FormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { TranslateModule } from '@ngx-translate/core'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { NzLayoutModule } from 'ng-zorro-antd/layout'
@@ -10,12 +10,16 @@ import { NzIconModule } from 'ng-zorro-antd/icon'
 import { NzMenuModule } from 'ng-zorro-antd/menu'
 import { NzSelectModule } from 'ng-zorro-antd/select'
 import { NzInputModule } from 'ng-zorro-antd/input'
+import { NzFormModule } from 'ng-zorro-antd/form'
+import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number'
 
-import { HeaderComponent } from './components/header/header.component'
-import { ShellComponent } from './components/shell/shell.component'
-import { SelectComponent } from './components/select/select.component'
-import { LanguageSwitcherComponent } from './components/language-switcher/language-switcher.component'
+import {
+  ShellComponent,
+  HeaderComponent,
+  SelectComponent,
+  LanguageSwitcherComponent
+} from './components'
 
 @NgModule({
   declarations: [
@@ -37,11 +41,18 @@ import { LanguageSwitcherComponent } from './components/language-switcher/langua
     FontAwesomeModule
   ],
   exports: [
-    // TranslateModule,
+    FormsModule,
+    NzFormModule,
+    ReactiveFormsModule,
+    TranslateModule,
     ShellComponent,
     SelectComponent,
     NzInputModule,
-    NzInputNumberModule
+    NzInputNumberModule,
+    HeaderComponent,
+    LanguageSwitcherComponent,
+    FontAwesomeModule,
+    NzButtonModule
   ]
 })
 export class SharedModule {}
