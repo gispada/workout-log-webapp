@@ -1,7 +1,7 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 
 export type SideMenuItem = {
-  title: string
+  i18nTitle: string
   icon: IconProp
   linkUrl: string
 }

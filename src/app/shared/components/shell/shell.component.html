@@ -6,11 +6,11 @@
 
     <ul nz-menu [nzInlineIndent]="14" nzTheme="dark" nzMode="inline">
       <li class="menu-item" *ngFor="let item of sideMenu" nz-menu-item>
-        <a [routerLink]="[item.linkUrl]" [title]="item.title">
+        <a [routerLink]="[item.linkUrl]" [title]="item.i18nTitle | translate">
           <div class="anticon">
             <fa-icon [icon]="item.icon"></fa-icon>
           </div>
-          <span>{{ item.title }}</span>
+          <span>{{ item.i18nTitle | translate }}</span>
         </a>
       </li>
     </ul>
@@ -21,6 +21,7 @@
       <div rightSlot class="actions">
         <fa-icon class="action-icon" [icon]="['far', 'circle-question']"></fa-icon>
         <fa-icon class="action-icon" [icon]="['far', 'bell']"></fa-icon>
+        <app-language-switcher></app-language-switcher>
         <nz-avatar class="avatar" nzText="JD"></nz-avatar>
       </div>
     </app-header>

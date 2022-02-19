@@ -1,9 +1,11 @@
 <nz-select
-  [(ngModel)]="value"
+  [ngModel]="value"
+  (ngModelChange)="valueChange.emit($event)"
   [nzDisabled]="disabled"
-  nzSize="large"
+  [nzSize]="size"
   [ngStyle]="{ width: getWidth() }"
   [nzPlaceHolder]="placeholder"
+  [nzShowArrow]="!hideArrow"
 >
   <nz-option
     *ngFor="let option of options"

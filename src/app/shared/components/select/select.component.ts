@@ -13,6 +13,8 @@ export class SelectComponent {
   @Input() options!: Option[]
   @Input() width: string | number = 'auto'
   @Input() placeholder: Nullable<string> = null
+  @Input() size: 'small' | 'default' | 'large' = 'large'
+  @Input() hideArrow = false
   @Input() value?: Option['value']
   @Input() disabled?: boolean
 

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
 import { FormsModule } from '@angular/forms'
+import { TranslateModule } from '@ngx-translate/core'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { NzLayoutModule } from 'ng-zorro-antd/layout'
 import { NzAvatarModule } from 'ng-zorro-antd/avatar'
@@ -14,11 +15,18 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number'
 import { HeaderComponent } from './components/header/header.component'
 import { ShellComponent } from './components/shell/shell.component'
 import { SelectComponent } from './components/select/select.component'
+import { LanguageSwitcherComponent } from './components/language-switcher/language-switcher.component'
 
 @NgModule({
-  declarations: [ShellComponent, HeaderComponent, SelectComponent],
+  declarations: [
+    ShellComponent,
+    HeaderComponent,
+    SelectComponent,
+    LanguageSwitcherComponent
+  ],
   imports: [
     CommonModule,
+    TranslateModule,
     FormsModule,
     NzLayoutModule,
     NzAvatarModule,
@@ -28,6 +36,12 @@ import { SelectComponent } from './components/select/select.component'
     NzSelectModule,
     FontAwesomeModule
   ],
-  exports: [ShellComponent, SelectComponent, NzInputModule, NzInputNumberModule]
+  exports: [
+    // TranslateModule,
+    ShellComponent,
+    SelectComponent,
+    NzInputModule,
+    NzInputNumberModule
+  ]
 })
 export class SharedModule {}

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
-import { SideMenuItem } from '@shared/types'
+import { TranslateService } from '@ngx-translate/core'
+import { defaultLanguage, menuItems } from '@config/constants'
 
 @Component({
   selector: 'app-root',
@@ -7,32 +8,11 @@ import { SideMenuItem } from '@shared/types'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor(private translate: TranslateService) {
+    translate.setDefaultLang(defaultLanguage)
+    translate.use(defaultLanguage)
+  }
+
   title = 'Workout Log'
-  menu: SideMenuItem[] = [
-    {
-      title: 'Dashboard',
-      linkUrl: '/',
-      icon: 'house'
-    },
-    {
-      title: 'Workouts',
-      linkUrl: 'workouts',
-      icon: 'dumbbell'
-    },
-    {
-      title: 'Log',
-      linkUrl: 'log',
-      icon: 'calendar-days'
-    },
-    {
-      title: 'Statistics',
-      linkUrl: 'statistics',
-      icon: 'line-chart'
-    },
-    {
-      title: 'Settings',
-      linkUrl: 'settings',
-      icon: 'gear'
-    }
-  ]
+  menu = menuItems
 }

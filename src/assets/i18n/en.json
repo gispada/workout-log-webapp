@@ -1,0 +1,9 @@
+{
+  "Menu": {
+    "Dashboard": "Dashboard",
+    "Workouts": "Workouts",
+    "Logs": "Logs",
+    "Statistics": "Statistics",
+    "Settings": "Settings"
+  }
+}
