@@ -9,13 +9,23 @@
   "Login": {
     "Header": "Benvenuto/a!",
     "SubHeader": "Accedi al tuo account.",
-    "UsernameText": "Username",
+    "EmailText": "Email",
     "PasswordText": "Password",
     "SubmitButton": "Accedi",
     "AlternateButton": "Registrati ora"
   },
+  "Registration": {
+    "Header": "Unisciti a noi!",
+    "SubHeader": "Crea un nuovo account.",
+    "EmailText": "Email",
+    "PasswordText": "Password",
+    "ConfirmPasswordText": "Conferma password",
+    "SubmitButton": "Registrati",
+    "AlternateButton": "Accedi"
+  },
   "Errors": {
-    "InvalidUsername": "Lo username non può essere vuoto.",
-    "InvalidPassword": "La password deve contenere almeno 6 caratteri."
+    "InvalidEmail": "Email non valida.",
+    "InvalidPassword": "La password deve contenere almeno 6 caratteri.",
+    "InvalidConfirmPassword": "Le password scelte non coincidono."
   }
 }

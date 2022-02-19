@@ -9,13 +9,23 @@
   "Login": {
     "Header": "Welcome back!",
     "SubHeader": "Login to your account.",
-    "UsernameText": "Username",
+    "EmailText": "Email",
     "PasswordText": "Password",
     "SubmitButton": "Log in",
     "AlternateButton": "Register now"
   },
+  "Registration": {
+    "Header": "Join in!",
+    "SubHeader": "Create a new account.",
+    "EmailText": "Email",
+    "PasswordText": "Password",
+    "ConfirmPasswordText": "Confirm password",
+    "SubmitButton": "Register",
+    "AlternateButton": "Log in"
+  },
   "Errors": {
-    "InvalidUsername": "Username can not be empty.",
-    "InvalidPassword": "Password must be at least 6 characters long."
+    "InvalidEmail": "Invalid email.",
+    "InvalidPassword": "Password must be at least 6 characters long.",
+    "InvalidConfirmPassword": "Your passwords do not match."
   }
 }

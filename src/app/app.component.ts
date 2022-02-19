@@ -8,11 +8,11 @@ import { defaultLanguage, menuItems } from '@config/constants'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  title = 'Workout Log'
+  menu = menuItems
+
   constructor(private translate: TranslateService) {
     translate.setDefaultLang(defaultLanguage)
     translate.use(defaultLanguage)
   }
-
-  title = 'Workout Log'
-  menu = menuItems
 }

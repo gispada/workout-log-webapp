@@ -14,18 +14,18 @@
   </ng-template>
 
   <div class="header">
-    <h1>{{ 'Login.Header' | translate }}</h1>
-    <p>{{ 'Login.SubHeader' | translate }}</p>
+    <h1>{{ translationNs + 'Header' | translate }}</h1>
+    <p>{{ translationNs + 'SubHeader' | translate }}</p>
   </div>
 
   <form nz-form nzLayout="vertical" [formGroup]="validateForm" (ngSubmit)="submitForm()">
     <nz-form-item>
-      <nz-form-control [nzErrorTip]="'Errors.InvalidUsername' | translate">
+      <nz-form-control [nzErrorTip]="'Errors.InvalidEmail' | translate">
         <nz-input-group nzSize="large" [nzPrefix]="userIcon">
           <input
             nz-input
-            formControlName="username"
-            [placeholder]="'Login.UsernameText' | translate"
+            formControlName="email"
+            [placeholder]="translationNs + 'EmailText' | translate"
             autocomplete="off"
           />
         </nz-input-group>
@@ -43,7 +43,26 @@
             nz-input
             [type]="passwordVisible ? 'text' : 'password'"
             formControlName="password"
-            [placeholder]="'Login.PasswordText' | translate"
+            [placeholder]="translationNs + 'PasswordText' | translate"
+            autocomplete="off"
+            (ngModelChange)="validateConfirmPassword()"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item *ngIf="isSignup">
+      <nz-form-control [nzErrorTip]="'Errors.InvalidConfirmPassword' | translate">
+        <nz-input-group
+          nzSize="large"
+          [nzPrefix]="lockIcon"
+          [nzSuffix]="passwordVisibilityIcon"
+        >
+          <input
+            nz-input
+            [type]="passwordVisible ? 'text' : 'password'"
+            formControlName="confirmPassword"
+            [placeholder]="translationNs + 'ConfirmPasswordText' | translate"
             autocomplete="off"
           />
         </nz-input-group>
@@ -53,17 +72,13 @@
     <nz-form-item>
       <nz-form-control>
         <button nz-button nzBlock nzType="primary" nzSize="large">
-          {{ 'Login.SubmitButton' | translate }}
-        </button>
-      </nz-form-control>
-    </nz-form-item>
-
-    <nz-form-item>
-      <nz-form-control>
-        <button nz-button nzBlock nzType="text">
-          {{ 'Login.AlternateButton' | translate }}
+          {{ translationNs + 'SubmitButton' | translate }}
         </button>
       </nz-form-control>
     </nz-form-item>
   </form>
+
+  <button nz-button nzBlock nzType="text">
+    {{ translationNs + 'AlternateButton' | translate }}
+  </button>
 </app-auth-container>
