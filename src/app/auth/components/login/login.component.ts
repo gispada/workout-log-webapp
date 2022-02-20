@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
-import { SIGNUP } from '@config/routes'
+import { Store } from '@ngrx/store'
 import { TranslateService } from '@ngx-translate/core'
+import { SIGNIN, SIGNUP } from '@config/routes'
+import { userActions } from '@state/user'
 import { first } from '@shared/utils'
+
+const { loginWithEmailPassword, registerWithEmailPassword } = userActions
 
 const passwordsMatchValidator: ValidatorFn = (control) => {
   const password = control.value
@@ -21,21 +25,26 @@ export class LoginComponent implements OnInit {
   passwordVisible = false
   isSignup = first(this.route.snapshot.url)?.path === SIGNUP
   translationNs = this.isSignup ? 'Registration.' : 'Login.'
+  secondaryButtonLink = this.isSignup ? SIGNIN : SIGNUP
 
   constructor(
     public translate: TranslateService,
     private fb: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, Validators.minLength(6)]],
-      ...(this.isSignup && {
-        confirmPassword: [null, [Validators.required, passwordsMatchValidator]]
-      })
-    })
+    this.validateForm = this.fb.group(
+      {
+        email: [null, [Validators.required, Validators.email]],
+        password: [null, [Validators.required, Validators.minLength(6)]],
+        ...(this.isSignup && {
+          confirmPassword: [null, [Validators.required, passwordsMatchValidator]]
+        })
+      },
+      { updateOn: 'blur' }
+    )
   }
 
   validateConfirmPassword() {
@@ -55,7 +64,12 @@ export class LoginComponent implements OnInit {
 
   submitForm() {
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value)
+      const payload = {
+        email: <string>this.validateForm.get('email')!.value,
+        password: <string>this.validateForm.get('password')!.value
+      }
+      const action = this.isSignup ? registerWithEmailPassword : loginWithEmailPassword
+      this.store.dispatch(action(payload))
     } else {
       this.displayErrors()
     }

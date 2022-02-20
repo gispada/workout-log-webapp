@@ -79,6 +79,8 @@
   </form>
 
   <button nz-button nzBlock nzType="text">
-    {{ translationNs + 'AlternateButton' | translate }}
+    <a [routerLink]="['/', secondaryButtonLink]">
+      {{ translationNs + 'AlternateButton' | translate }}
+    </a>
   </button>
 </app-auth-container>
