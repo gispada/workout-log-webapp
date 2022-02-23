@@ -27,5 +27,9 @@
     "InvalidEmail": "Invalid email.",
     "InvalidPassword": "Password must be at least 6 characters long.",
     "InvalidConfirmPassword": "Your passwords do not match."
+  },
+  "Messages": {
+    "RegistrationSuccess": "Registration done! Confirm your email to get started.",
+    "ConfirmationSuccess": "Email confirmed! Login to start using the app."
   }
 }

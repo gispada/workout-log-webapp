@@ -1,13 +1,11 @@
 import { createReducer, on } from '@ngrx/store'
-import { loginSuccess } from './user.actions'
+import { loginSuccess, logoutSuccess } from './user.actions'
+import { UserState } from './user.model'
 
-export type UserState = {
-  token?: string
-}
-
-const initialState: Readonly<UserState> = {}
+const initialState: Readonly<UserState> = { profile: null }
 
 export const userReducer = createReducer(
   initialState,
-  on(loginSuccess, (state) => ({ ...state, token: 'abc' }))
+  on(loginSuccess, (state, { payload }) => ({ ...state, ...payload })),
+  on(logoutSuccess, () => initialState)
 )

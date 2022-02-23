@@ -27,5 +27,9 @@
     "InvalidEmail": "Email non valida.",
     "InvalidPassword": "La password deve contenere almeno 6 caratteri.",
     "InvalidConfirmPassword": "Le password scelte non coincidono."
+  },
+  "Messages": {
+    "RegistrationSuccess": "Registrazione effettuata! Conferma l'email per iniziare.",
+    "ConfirmationSuccess": "Email confermata! Effettua il login per usare l'app."
   }
 }

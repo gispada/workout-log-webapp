@@ -7,3 +7,5 @@ export type SideMenuItem = {
 }
 
 export type Nullable<T> = T | null
+
+export type Optional<T, K extends keyof T> = Partial<T> & Omit<T, K>
