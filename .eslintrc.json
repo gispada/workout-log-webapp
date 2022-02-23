@@ -18,6 +18,7 @@
       ],
       "rules": {
         "@typescript-eslint/no-unused-vars": "warn",
+        "ngrx/on-function-explicit-return-type": "off",
         "import/no-useless-path-segments": "error",
         "import/no-cycle": "error",
         "import/newline-after-import": ["error", { "count": 1 }],

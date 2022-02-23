@@ -27,6 +27,7 @@
       "@config/*": ["src/app/config/*"],
       "@auth/*": ["src/app/auth/*"],
       "@state/*": ["src/app/state/*"],
+      "@core/*": ["src/app/core/*"],
     }
   },
   "angularCompilerOptions": {
