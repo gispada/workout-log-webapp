@@ -1,4 +1,9 @@
-<nz-avatar nz-dropdown [nzDropdownMenu]="userMenu" class="avatar" nzText="JD"></nz-avatar>
+<nz-avatar
+  nz-dropdown
+  [nzDropdownMenu]="userMenu"
+  class="avatar"
+  [nzText]="(userInitials$ | async) || ''"
+></nz-avatar>
 
 <nz-dropdown-menu #userMenu="nzDropdownMenu">
   <ul nz-menu nzSelectable>

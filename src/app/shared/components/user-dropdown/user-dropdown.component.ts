@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { TranslateService } from '@ngx-translate/core'
-import { userActions } from '@state/user'
+import { userActions, userSelectors } from '@state/user'
 
 @Component({
   selector: 'app-user-dropdown',
@@ -9,6 +9,8 @@ import { userActions } from '@state/user'
   styleUrls: ['./user-dropdown.component.scss']
 })
 export class UserDropdownComponent {
+  userInitials$ = this.store.select(userSelectors.selectInitials)
+
   constructor(public translate: TranslateService, private store: Store) {}
 
   onLogout() {
