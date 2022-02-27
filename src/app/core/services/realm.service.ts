@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import * as RealmSDK from 'realm-web'
-import { Credentials, EmailConfirmParams } from '../types'
+import { Credentials, EmailConfirmParams } from '../types/api'
 
 const REALM_APP_ID = process.env['REALM_APP_ID']!
 const DATABASE_NAME = process.env['MONGO_DB_NAME']!

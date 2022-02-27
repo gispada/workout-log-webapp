@@ -11,3 +11,8 @@ export const reducers = {
 }
 
 export const effects = [AppEffects, UserEffects]
+
+// Exclude NgRx router slice, its type is not inferred correctly with ReturnType
+export type RootState = {
+  [K in keyof Omit<typeof reducers, 'router'>]: ReturnType<typeof reducers[K]>
+}

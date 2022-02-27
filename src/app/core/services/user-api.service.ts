@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
-import { from } from 'rxjs'
-import { Credentials, EmailConfirmParams } from '../types'
+import { from, of } from 'rxjs'
+import { Credentials, EmailConfirmParams } from '../types/api'
 import { RealmService } from './realm.service'
 
 @Injectable({
@@ -23,5 +23,9 @@ export class UserApiService {
 
   confirmUser(params: EmailConfirmParams) {
     return from(this.realm.confirmUser(params))
+  }
+
+  getCurrentUser() {
+    return of(this.realm.app.currentUser)
   }
 }

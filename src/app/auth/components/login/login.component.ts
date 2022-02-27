@@ -5,9 +5,10 @@ import { Store } from '@ngrx/store'
 import { TranslateService } from '@ngx-translate/core'
 import { SIGNIN, SIGNUP } from '@config/routes'
 import { userActions } from '@state/user'
+import { appSelectors } from '@state/app'
 import { first } from '@shared/utils'
 
-const { loginWithEmailPassword, registerWithEmailPassword } = userActions
+const { emailAndPasswordLogin, emailAndPasswordRegistration } = userActions
 
 const passwordsMatchValidator: ValidatorFn = (control) => {
   const password = control.value
@@ -26,6 +27,8 @@ export class LoginComponent implements OnInit {
   isSignup = first(this.route.snapshot.url)?.path === SIGNUP
   translationNs = this.isSignup ? 'Registration.' : 'Login.'
   secondaryButtonLink = this.isSignup ? SIGNIN : SIGNUP
+
+  loading$ = this.store.select(appSelectors.selectLoadingStatus('auth'))
 
   constructor(
     public translate: TranslateService,
@@ -68,7 +71,7 @@ export class LoginComponent implements OnInit {
         email: <string>this.validateForm.get('email')!.value,
         password: <string>this.validateForm.get('password')!.value
       }
-      const action = this.isSignup ? registerWithEmailPassword : loginWithEmailPassword
+      const action = this.isSignup ? emailAndPasswordRegistration : emailAndPasswordLogin
       this.store.dispatch(action(payload))
     } else {
       this.displayErrors()

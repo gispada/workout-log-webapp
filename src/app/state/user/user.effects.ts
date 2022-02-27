@@ -1,73 +1,159 @@
 import { Injectable } from '@angular/core'
-import { Actions, createEffect, ofType } from '@ngrx/effects'
-import { delay, map, switchMap, mapTo, tap } from 'rxjs'
-import { appActions } from '@state/app'
+import { Router } from '@angular/router'
+import { Actions, createEffect, ofType, ROOT_EFFECTS_INIT } from '@ngrx/effects'
+import {
+  map,
+  exhaustMap,
+  mapTo,
+  catchError,
+  of,
+  throttleTime,
+  tap,
+  delay,
+  filter,
+  switchMap
+} from 'rxjs'
 import { FeedbackService, UserApiService } from '@core/services'
+import { AuthenticationError } from '@core/types/api'
 import { HOME, SIGNIN } from '@config/routes'
 import {
   loginSuccess,
-  loginWithEmailPassword,
+  emailAndPasswordLogin,
   logout,
-  registerWithEmailPassword,
-  confirmUser
+  emailAndPasswordRegistration,
+  emailConfirmation,
+  authError,
+  registrationSuccess,
+  confirmationStatusChanged,
+  logoutSuccess,
+  userInitialized
 } from './user.actions'
+
+const i18nKeysMap: Record<string, string> = {
+  InvalidPassword: 'LoginFailed',
+  AccountNameInUse: 'RegistrationExistingEmail'
+}
+
+const mapApiErrorToI18nKey = (code: string) => i18nKeysMap[code]
 
 @Injectable()
 export class UserEffects {
-  login$ = createEffect(() => {
+  initUser$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(loginWithEmailPassword),
-      switchMap(({ payload }) => this.userApi.login(payload)),
-      map((user) => loginSuccess({ profile: user.profile, extraData: user.customData }))
+      ofType(ROOT_EFFECTS_INIT),
+      switchMap(() => this.userApi.getCurrentUser()),
+      filter(Boolean),
+      map((user) =>
+        userInitialized({ profile: user.profile, extraData: user.customData })
+      )
     )
   })
 
-  register$ = createEffect(
-    () => {
-      return this.actions$.pipe(
-        ofType(registerWithEmailPassword),
-        switchMap(({ payload }) => this.userApi.registerUser(payload)),
-        tap(() =>
-          this.feedback.displayMessage({
-            i18nText: 'RegistrationSuccess',
-            type: 'success'
-          })
+  login$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(emailAndPasswordLogin),
+      exhaustMap(({ payload }) =>
+        this.userApi.login(payload).pipe(
+          map((user) =>
+            loginSuccess({ profile: user.profile, extraData: user.customData })
+          ),
+          catchError(({ errorCode }: AuthenticationError) => of(authError(errorCode)))
         )
       )
-    },
-    { dispatch: false }
-  )
+    )
+  })
+
+  register$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(emailAndPasswordRegistration),
+      throttleTime(1000),
+      exhaustMap(({ payload }) =>
+        this.userApi.registerUser(payload).pipe(
+          mapTo(registrationSuccess()),
+          catchError(({ errorCode }: AuthenticationError) => of(authError(errorCode)))
+        )
+      )
+    )
+  })
 
   confirmUser$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(confirmUser),
-      delay(2000),
-      switchMap(({ payload }) => this.userApi.confirmUser(payload)),
-      tap(() =>
-        this.feedback.displayMessage({ i18nText: 'ConfirmationSuccess', type: 'success' })
+      ofType(emailConfirmation),
+      exhaustMap(({ payload }) => this.userApi.confirmUser(payload)),
+      mapTo(
+        confirmationStatusChanged({ status: 'success', message: 'ConfirmationSuccess' })
       ),
-      mapTo(appActions.navigate(`/${SIGNIN}`))
+      catchError(() =>
+        of(confirmationStatusChanged({ status: 'failed', message: 'ConfirmationFailed' }))
+      )
     )
   })
 
   logout$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(logout),
-      switchMap(() => this.userApi.logout()),
-      mapTo(appActions.navigate(`/${SIGNIN}`))
+      exhaustMap(() => this.userApi.logout()),
+      mapTo(logoutSuccess())
     )
   })
 
-  onLoginSuccess$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(loginSuccess),
-      mapTo(appActions.navigate(`/${HOME}`))
-    )
-  })
+  // -------------------- Non-dispatching effects -------------------- //
+
+  redirectToHome$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(loginSuccess, logoutSuccess),
+        tap(() => this.router.navigateByUrl(`/${HOME}`))
+      )
+    },
+    { dispatch: false }
+  )
+
+  displayError$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(authError),
+        tap(({ payload }) => {
+          this.feedback.displayMessage({
+            i18nText: mapApiErrorToI18nKey(payload),
+            type: 'error'
+          })
+        })
+      )
+    },
+    { dispatch: false }
+  )
+
+  onRegistrationSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(registrationSuccess),
+        tap(() => {
+          this.feedback.displayMessage({
+            i18nText: 'RegistrationSuccess',
+            type: 'success'
+          })
+        })
+      )
+    },
+    { dispatch: false }
+  )
+
+  onConfirmationDone$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(confirmationStatusChanged),
+        delay(3000),
+        tap(() => this.router.navigateByUrl(`/${SIGNIN}`))
+      )
+    },
+    { dispatch: false }
+  )
 
   constructor(
     private actions$: Actions,
     private userApi: UserApiService,
-    private feedback: FeedbackService
+    private feedback: FeedbackService,
+    private router: Router
   ) {}
 }

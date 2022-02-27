@@ -21,7 +21,10 @@
     "PasswordText": "Password",
     "ConfirmPasswordText": "Confirm password",
     "SubmitButton": "Register",
-    "AlternateButton": "Log in"
+    "AlternateButton": "Log in",
+    "ConfirmationPending": "We are confirming your email...",
+    "ConfirmationSuccess": "Your email has been successfully confirmed. You will be redirected to the login page.",
+    "ConfirmationFailed": "An error occurred while confirming your email. You will be redirected to the login page."
   },
   "Errors": {
     "InvalidEmail": "Invalid email.",
@@ -30,6 +33,7 @@
   },
   "Messages": {
     "RegistrationSuccess": "Registration done! Confirm your email to get started.",
-    "ConfirmationSuccess": "Email confirmed! Login to start using the app."
+    "LoginFailed": "Email or password are not valid.",
+    "RegistrationExistingEmail": "This email has already been registered."
   }
 }

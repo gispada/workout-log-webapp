@@ -1,4 +1,8 @@
 <app-auth-container>
-  <p>Your email has been confirmed.</p>
-  <p>You will be redirected to the home page soon.</p>
+  <p *ngIf="confirmationStatus$ | async as status; else pending">
+    {{ 'Registration.' + status.message | translate }}
+  </p>
+  <ng-template #pending>
+    <p>{{ 'Registration.ConfirmationPending' | translate }}</p>
+  </ng-template>
 </app-auth-container>

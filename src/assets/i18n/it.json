@@ -21,7 +21,10 @@
     "PasswordText": "Password",
     "ConfirmPasswordText": "Conferma password",
     "SubmitButton": "Registrati",
-    "AlternateButton": "Accedi"
+    "AlternateButton": "Accedi",
+    "ConfirmationPending": "Stiamo confermando la tua email...",
+    "ConfirmationSuccess": "La tua email è stata confermata con successo. Ora ritornerai alla pagina di login.",
+    "ConfirmationFailed": "Si è verificato un errore durante la conferma dell'email. Ora ritornerai alla pagina di login."
   },
   "Errors": {
     "InvalidEmail": "Email non valida.",
@@ -30,6 +33,7 @@
   },
   "Messages": {
     "RegistrationSuccess": "Registrazione effettuata! Conferma l'email per iniziare.",
-    "ConfirmationSuccess": "Email confermata! Effettua il login per usare l'app."
+    "LoginFailed": "L'email o la password non sono validi.",
+    "RegistrationExistingEmail": "Questa email è già stata registrata."
   }
 }

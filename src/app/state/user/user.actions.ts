@@ -1,32 +1,56 @@
 import { createAction } from '@ngrx/store'
-import { withPayload } from '@shared/utils'
-import { Credentials, EmailConfirmParams } from '@core/types'
-import { UserProfile } from './user.model'
+import { Credentials, EmailConfirmParams } from '@core/types/api'
+import { withActionData } from '../utils'
+import { UserProfile, ConfirmationStatus } from './user.model'
 
-export const loginWithEmailPassword = createAction(
+type UserData = { profile: UserProfile; extraData?: Record<string, unknown> }
+
+const loading = (value: boolean) => ({ loading: value, key: 'auth' })
+
+export const userInitialized = createAction(
+  '[Auth] User initialized',
+  withActionData<UserData>()
+)
+
+export const emailAndPasswordLogin = createAction(
   '[Auth Page] Email/password login',
-  withPayload<Credentials>()
+  withActionData<Credentials>(loading(true))
 )
 
-export const loginWithGoogle = createAction('[Auth Page] Google login')
+export const googleLogin = createAction('[Auth Page] Google login')
 
-export const registerWithEmailPassword = createAction(
+export const emailAndPasswordRegistration = createAction(
   '[Auth Page] Email/password registration',
-  withPayload<Credentials>()
+  withActionData<Credentials>(loading(true))
 )
-
-export const loginSuccess = createAction(
-  '[Auth API] Login success',
-  withPayload<{ profile: UserProfile; extraData?: Record<string, unknown> }>()
-)
-
-export const loginError = createAction('[Auth API] Login error')
 
 export const logout = createAction('[Auth Page] Logout')
 
+export const emailConfirmation = createAction(
+  '[Auth Page] User email confirmation',
+  withActionData<EmailConfirmParams>()
+)
+
+// Actions triggered by remote API responses
+
+export const loginSuccess = createAction(
+  '[Auth API] Login success',
+  withActionData<UserData>(loading(false))
+)
+
+export const registrationSuccess = createAction(
+  '[Auth API] Registration success',
+  withActionData(loading(false))
+)
+
 export const logoutSuccess = createAction('[Auth API] Logout success')
 
-export const confirmUser = createAction(
-  '[Auth Page] Confirm user',
-  withPayload<EmailConfirmParams>()
+export const authError = createAction(
+  '[Auth API] Auth error',
+  withActionData<string>(loading(false))
+)
+
+export const confirmationStatusChanged = createAction(
+  '[Auth API] Confirmation status changed',
+  withActionData<ConfirmationStatus>()
 )

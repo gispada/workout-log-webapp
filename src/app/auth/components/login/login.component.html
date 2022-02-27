@@ -71,14 +71,20 @@
 
     <nz-form-item>
       <nz-form-control>
-        <button nz-button nzBlock nzType="primary" nzSize="large">
+        <button
+          nz-button
+          nzBlock
+          nzType="primary"
+          nzSize="large"
+          [nzLoading]="loading$ | async"
+        >
           {{ translationNs + 'SubmitButton' | translate }}
         </button>
       </nz-form-control>
     </nz-form-item>
   </form>
 
-  <button nz-button nzBlock nzType="text">
+  <button nz-button nzBlock nzType="text" [disabled]="loading$ | async">
     <a [routerLink]="['/', secondaryButtonLink]">
       {{ translationNs + 'AlternateButton' | translate }}
     </a>

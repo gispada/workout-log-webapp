@@ -1,7 +1,7 @@
 import { createAction } from '@ngrx/store'
-import { withPayload } from '@shared/utils'
+import { withActionData } from '../utils'
 
-export const navigate = createAction(
-  '[App] Navigate',
-  withPayload<string | { to: string }>()
+export const loadingChanged = createAction(
+  '[App] Loading status changed',
+  withActionData<{ key: string; value: boolean }>()
 )
