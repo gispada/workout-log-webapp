@@ -26,6 +26,6 @@ import {
     RouterModule,
     SharedModule
   ],
-  exports: [LoginComponent, ConfirmUserComponent]
+  exports: []
 })
 export class AuthModule {}
