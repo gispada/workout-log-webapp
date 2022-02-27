@@ -26,4 +26,6 @@ $antd-header-height: 64px; // Antd fixed header height
   max-width: 48rem;
   height: 52rem;
   border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
 }

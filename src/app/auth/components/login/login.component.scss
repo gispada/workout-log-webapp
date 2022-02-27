@@ -1,7 +1,7 @@
 @use '~src/style/colors';
 
 .header {
-  margin-bottom: 4rem;
+  margin-bottom: 3.2rem;
   h1 {
     margin-bottom: 0;
   }
@@ -14,4 +14,11 @@
 .password-visibility {
   cursor: pointer;
   color: colors.$light-text;
+}
+
+.google-login {
+  margin-top: auto;
+  img {
+    padding-right: 1rem;
+  }
 }

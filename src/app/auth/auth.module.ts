@@ -8,11 +8,17 @@ import { AuthRoutingModule } from './auth-routing.module'
 import {
   LoginComponent,
   AuthContainerComponent,
-  ConfirmUserComponent
+  ConfirmUserComponent,
+  GoogleRedirectComponent
 } from './components'
 
 @NgModule({
-  declarations: [LoginComponent, AuthContainerComponent, ConfirmUserComponent],
+  declarations: [
+    LoginComponent,
+    AuthContainerComponent,
+    ConfirmUserComponent,
+    GoogleRedirectComponent
+  ],
   imports: [
     CommonModule,
     AuthRoutingModule,

@@ -9,7 +9,7 @@ const webpackConfig: Configuration = {
       stream: false
     }
   },
-  plugins: [new EnvironmentPlugin(['REALM_APP_ID', 'MONGO_DB_NAME'])]
+  plugins: [new EnvironmentPlugin(['REALM_APP_ID', 'MONGO_DB_NAME', 'BASE_URL'])]
 }
 
 export default webpackConfig

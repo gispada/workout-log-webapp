@@ -77,4 +77,8 @@ export class LoginComponent implements OnInit {
       this.displayErrors()
     }
   }
+
+  loginWithGoogle() {
+    this.store.dispatch(userActions.googleLogin())
+  }
 }

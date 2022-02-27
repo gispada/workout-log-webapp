@@ -13,7 +13,8 @@
     "EmailText": "Email",
     "PasswordText": "Password",
     "SubmitButton": "Accedi",
-    "AlternateButton": "Registrati ora"
+    "AlternateButton": "Registrati ora",
+    "LoginWithGoogle": "Accedi con Google"
   },
   "Registration": {
     "Header": "Unisciti a noi!",
@@ -35,6 +36,7 @@
   "Messages": {
     "RegistrationSuccess": "Registrazione effettuata! Conferma l'email per iniziare.",
     "LoginFailed": "L'email o la password non sono validi.",
-    "RegistrationExistingEmail": "Questa email è già stata registrata."
+    "RegistrationExistingEmail": "Questa email è già stata registrata.",
+    "GoogleLoginAborted": "Login con Google annullato."
   }
 }

@@ -11,6 +11,7 @@
         class="menu-item"
         *ngFor="let item of sideMenu || appConfig.menuItems"
         nz-menu-item
+        nzMatchRouter
       >
         <a [routerLink]="[item.linkUrl]" [title]="item.i18nTitle | translate">
           <div class="anticon">

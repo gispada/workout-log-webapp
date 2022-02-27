@@ -89,4 +89,17 @@
       {{ translationNs + 'AlternateButton' | translate }}
     </a>
   </button>
+
+  <button
+    *ngIf="!isSignup"
+    nz-button
+    nzBlock
+    class="google-login"
+    nzType="text"
+    nzSize="large"
+    (click)="loginWithGoogle()"
+  >
+    <img src="assets/google-logo.svg" />
+    {{ 'Login.LoginWithGoogle' | translate }}
+  </button>
 </app-auth-container>

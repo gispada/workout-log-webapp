@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { from, of } from 'rxjs'
+import { handleAuthRedirect } from 'realm-web'
 import { Credentials, EmailConfirmParams } from '../types/api'
 import { RealmService } from './realm.service'
 
@@ -27,5 +28,13 @@ export class UserApiService {
 
   getCurrentUser() {
     return of(this.realm.app.currentUser)
+  }
+
+  loginWithGoogle() {
+    return from(this.realm.loginWithGoogle())
+  }
+
+  handleAuthRedirect() {
+    handleAuthRedirect()
   }
 }

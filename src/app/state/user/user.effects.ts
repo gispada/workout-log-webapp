@@ -26,7 +26,8 @@ import {
   registrationSuccess,
   confirmationStatusChanged,
   logoutSuccess,
-  userInitialized
+  userInitialized,
+  googleLogin
 } from './user.actions'
 
 const i18nKeysMap: Record<string, string> = {
@@ -97,6 +98,20 @@ export class UserEffects {
     )
   })
 
+  loginWithGoogle$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(googleLogin),
+      exhaustMap(() =>
+        this.userApi.loginWithGoogle().pipe(
+          map((user) =>
+            loginSuccess({ profile: user.profile, extraData: user.customData })
+          ),
+          catchError(() => of(authError('GoogleLoginAborted')))
+        )
+      )
+    )
+  })
+
   // -------------------- Non-dispatching effects -------------------- //
 
   redirectToHome$ = createEffect(
@@ -125,7 +140,7 @@ export class UserEffects {
         ofType(authError),
         tap(({ payload }) => {
           this.feedback.displayMessage({
-            i18nText: mapApiErrorToI18nKey(payload),
+            i18nText: mapApiErrorToI18nKey(payload) || payload,
             type: 'error'
           })
         })
