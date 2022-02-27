@@ -1,0 +1,7 @@
+<nz-avatar nz-dropdown [nzDropdownMenu]="userMenu" class="avatar" nzText="JD"></nz-avatar>
+
+<nz-dropdown-menu #userMenu="nzDropdownMenu">
+  <ul nz-menu nzSelectable>
+    <li nz-menu-item (click)="onLogout()">{{ 'Menu.Logout' | translate }}</li>
+  </ul>
+</nz-dropdown-menu>

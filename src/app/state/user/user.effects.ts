@@ -102,8 +102,18 @@ export class UserEffects {
   redirectToHome$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(loginSuccess, logoutSuccess),
+        ofType(loginSuccess),
         tap(() => this.router.navigateByUrl(`/${HOME}`))
+      )
+    },
+    { dispatch: false }
+  )
+
+  redirectToLogin$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(logoutSuccess),
+        tap(() => this.router.navigateByUrl(`/${SIGNIN}`))
       )
     },
     { dispatch: false }

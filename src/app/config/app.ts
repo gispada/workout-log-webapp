@@ -1,6 +1,7 @@
+import { InjectionToken } from '@angular/core'
 import { SideMenuItem } from '@shared/types'
 
-export const languages = [
+const languages = [
   {
     full: 'English',
     short: 'EN',
@@ -13,9 +14,7 @@ export const languages = [
   }
 ]
 
-export const defaultLanguage = 'en'
-
-export const menuItems: SideMenuItem[] = [
+const menuItems: SideMenuItem[] = [
   {
     i18nTitle: 'Menu.Dashboard',
     linkUrl: '/',
@@ -42,3 +41,16 @@ export const menuItems: SideMenuItem[] = [
     icon: 'gear'
   }
 ]
+
+// Static app configuration
+export const appConfig = Object.freeze({
+  logoUrl: '../../assets/logo.svg',
+  title: 'Workout Log Webapp',
+  defaultLanguage: 'en',
+  languages,
+  menuItems
+})
+
+export type AppConfig = typeof appConfig
+
+export const APP_CONFIG = new InjectionToken<AppConfig>('App config token')

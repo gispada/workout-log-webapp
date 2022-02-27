@@ -1,0 +1,13 @@
+@use '~src/style/colors';
+
+.avatar {
+  cursor: pointer;
+}
+
+.ant-dropdown-menu {
+  border: 1px solid colors.$border;
+}
+
+.ant-dropdown-menu-item:hover {
+  background: rgba(colors.$primary, 0.1);
+}

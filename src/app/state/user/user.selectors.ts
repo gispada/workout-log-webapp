@@ -7,3 +7,5 @@ export const selectConfirmationStatus = createSelector(
   selectUser,
   (state) => state.confirmationStatus
 )
+
+export const selectIsLoggedIn = createSelector(selectUser, (state) => state.isLoggedIn)

@@ -4,7 +4,8 @@
     "Workouts": "Workouts",
     "Logs": "Logs",
     "Statistics": "Statistics",
-    "Settings": "Settings"
+    "Settings": "Settings",
+    "Logout": "Logout"
   },
   "Login": {
     "Header": "Welcome back!",

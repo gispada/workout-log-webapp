@@ -13,12 +13,15 @@ import { NzInputModule } from 'ng-zorro-antd/input'
 import { NzFormModule } from 'ng-zorro-antd/form'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number'
+import { NzSpinModule } from 'ng-zorro-antd/spin'
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown'
 
 import {
   ShellComponent,
   HeaderComponent,
   SelectComponent,
-  LanguageSwitcherComponent
+  LanguageSwitcherComponent,
+  UserDropdownComponent
 } from './components'
 
 @NgModule({
@@ -26,7 +29,8 @@ import {
     ShellComponent,
     HeaderComponent,
     SelectComponent,
-    LanguageSwitcherComponent
+    LanguageSwitcherComponent,
+    UserDropdownComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +42,9 @@ import {
     RouterModule,
     NzMenuModule,
     NzSelectModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NzSpinModule,
+    NzDropDownModule
   ],
   exports: [
     NzFormModule,

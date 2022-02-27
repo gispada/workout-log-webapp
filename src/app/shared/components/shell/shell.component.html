@@ -1,11 +1,17 @@
 <nz-layout class="layout-container">
   <nz-sider nzCollapsible class="layout-sidemenu" [nzWidth]="240">
     <div class="sider-logo">
-      <a routerLink="/" [title]="logoLinkTitle"><img [src]="logoUrl" alt="Logo" /></a>
+      <a routerLink="/" [title]="appConfig.title"
+        ><img [src]="appConfig.logoUrl" alt="Logo"
+      /></a>
     </div>
 
     <ul nz-menu [nzInlineIndent]="14" nzTheme="dark" nzMode="inline">
-      <li class="menu-item" *ngFor="let item of sideMenu" nz-menu-item>
+      <li
+        class="menu-item"
+        *ngFor="let item of sideMenu || appConfig.menuItems"
+        nz-menu-item
+      >
         <a [routerLink]="[item.linkUrl]" [title]="item.i18nTitle | translate">
           <div class="anticon">
             <fa-icon [icon]="item.icon"></fa-icon>
@@ -22,7 +28,7 @@
         <fa-icon class="action-icon" [icon]="['far', 'circle-question']"></fa-icon>
         <fa-icon class="action-icon" [icon]="['far', 'bell']"></fa-icon>
         <app-language-switcher></app-language-switcher>
-        <nz-avatar class="avatar" nzText="JD"></nz-avatar>
+        <app-user-dropdown></app-user-dropdown>
       </div>
     </app-header>
 

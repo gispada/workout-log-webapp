@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core'
+import { Component, Inject, Input } from '@angular/core'
+import { AppConfig, APP_CONFIG } from '@config/app'
 import { TranslateService } from '@ngx-translate/core'
 import { SideMenuItem } from '@shared/types'
 
@@ -8,9 +9,10 @@ import { SideMenuItem } from '@shared/types'
   styleUrls: ['./shell.component.scss']
 })
 export class ShellComponent {
-  @Input() logoUrl?: string
-  @Input() logoLinkTitle?: string
-  @Input() sideMenu!: SideMenuItem[]
+  @Input() sideMenu?: SideMenuItem[]
 
-  constructor(public translate: TranslateService) {}
+  constructor(
+    @Inject(APP_CONFIG) public appConfig: AppConfig,
+    public translate: TranslateService
+  ) {}
 }

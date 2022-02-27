@@ -9,9 +9,11 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome'
 
-import { AuthModule } from '@auth/auth.module'
 import { CoreModule } from '@core/core.module'
-import { icons } from './config/icons'
+import { AuthModule } from '@auth/auth.module'
+import { DashboardModule } from '@dashboard/dashboard.module'
+import { appConfig, APP_CONFIG } from '@config/app'
+import { icons } from '@config/icons'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { effects, reducers } from './state'
@@ -31,6 +33,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     CoreModule,
     AuthModule,
+    DashboardModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),
     StoreRouterConnectingModule.forRoot(),
@@ -43,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     ...extModules
   ],
+  providers: [{ provide: APP_CONFIG, useValue: appConfig }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

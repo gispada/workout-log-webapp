@@ -1,6 +1,6 @@
-import { Component } from '@angular/core'
+import { Component, Inject } from '@angular/core'
 import { TranslateService } from '@ngx-translate/core'
-import { defaultLanguage, menuItems } from '@config/constants'
+import { APP_CONFIG, AppConfig } from '@config/app'
 
 @Component({
   selector: 'app-root',
@@ -8,10 +8,11 @@ import { defaultLanguage, menuItems } from '@config/constants'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Workout Log'
-  menu = menuItems
-
-  constructor(private translate: TranslateService) {
+  constructor(
+    @Inject(APP_CONFIG) private appConfig: AppConfig,
+    private translate: TranslateService
+  ) {
+    const { defaultLanguage } = appConfig
     translate.setDefaultLang(defaultLanguage)
     translate.use(defaultLanguage)
   }
