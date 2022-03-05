@@ -15,13 +15,17 @@ import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number'
 import { NzSpinModule } from 'ng-zorro-antd/spin'
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown'
+import { NzTableModule } from 'ng-zorro-antd/table'
 
 import {
   ShellComponent,
   HeaderComponent,
   SelectComponent,
   LanguageSwitcherComponent,
-  UserDropdownComponent
+  UserDropdownComponent,
+  TableComponent,
+  CardComponent,
+  TagComponent
 } from './components'
 
 @NgModule({
@@ -30,7 +34,10 @@ import {
     HeaderComponent,
     SelectComponent,
     LanguageSwitcherComponent,
-    UserDropdownComponent
+    UserDropdownComponent,
+    TableComponent,
+    CardComponent,
+    TagComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +51,8 @@ import {
     NzSelectModule,
     FontAwesomeModule,
     NzSpinModule,
-    NzDropDownModule
+    NzDropDownModule,
+    NzTableModule
   ],
   exports: [
     NzFormModule,
@@ -56,7 +64,10 @@ import {
     HeaderComponent,
     LanguageSwitcherComponent,
     FontAwesomeModule,
-    NzButtonModule
+    NzButtonModule,
+    TableComponent,
+    CardComponent,
+    TagComponent
   ]
 })
 export class SharedModule {}

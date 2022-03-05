@@ -1,0 +1,12 @@
+@use '~src/style/colors';
+
+.tag {
+  padding: .4rem 1.4rem;
+  border-radius: .4rem;
+  display: inline-block;
+}
+
+.default-color {
+  background-color: rgba(colors.$primary, 0.1);
+  color: colors.$primary;
+}

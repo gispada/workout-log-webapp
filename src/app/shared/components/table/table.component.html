@@ -1,0 +1,25 @@
+<nz-table
+  #table
+  [nzData]="dataSource"
+  nzHideOnSinglePage
+  [nzFrontPagination]="!!paginationSize"
+  [nzPageSize]="paginationSize || 10"
+>
+  <thead>
+    <tr class="header-row">
+      <th
+        *ngFor="let column of columns"
+        [nzSortOrder]="column.sortOrder || null"
+        [nzSortFn]="column.sortFn || null"
+      >
+        {{ column.title }}
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let record of table.data" class="body-row">
+      <td *ngFor="let column of columns">{{ record[column.dataKey] }}</td>
+    </tr>
+  </tbody>
+</nz-table>

@@ -3,3 +3,6 @@ export { LanguageSwitcherComponent } from './language-switcher/language-switcher
 export { SelectComponent } from './select/select.component'
 export { ShellComponent } from './shell/shell.component'
 export { UserDropdownComponent } from './user-dropdown/user-dropdown.component'
+export { TableComponent } from './table/table.component'
+export { CardComponent } from './card/card.component'
+export { TagComponent } from './tag/tag.component'

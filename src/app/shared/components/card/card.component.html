@@ -1,0 +1,10 @@
+<div class="card-container">
+  <div class="card-header" *ngIf="title || subtitle">
+    <h2 *ngIf="title">{{ title }}</h2>
+    <p *ngIf="subtitle">{{ subtitle }}</p>
+  </div>
+
+  <div class="card-content">
+    <ng-content></ng-content>
+  </div>
+</div>

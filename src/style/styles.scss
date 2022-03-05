@@ -25,10 +25,16 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; // Firefox
   font-weight: 700;
+  margin: 0;
 }
 
 h1 {
   font-size: text.$large-size;
+}
+
+h2 {
+  font-size: text.$medium-size;
+  line-height: 1.4;
 }
 
 p {

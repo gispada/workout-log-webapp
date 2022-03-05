@@ -1,0 +1,14 @@
+@use '~src/style/colors';
+
+.header-row {
+  text-transform: uppercase;
+}
+
+.body-row {
+  color: colors.$light-text;
+}
+
+
+::ng-deep.ant-table-pagination:empty {
+  margin: 0;
+}
