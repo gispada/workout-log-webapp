@@ -22,12 +22,14 @@ body {
 }
 
 .ant-input-affix-wrapper {
-  .ant-input {
-    border-radius: 0;
-  }
   .ant-input-prefix {
     margin-right: 0.8rem;
   }
+}
+
+.ant-input-affix-wrapper .ant-input,
+.ant-picker-input input {
+  border-radius: 0;
 }
 
 .icon-button {

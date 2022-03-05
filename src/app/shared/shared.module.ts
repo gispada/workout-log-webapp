@@ -19,6 +19,7 @@ import { NzTableModule } from 'ng-zorro-antd/table'
 import { NzTabsModule } from 'ng-zorro-antd/tabs'
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
 import { NzGridModule } from 'ng-zorro-antd/grid'
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker'
 
 import {
   ShellComponent,
@@ -79,7 +80,8 @@ import {
     PageHeaderComponent,
     NzToolTipModule,
     NzGridModule,
-    FormItemBlockComponent
+    FormItemBlockComponent,
+    NzDatePickerModule
   ]
 })
 export class SharedModule {}

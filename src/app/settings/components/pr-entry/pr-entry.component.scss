@@ -9,6 +9,7 @@
 .pr-date {
   color: colors.$light-text;
   flex: 1;
+  display: flex;
 }
 
 .pr {
@@ -27,4 +28,10 @@
 .action {
   color: colors.$danger;
   cursor: pointer;
+}
+
+nz-date-picker {
+  flex: 1;
+  max-width: 20rem;
+  margin-right: 2rem;
 }
