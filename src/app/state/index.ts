@@ -1,5 +1,6 @@
 import { routerReducer } from '@ngrx/router-store'
 import { appReducer, AppEffects } from './app'
+import { exercisesReducer } from './exercises'
 import { userReducer, UserEffects } from './user'
 
 // TODO: move the store to its own module?
@@ -7,7 +8,8 @@ import { userReducer, UserEffects } from './user'
 export const reducers = {
   router: routerReducer,
   app: appReducer,
-  user: userReducer
+  user: userReducer,
+  exercises: exercisesReducer
 }
 
 export const effects = [AppEffects, UserEffects]
