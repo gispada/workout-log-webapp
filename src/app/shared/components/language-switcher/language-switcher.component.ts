@@ -1,13 +1,12 @@
-import { Component, Inject } from '@angular/core'
-import { AppConfig, APP_CONFIG } from '@config/app'
-import { TranslateService } from '@ngx-translate/core'
+import { Component } from '@angular/core'
+import { LocaleService } from '@core/services'
 
 @Component({
   selector: 'app-language-switcher',
   template: `<app-select
-    [options]="languages"
-    [value]="translate.currentLang"
-    (valueChange)="translate.use($event)"
+    [options]="locale.languages"
+    [value]="locale.currentLanguage"
+    (valueChange)="locale.changeLanguage($event)"
     size="default"
     [hideArrow]="true"
     [width]="4.6"
@@ -15,13 +14,5 @@ import { TranslateService } from '@ngx-translate/core'
   styles: ['::ng-deep .ant-select-selection-item { text-align: center }']
 })
 export class LanguageSwitcherComponent {
-  languages = this.appConfig.languages.map(({ key, short }) => ({
-    label: short,
-    value: key
-  }))
-
-  constructor(
-    @Inject(APP_CONFIG) private appConfig: AppConfig,
-    public translate: TranslateService
-  ) {}
+  constructor(public locale: LocaleService) {}
 }
