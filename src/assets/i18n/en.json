@@ -38,5 +38,18 @@
     "LoginFailed": "Email or password are not valid.",
     "RegistrationExistingEmail": "This email has already been registered.",
     "GoogleLoginAborted": "Login with Google canceled."
+  },
+  "Settings": {
+    "Title": "Settings",
+    "Exercises": {
+      "TabTitle": "Exercises",
+      "Title": "Manage your exercises",
+      "AddNew": "New exercise"
+    },
+    "Tags": {
+      "TabTitle": "Tags",
+      "Title": "Manage your tags",
+      "AddNew": "New tag"
+    }
   }
 }

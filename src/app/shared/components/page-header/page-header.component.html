@@ -1,0 +1,15 @@
+<div class="page-header">
+  <div class="left">
+    <div class="title">
+      <a *ngIf="goBackTo" [routerLink]="goBackTo">
+        <fa-icon icon="chevron-left" class="back-icon"></fa-icon>
+      </a>
+      <h1>{{ pageTitle }}</h1>
+    </div>
+    <p *ngIf="pageSubtitle">{{ pageSubtitle }}</p>
+  </div>
+
+  <div class="right" *ngIf="rightTemplate">
+    <ng-container *ngTemplateOutlet="rightTemplate"></ng-container>
+  </div>
+</div>

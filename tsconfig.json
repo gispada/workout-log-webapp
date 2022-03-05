@@ -29,6 +29,7 @@
       "@state/*": ["src/app/state/*"],
       "@core/*": ["src/app/core/*"],
       "@dashboard/*": ["src/app/dashboard/*"],
+      "@settings/*": ["src/app/settings/*"],
     }
   },
   "angularCompilerOptions": {

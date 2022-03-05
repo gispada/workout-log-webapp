@@ -12,6 +12,7 @@ import { FaIconLibrary } from '@fortawesome/angular-fontawesome'
 import { CoreModule } from '@core/core.module'
 import { AuthModule } from '@auth/auth.module'
 import { DashboardModule } from '@dashboard/dashboard.module'
+import { SettingsModule } from '@settings/settings.module'
 import { appConfig, APP_CONFIG } from '@config/app'
 import { icons } from '@config/icons'
 import { AppRoutingModule } from './app-routing.module'
@@ -34,6 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CoreModule,
     AuthModule,
     DashboardModule,
+    SettingsModule, // TODO: lazy load it?
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),
     StoreRouterConnectingModule.forRoot(),

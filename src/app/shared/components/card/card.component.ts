@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, TemplateRef } from '@angular/core'
 
 @Component({
   selector: 'app-card',
@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core'
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent {
-  @Input() title?: string
-  @Input() subtitle?: string
+  @Input() cardTitle?: string
+  @Input() cardSubtitle?: string
+  @Input() rightTemplate?: TemplateRef<null>
 }

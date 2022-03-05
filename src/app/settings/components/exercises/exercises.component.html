@@ -1,0 +1,17 @@
+<app-card [cardTitle]="ns + 'Title' | translate" [rightTemplate]="addExercise">
+  <app-table [columns]="columns" [dataSource]="dataSource"></app-table>
+</app-card>
+
+<ng-template #addExercise>
+  <button
+    nz-button
+    nzType="primary"
+    class="icon-button"
+    nz-tooltip
+    [nzTooltipTitle]="ns + 'AddNew' | translate"
+  >
+    <a [routerLink]="newExerciseUrl">
+      <fa-icon icon="plus"></fa-icon>
+    </a>
+  </button>
+</ng-template>

@@ -38,5 +38,18 @@
     "LoginFailed": "L'email o la password non sono validi.",
     "RegistrationExistingEmail": "Questa email è già stata registrata.",
     "GoogleLoginAborted": "Login con Google annullato."
+  },
+  "Settings": {
+    "Title": "Impostazioni",
+    "Exercises": {
+      "TabTitle": "Esercizi",
+      "Title": "Gestisci i tuoi esercizi",
+      "AddNew": "Nuovo esercizio"
+    },
+    "Tags": {
+      "TabTitle": "Tag",
+      "Title": "Gestisci i tuoi tag",
+      "AddNew": "Nuovo tag"
+    }
   }
 }

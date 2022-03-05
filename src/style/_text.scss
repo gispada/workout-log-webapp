@@ -1,4 +1,37 @@
-$small-size: 1.2rem;
+$h1-size: 3.4rem;
+$h2-size: 2.6rem;
+$h3-size: 2.2rem;
+$h4-size: 1.8rem;
 $base-size: 1.6rem;
-$medium-size: 2.6rem;
-$large-size: 3.4rem;
+$small-size: 1.2rem;
+
+h1, h2, h3, h4, h5, h6 {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; // Firefox
+  font-weight: 700;
+  margin: 0;
+}
+
+h1 {
+  font-size: $h1-size;
+}
+
+h2 {
+  font-size: $h2-size;
+  line-height: 1.4;
+}
+
+h3 {
+  font-size: $h3-size;
+  line-height: 1.2;
+}
+
+h4 {
+  font-size: $h4-size;
+  line-height: 1.2;
+}
+
+p {
+  font-size: $base-size;
+  margin: 0;
+}

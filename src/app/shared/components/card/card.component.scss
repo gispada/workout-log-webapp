@@ -9,8 +9,14 @@
 
 .card-header {
   margin-bottom: 2rem;
+  display: flex;
+  align-items: baseline;
 
   p {
     color: colors.$light-text;
   }
+}
+
+.left {
+  flex: 1;
 }

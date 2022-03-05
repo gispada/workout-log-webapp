@@ -1,0 +1,30 @@
+@use '~/src/style/colors';
+
+.pr-entry {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.pr-date {
+  color: colors.$light-text;
+  flex: 1;
+}
+
+.pr {
+  display: flex;
+  align-items: center;
+}
+
+.pr-unit {
+  padding-left: 0.6rem;
+}
+
+.actions {
+  padding-left: 2rem;
+}
+
+.action {
+  color: colors.$danger;
+  cursor: pointer;
+}

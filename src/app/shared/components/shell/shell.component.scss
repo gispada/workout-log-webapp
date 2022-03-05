@@ -1,5 +1,6 @@
 @use '~src/style/colors';
 @use '~src/style/text';
+@use '~src/style/layout';
 
 $antd-header-height: 64px; // Antd fixed header height
 
@@ -47,6 +48,12 @@ $antd-header-height: 64px; // Antd fixed header height
     height: 100%;
     padding: 1rem 2.4rem;
   }
+}
+
+.inner-container {
+  padding: 4rem;
+  max-width: layout.$contentWidth;
+  margin: 0 auto;
 }
 
 // -------------------- Menu style -------------------- //

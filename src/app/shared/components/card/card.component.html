@@ -1,7 +1,13 @@
 <div class="card-container">
-  <div class="card-header" *ngIf="title || subtitle">
-    <h2 *ngIf="title">{{ title }}</h2>
-    <p *ngIf="subtitle">{{ subtitle }}</p>
+  <div class="card-header" *ngIf="cardTitle || cardSubtitle">
+    <div class="left">
+      <h2 *ngIf="cardTitle">{{ cardTitle }}</h2>
+      <p *ngIf="cardSubtitle">{{ cardSubtitle }}</p>
+    </div>
+
+    <div class="right" *ngIf="rightTemplate">
+      <ng-container *ngTemplateOutlet="rightTemplate"></ng-container>
+    </div>
   </div>
 
   <div class="card-content">

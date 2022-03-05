@@ -1,0 +1,31 @@
+@use '~src/style/colors';
+
+.page-header {
+  margin-bottom: 1.8rem;
+  display: flex;
+  align-items: baseline;
+
+  p {
+    color: colors.$light-text;
+    margin: 0;
+    line-height: 1.2;
+  }
+}
+
+.left {
+  flex: 1;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+
+  a {
+    color: colors.$white;
+  }
+}
+
+.back-icon {
+  font-size: 3rem;
+  margin-right: 0.6rem;
+}
