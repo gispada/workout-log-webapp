@@ -17,7 +17,7 @@ const passwordsMatchValidator: ValidatorFn = (control) => {
 }
 
 @Component({
-  selector: 'app-login',
+  selector: 'auth-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })

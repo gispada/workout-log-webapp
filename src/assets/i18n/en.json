@@ -1,6 +1,7 @@
 {
   "Menu": {
     "Dashboard": "Dashboard",
+    "Exercises": "Exercises",
     "Workouts": "Workouts",
     "Logs": "Logs",
     "Statistics": "Statistics",
@@ -39,13 +40,13 @@
     "RegistrationExistingEmail": "This email has already been registered.",
     "GoogleLoginAborted": "Login with Google canceled."
   },
+  "Exercises": {
+    "Title": "Exercises",
+    "SubTitle": "Manage your exercises",
+    "AddNew": "New exercise"
+  },
   "Settings": {
     "Title": "Settings",
-    "Exercises": {
-      "TabTitle": "Exercises",
-      "Title": "Manage your exercises",
-      "AddNew": "New exercise"
-    },
     "Tags": {
       "TabTitle": "Tags",
       "Title": "Manage your tags",

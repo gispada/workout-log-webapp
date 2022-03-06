@@ -1,27 +1,12 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { SETTINGS, EXERCISE_NEW, EXERCISE_DETAIL } from '@config/routes'
-import { SettingsComponent } from './settings.component'
-import { ExerciseDetailComponent, SettingsTabsComponent } from './components'
+import { SETTINGS } from '@config/routes'
+import { SettingsTabsComponent } from './components'
 
 const routes: Routes = [
   {
     path: SETTINGS,
-    component: SettingsComponent,
-    children: [
-      {
-        path: '',
-        component: SettingsTabsComponent
-      },
-      {
-        path: EXERCISE_NEW,
-        component: ExerciseDetailComponent
-      },
-      {
-        path: EXERCISE_DETAIL,
-        component: ExerciseDetailComponent
-      }
-    ]
+    component: SettingsTabsComponent // TODO: group settings in tabs or find another way?
   }
 ]
 

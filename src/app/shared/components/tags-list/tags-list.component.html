@@ -1,0 +1,25 @@
+<div class="tags-list-container">
+  <ng-container *ngIf="populatedTags$ | async as tags">
+    <app-tag *ngFor="let tag of tags">
+      <span>{{ tag.name }}</span>
+      <span *ngIf="interactive" class="remove-button" (click)="delete.emit(tag.id)">
+        <fa-icon icon="xmark"></fa-icon>
+      </span>
+    </app-tag>
+  </ng-container>
+
+  <app-tag *ngIf="remainingTags > 0">
+    <span>+{{ remainingTags }}</span>
+  </app-tag>
+
+  <button
+    *ngIf="interactive"
+    nz-button
+    nzType="text"
+    [nzBlock]="tagIds.length === 0"
+    class="add-button"
+    (click)="add.emit()"
+  >
+    <fa-icon icon="plus"></fa-icon>
+  </button>
+</div>

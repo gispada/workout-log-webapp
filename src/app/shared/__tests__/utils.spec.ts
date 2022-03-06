@@ -1,7 +1,7 @@
-import { hexToRgba } from '../utils'
+import { hexToRgba, keyBy } from '../utils'
 
 describe('@shared/utils', () => {
-  describe('Test hexToRgba', () => {
+  describe("Test 'hexToRgba'", () => {
     it('Handles invalid hex strings 1', () => {
       expect(() => hexToRgba('f0e3c')).toThrow(new Error('Invalid hex format'))
     })
@@ -24,6 +24,22 @@ describe('@shared/utils', () => {
 
     it('Handles hex strings of length 3 with explicit alpha', () => {
       expect(hexToRgba('#eee', 0.7)).toEqual('rgba(238, 238, 238, 0.7)')
+    })
+  })
+
+  describe("Test 'keyBy'", () => {
+    it('Transforms a list into an object using the specified key', () => {
+      const list = [
+        { id: '1', name: 'Item 1', color: 'red' },
+        { id: '2', name: 'Item 2', color: 'green' },
+        { id: '3', name: 'Item 3', color: 'blue' }
+      ]
+      const expected = {
+        '1': { id: '1', name: 'Item 1', color: 'red' },
+        '2': { id: '2', name: 'Item 2', color: 'green' },
+        '3': { id: '3', name: 'Item 3', color: 'blue' }
+      }
+      expect(keyBy(list, 'id')).toEqual(expected)
     })
   })
 })

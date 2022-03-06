@@ -1,6 +1,7 @@
 {
   "Menu": {
     "Dashboard": "Dashboard",
+    "Exercises": "Esercizi",
     "Workouts": "Allenamenti",
     "Logs": "Diario",
     "Statistics": "Statistiche",
@@ -39,13 +40,13 @@
     "RegistrationExistingEmail": "Questa email è già stata registrata.",
     "GoogleLoginAborted": "Login con Google annullato."
   },
+  "Exercises": {
+    "Title": "Esercizi",
+    "SubTitle": "Gestisci i tuoi esercizi",
+    "AddNew": "Nuovo esercizio"
+  },
   "Settings": {
     "Title": "Impostazioni",
-    "Exercises": {
-      "TabTitle": "Esercizi",
-      "Title": "Gestisci i tuoi esercizi",
-      "AddNew": "Nuovo esercizio"
-    },
     "Tags": {
       "TabTitle": "Tag",
       "Title": "Gestisci i tuoi tag",

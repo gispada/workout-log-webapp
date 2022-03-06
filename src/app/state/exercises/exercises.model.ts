@@ -1,5 +1,3 @@
-import { Tag } from '@state/tags'
-
 export type PersonalRecord = {
   id: string
   date: string
@@ -11,7 +9,7 @@ export type Exercise = {
   id: string
   name: string
   description?: string
-  tags?: Tag[]
+  tags?: string[]
   personalRecords?: PersonalRecord[]
   // hidden: boolean
 }

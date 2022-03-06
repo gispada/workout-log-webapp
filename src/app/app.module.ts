@@ -13,6 +13,7 @@ import { CoreModule } from '@core/core.module'
 import { AuthModule } from '@auth/auth.module'
 import { DashboardModule } from '@dashboard/dashboard.module'
 import { SettingsModule } from '@settings/settings.module'
+import { ExercisesModule } from '@exercises/exercises.module'
 import { appConfig, APP_CONFIG } from '@config/app'
 import { icons } from '@config/icons'
 import { AppRoutingModule } from './app-routing.module'
@@ -25,6 +26,20 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http)
 }
 
+const featureModules = [
+  CoreModule,
+  AuthModule,
+  DashboardModule,
+  ExercisesModule,
+  SettingsModule
+]
+
+const storeModules = [
+  StoreModule.forRoot(reducers),
+  EffectsModule.forRoot(effects),
+  StoreRouterConnectingModule.forRoot()
+]
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -32,13 +47,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    CoreModule,
-    AuthModule,
-    DashboardModule,
-    SettingsModule, // TODO: lazy load it?
-    StoreModule.forRoot(reducers),
-    EffectsModule.forRoot(effects),
-    StoreRouterConnectingModule.forRoot(),
+    ...featureModules,
+    ...storeModules,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

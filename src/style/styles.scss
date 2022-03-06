@@ -9,6 +9,12 @@
 @font-face {
   font-family: 'Metropolis';
   font-style: normal;
+  font-weight: 500;
+  src: local('Metropolis'), url('https://fonts.cdnfonts.com/s/16308/Metropolis-Medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'Metropolis';
+  font-style: normal;
   font-weight: 700;
   src: local('Metropolis'), url('https://fonts.cdnfonts.com/s/16308/Metropolis-Bold.woff') format('woff');
 }

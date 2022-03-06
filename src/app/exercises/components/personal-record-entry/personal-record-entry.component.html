@@ -1,0 +1,23 @@
+<div class="pr-entry">
+  <div class="pr-date">
+    <nz-date-picker
+      nzFormat="dd MMM yyyy"
+      [nzAllowClear]="false"
+      [ngModel]="pr.date"
+      (ngModelChange)="onChange({ key: 'date', value: $event })"
+    ></nz-date-picker>
+  </div>
+
+  <div class="pr">
+    <nz-input-number
+      [nzMin]="0"
+      [ngModel]="pr.value"
+      (ngModelChange)="onChange({ key: 'value', value: $event })"
+    ></nz-input-number>
+    <p class="pr-unit">{{ pr.unit }}</p>
+  </div>
+
+  <div class="actions">
+    <fa-icon icon="xmark" class="action" (click)="delete.emit(pr.id)"></fa-icon>
+  </div>
+</div>

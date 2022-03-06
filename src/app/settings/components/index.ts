@@ -1,5 +1,2 @@
 export { SettingsTabsComponent } from './settings-tabs/settings-tabs.component'
-export { ExercisesComponent } from './exercises/exercises.component'
-export { ExerciseDetailComponent } from './exercise-detail/exercise-detail.component'
 export { TagsComponent } from './tags/tags.component'
-export { PrEntryComponent } from './pr-entry/pr-entry.component'

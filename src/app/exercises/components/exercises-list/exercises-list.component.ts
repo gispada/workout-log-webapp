@@ -7,11 +7,11 @@ type Exercise = {
   description: string
 }
 @Component({
-  selector: 'app-settings-exercises',
-  templateUrl: './exercises.component.html',
-  styleUrls: ['./exercises.component.scss']
+  selector: 'exercises-list',
+  templateUrl: './exercises-list.component.html',
+  styleUrls: ['./exercises-list.component.scss']
 })
-export class ExercisesComponent {
+export class ExercisesListComponent {
   newExerciseUrl = EXERCISE_NEW
   ns = 'Settings.Exercises.'
 

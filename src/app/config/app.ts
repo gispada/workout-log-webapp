@@ -1,5 +1,6 @@
 import { InjectionToken } from '@angular/core'
 import { SideMenuItem } from '@shared/types'
+import { EXERCISES, HOME, SETTINGS } from './routes'
 
 const languages = [
   {
@@ -17,13 +18,18 @@ const languages = [
 const menuItems: SideMenuItem[] = [
   {
     i18nTitle: 'Menu.Dashboard',
-    linkUrl: '/',
+    linkUrl: HOME,
     icon: 'house'
+  },
+  {
+    i18nTitle: 'Menu.Exercises',
+    linkUrl: EXERCISES,
+    icon: 'dumbbell'
   },
   {
     i18nTitle: 'Menu.Workouts',
     linkUrl: 'workouts',
-    icon: 'dumbbell'
+    icon: 'clipboard-list'
   },
   {
     i18nTitle: 'Menu.Logs',
@@ -37,8 +43,8 @@ const menuItems: SideMenuItem[] = [
   },
   {
     i18nTitle: 'Menu.Settings',
-    linkUrl: 'settings',
-    icon: 'gear'
+    linkUrl: SETTINGS,
+    icon: 'wrench'
   }
 ]
 

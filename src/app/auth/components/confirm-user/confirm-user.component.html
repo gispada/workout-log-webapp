@@ -1,8 +1,8 @@
-<app-auth-container>
+<auth-container>
   <p *ngIf="confirmationStatus$ | async as status; else pending">
     {{ 'Registration.' + status.message | translate }}
   </p>
   <ng-template #pending>
     <p>{{ 'Registration.ConfirmationPending' | translate }}</p>
   </ng-template>
-</app-auth-container>
+</auth-container>

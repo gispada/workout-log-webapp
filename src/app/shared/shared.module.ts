@@ -31,7 +31,8 @@ import {
   CardComponent,
   TagComponent,
   PageHeaderComponent,
-  FormItemBlockComponent
+  FormItemBlockComponent,
+  TagsListComponent
 } from './components'
 
 @NgModule({
@@ -45,7 +46,8 @@ import {
     CardComponent,
     TagComponent,
     PageHeaderComponent,
-    FormItemBlockComponent
+    FormItemBlockComponent,
+    TagsListComponent
   ],
   imports: [
     CommonModule,
@@ -60,7 +62,8 @@ import {
     FontAwesomeModule,
     NzSpinModule,
     NzDropDownModule,
-    NzTableModule
+    NzTableModule,
+    NzButtonModule
   ],
   exports: [
     NzFormModule,
@@ -81,7 +84,8 @@ import {
     NzToolTipModule,
     NzGridModule,
     FormItemBlockComponent,
-    NzDatePickerModule
+    NzDatePickerModule,
+    TagsListComponent
   ]
 })
 export class SharedModule {}

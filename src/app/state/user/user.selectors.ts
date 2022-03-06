@@ -1,16 +1,19 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store'
 import { UserState } from './user.model'
 
-const selectUser = createFeatureSelector<UserState>('user')
+const selectUserState = createFeatureSelector<UserState>('user')
 
 export const selectConfirmationStatus = createSelector(
-  selectUser,
+  selectUserState,
   (state) => state.confirmationStatus
 )
 
-export const selectIsLoggedIn = createSelector(selectUser, (state) => state.isLoggedIn)
+export const selectIsLoggedIn = createSelector(
+  selectUserState,
+  (state) => state.isLoggedIn
+)
 
-export const selectProfile = createSelector(selectUser, (state) => state.profile)
+export const selectProfile = createSelector(selectUserState, (state) => state.profile)
 
 export const selectInitials = createSelector(selectProfile, (profile) => {
   if (!profile) return ''

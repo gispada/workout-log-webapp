@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 
 @Component({
-  selector: 'app-settings-tags',
+  selector: 'settings-tags',
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.scss']
 })

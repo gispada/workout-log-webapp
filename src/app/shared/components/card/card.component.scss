@@ -8,9 +8,13 @@
 }
 
 .card-header {
-  margin-bottom: 2rem;
+  margin-bottom: 2.8rem;
   display: flex;
   align-items: baseline;
+
+  h2 {
+    font-weight: 500;
+  }
 
   p {
     color: colors.$light-text;

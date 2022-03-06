@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store'
 import { userActions, userSelectors } from '@state/user'
 
 @Component({
-  selector: 'app-confirm-user-container',
+  selector: 'auth-confirm-user',
   templateUrl: './confirm-user.component.html'
 })
 export class ConfirmUserComponent implements OnInit {

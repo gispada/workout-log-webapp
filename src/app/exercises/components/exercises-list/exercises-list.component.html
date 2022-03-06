@@ -1,4 +1,6 @@
-<app-card [cardTitle]="ns + 'Title' | translate" [rightTemplate]="addExercise">
+<app-page-header [pageTitle]="'Exercises.Title' | translate"></app-page-header>
+
+<app-card [cardTitle]="'Exercises.SubTitle' | translate" [rightTemplate]="addExercise">
   <app-table [columns]="columns" [dataSource]="dataSource"></app-table>
 </app-card>
 
@@ -8,7 +10,7 @@
     nzType="primary"
     class="icon-button"
     nz-tooltip
-    [nzTooltipTitle]="ns + 'AddNew' | translate"
+    [nzTooltipTitle]="'Exercises.AddNew' | translate"
   >
     <a [routerLink]="newExerciseUrl">
       <fa-icon icon="plus"></fa-icon>

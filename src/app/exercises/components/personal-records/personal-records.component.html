@@ -1,0 +1,14 @@
+<ng-container *ngIf="personalRecords$ | async as prs">
+  <exercises-personal-record-entry
+    *ngFor="let pr of prs; trackBy: prTrackBy"
+    [pr]="pr"
+    (edit)="editPr($event)"
+    (delete)="deletePr($event)"
+  ></exercises-personal-record-entry>
+</ng-container>
+
+<div class="add-pr">
+  <button nz-button nzBlock nzType="text" (click)="addPr()">
+    <fa-icon icon="plus"></fa-icon>
+  </button>
+</div>

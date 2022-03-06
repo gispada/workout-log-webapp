@@ -29,6 +29,7 @@
       "@state/*": ["src/app/state/*"],
       "@core/*": ["src/app/core/*"],
       "@dashboard/*": ["src/app/dashboard/*"],
+      "@exercises/*": ["src/app/exercises/*"],
       "@settings/*": ["src/app/settings/*"],
     }
   },

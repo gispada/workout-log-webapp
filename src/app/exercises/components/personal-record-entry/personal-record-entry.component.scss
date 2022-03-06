@@ -3,7 +3,7 @@
 .pr-entry {
   display: flex;
   align-items: center;
-  margin-bottom: 0.6rem;
+  margin-bottom: 1rem;
 }
 
 .pr-date {
@@ -19,6 +19,7 @@
 
 .pr-unit {
   padding-left: 0.6rem;
+  color: colors.$light-text;
 }
 
 .actions {
@@ -26,7 +27,7 @@
 }
 
 .action {
-  color: colors.$danger;
+  color: colors.$danger-dark;
   cursor: pointer;
 }
 
