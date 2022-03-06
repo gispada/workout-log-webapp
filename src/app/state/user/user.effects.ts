@@ -16,6 +16,7 @@ import {
 import { FeedbackService, UserApiService } from '@core/services'
 import { AuthenticationError } from '@core/types/api'
 import { HOME, SIGNIN } from '@config/routes'
+import { Dictionary } from '@shared/types'
 import {
   loginSuccess,
   emailAndPasswordLogin,
@@ -30,7 +31,7 @@ import {
   googleLogin
 } from './user.actions'
 
-const i18nKeysMap: Record<string, string> = {
+const i18nKeysMap: Dictionary<string> = {
   InvalidPassword: 'LoginFailed',
   AccountNameInUse: 'RegistrationExistingEmail'
 }

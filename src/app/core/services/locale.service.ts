@@ -3,12 +3,13 @@ import { TranslateService } from '@ngx-translate/core'
 import { en_US, it_IT, NzI18nService, NzI18nInterface } from 'ng-zorro-antd/i18n'
 import { enUS, it } from 'date-fns/locale'
 import { AppConfig, APP_CONFIG } from '@config/app'
+import { Dictionary } from '@shared/types'
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocaleService {
-  private nzLocalesMap: Record<string, [NzI18nInterface, Locale]> = {
+  private nzLocalesMap: Dictionary<[NzI18nInterface, Locale]> = {
     it: [it_IT, it],
     en: [en_US, enUS]
   }

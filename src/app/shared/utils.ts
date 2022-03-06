@@ -1,4 +1,5 @@
 import { formatISO } from 'date-fns'
+import { Dictionary } from './types'
 
 export const isFiniteNumber = (x: unknown): x is Number => Number.isFinite(x)
 
@@ -21,7 +22,7 @@ export function assert(condition: any, msg?: string): asserts condition {
 
 export const toISODate = (date: Date) => formatISO(date)
 
-export const keyBy = <T extends Record<string, any>>(
+export const keyBy = <T extends Dictionary<any>>(
   list: T[],
   key: keyof T
-): Record<string, T> => list.reduce((acc, item) => ({ ...acc, [item[key]]: item }), {})
+): Dictionary<T> => list.reduce((acc, item) => ({ ...acc, [item[key]]: item }), {})

@@ -1,4 +1,4 @@
-import { Nullable } from '@shared/types'
+import { Dictionary, Nullable } from '@shared/types'
 
 export type UserProfile = {
   name?: string
@@ -18,6 +18,6 @@ export type ConfirmationStatus = {
 export type UserState = {
   isLoggedIn: boolean
   profile: Nullable<UserProfile>
-  extraData?: Record<string, unknown>
+  extraData?: Dictionary<unknown>
   confirmationStatus?: ConfirmationStatus
 }
