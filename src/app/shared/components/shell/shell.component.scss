@@ -8,10 +8,7 @@ $antd-header-height: 64px; // Antd fixed header height
   display: flex;
   align-items: center;
   height: 100%;
-
-  & > *:not(:last-child) {
-    margin-right: 2.8rem;
-  }
+  gap: 2.8rem
 }
 
 .action-icon {

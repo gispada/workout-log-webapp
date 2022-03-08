@@ -1,14 +1,7 @@
 .tags-list-container {
-  margin-top: -0.8rem; // Hack to have vertical space between tags when they wrap
-}
-
-.add-button,
-::ng-deep app-tag .tag {
-  margin-top: 0.8rem;
-}
-
-app-tag:not(:last-child) {
-  margin-right: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .remove-button {
