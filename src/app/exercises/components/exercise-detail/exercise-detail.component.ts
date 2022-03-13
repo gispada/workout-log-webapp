@@ -4,8 +4,9 @@ import { Store } from '@ngrx/store'
 import { TranslateModule } from '@ngx-translate/core'
 import { EXERCISES } from '@config/routes'
 import { exercisesActions, exercisesSelectors } from '@state/exercises'
+import { ModalService } from '@core/services'
 
-const { exerciseNew, exerciseBaseDraftChange } = exercisesActions
+const { exerciseNew, exerciseTagRemoved } = exercisesActions
 
 @Component({
   selector: 'exercises-detail',
@@ -23,7 +24,8 @@ export class ExerciseDetailComponent implements OnInit {
   constructor(
     public translate: TranslateModule,
     private route: ActivatedRoute,
-    private store: Store
+    private store: Store,
+    private modal: ModalService
   ) {}
 
   ngOnInit() {
@@ -37,10 +39,10 @@ export class ExerciseDetailComponent implements OnInit {
   }
 
   deleteTag(id: string) {
-    console.log('remove', id)
+    this.store.dispatch(exerciseTagRemoved(id))
   }
 
-  addTag() {
-    console.log('add')
+  addTag(currentTags?: string[]) {
+    this.modal.open('AddTags', { tagsToExclude: currentTags })
   }
 }

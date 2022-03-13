@@ -1,6 +1,8 @@
 import { formatISO } from 'date-fns'
 import { Dictionary } from './types'
 
+const COLORS = ['#2267DC', '#7265e3', '#2bc8d8', '#d1b24f'] // temp: take these colors from scss file
+
 export const isFiniteNumber = (x: unknown): x is Number => Number.isFinite(x)
 
 export const first = <T>(list: T[]): T | undefined => list[0]
@@ -26,3 +28,54 @@ export const keyBy = <T extends Dictionary<any>>(
   list: T[],
   key: keyof T
 ): Dictionary<T> => list.reduce((acc, item) => ({ ...acc, [item[key]]: item }), {})
+
+export const getThemeColor = (i: number) => COLORS[i % COLORS.length]
+
+export const prop =
+  <T, K extends keyof T>(propName: K) =>
+  (object: T) =>
+    object[propName]
+
+/**
+ * Given a list, adds an item at the end of it.
+ */
+export const addToList = <T>(list: T[] | undefined, item: T) => [...(list || []), item]
+
+/**
+ * Given a list of type T, removes one or more of its items.
+ * If `toRemove` is an item of type T, that item will be removed;
+ * if it's a key-value pair, items for which `item[key] = value` is true will be removed.
+ */
+export function removeFromList<T, K extends keyof T>(list: T[], toRemove: [K, T[K]]): T[]
+export function removeFromList<T>(list: T[], toRemove: T): T[]
+
+export function removeFromList<T, K extends keyof T>(list: T[], toRemove: [K, T[K]] | T) {
+  if (Array.isArray(toRemove)) {
+    const [key, value] = toRemove
+    return list.filter((item) => item[key] !== value)
+  }
+  return list.filter((item) => item !== toRemove)
+}
+
+/**
+ * Given a list, switches one or more of its items with a new one.
+ * If `toChange` is a number, the item at that index will be changed;
+ * if it's an item's key, items for which `item[key] = newItem[key]` is true will be changed.
+ */
+export function changeListItem<T, K extends keyof T>(
+  list: T[],
+  newItem: T,
+  toChange: K
+): T[]
+export function changeListItem<T>(list: T[], newItem: T, toChange: number): T[]
+
+export function changeListItem<T, K extends keyof T>(
+  list: T[],
+  newItem: T,
+  toChange: K | number
+) {
+  if (typeof toChange === 'number') {
+    return list.map((item, i) => (i === toChange ? newItem : item))
+  }
+  return list.map((item) => (item[toChange] === newItem[toChange] ? newItem : item))
+}

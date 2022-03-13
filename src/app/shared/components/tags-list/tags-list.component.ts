@@ -1,32 +1,44 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core'
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy
+} from '@angular/core'
 import { Store } from '@ngrx/store'
-import { map } from 'rxjs'
+import { map, ReplaySubject, switchMap } from 'rxjs'
 import { tagsSelectors } from '@state/tags'
+import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-tags-list',
   templateUrl: './tags-list.component.html',
-  styleUrls: ['./tags-list.component.scss']
+  styleUrls: ['./tags-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TagsListComponent {
-  @Input() tagIds: string[] = []
+  private tagIdsSubject = new ReplaySubject<string[]>(1)
+
+  @Input() set tagIds(value: string[] | undefined) {
+    this.tagIdsSubject.next(value || [])
+  }
   @Input() interactive = false
   @Input() max?: number
 
   @Output() delete = new EventEmitter<string>()
   @Output() add = new EventEmitter<undefined>()
 
-  get remainingTags() {
-    return this.max ? this.tagIds.length - this.max : 0
-  }
+  private tagIds$ = this.tagIdsSubject.asObservable()
 
-  tagsById$ = this.store.select(tagsSelectors.selectTagsById)
-
-  // TODO: move to a selector?
-  populatedTags$ = this.tagsById$.pipe(
-    map((tagsById) => this.tagIds.map((id) => tagsById[id])),
-    map((tags) => (this.max ? tags.slice(0, this.max) : tags))
+  remainingTags$ = this.tagIds$.pipe(
+    map((tagIds) => (this.max ? tagIds.length - this.max : 0))
   )
 
-  constructor(private store: Store) {}
+  // Keep populated tags in sync with @Input tagIds... is it the right way?
+  populatedTags$ = this.tagIds$.pipe(
+    map((tagIds) => (this.max ? tagIds.slice(0, this.max) : tagIds)),
+    switchMap((tagIds) => this.store.select(tagsSelectors.selectPopulatedTags(tagIds)))
+  )
+
+  constructor(private store: Store, private translate: TranslateService) {}
 }

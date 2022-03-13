@@ -30,6 +30,16 @@ export const exerciseBaseDraftChange = createAction(
   withActionData<Partial<BaseDraftChange>>()
 )
 
+export const exerciseTagAdded = createAction(
+  '[Exercises page] Exercise tag added',
+  withActionData<string>()
+)
+
+export const exerciseTagRemoved = createAction(
+  '[Exercises page] Exercise tag removed',
+  withActionData<string>()
+)
+
 export const exercisePrAdded = createAction(
   '[Exercises page] Exercise PR added',
   withActionData<PersonalRecord>()

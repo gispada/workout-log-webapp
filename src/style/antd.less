@@ -2,8 +2,11 @@
 
 @primary-color: #2267DC;
 @error-color: #E63238;
+@light-text: #a0a0ac;
 @heading-color: #dcdcdc;
-@border-color-base: fade(#a0a0ac, 20);
+@background-primary-color: #141622;
+@border-color-base: fade(@light-text, 20);
+@border-color-split: fade(@light-text, 10);
 @border-radius-base: 1rem;
 
 // Input
@@ -32,6 +35,11 @@
 // Tooltip
 @tooltip-color: @heading-color;
 @tooltip-bg: darken(@primary-color, 10);
+
+// Modal
+@modal-header-bg: @background-primary-color;
+@modal-content-bg: @background-primary-color;
+@modal-footer-bg: @background-primary-color;
 
 @picker-bg: @input-bg;
 @calendar-bg: #141622;

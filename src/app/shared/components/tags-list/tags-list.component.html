@@ -1,22 +1,28 @@
-<div class="tags-list-container">
-  <ng-container *ngIf="populatedTags$ | async as tags">
-    <app-tag *ngFor="let tag of tags">
-      <span>{{ tag.name }}</span>
+<div
+  class="tags-list-container"
+  *ngIf="{
+    tags: (populatedTags$ | ngrxPush) ?? [],
+    remainingTags: (remainingTags$ | ngrxPush) ?? 0
+  } as data"
+>
+  <ng-container *ngIf="data.tags.length > 0">
+    <app-tag *ngFor="let tag of data.tags">
+      <span>{{ tag.name | translateEditableProp }}</span>
       <span *ngIf="interactive" class="remove-button" (click)="delete.emit(tag.id)">
         <fa-icon icon="xmark"></fa-icon>
       </span>
     </app-tag>
-  </ng-container>
 
-  <app-tag *ngIf="remainingTags > 0">
-    <span>+{{ remainingTags }}</span>
-  </app-tag>
+    <app-tag *ngIf="data.remainingTags > 0">
+      <span>+{{ data.remainingTags }}</span>
+    </app-tag>
+  </ng-container>
 
   <button
     *ngIf="interactive"
     nz-button
     nzType="text"
-    [nzBlock]="tagIds.length === 0"
+    [nzBlock]="data.tags.length === 0"
     class="add-button"
     (click)="add.emit()"
   >

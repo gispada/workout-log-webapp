@@ -1,4 +1,8 @@
 {
+  "Common": {
+    "Cancel": "Annulla",
+    "Ok": "OK"
+  },
   "Menu": {
     "Dashboard": "Dashboard",
     "Exercises": "Esercizi",
@@ -44,6 +48,34 @@
     "Title": "Esercizi",
     "SubTitle": "Gestisci i tuoi esercizi",
     "AddNew": "Nuovo esercizio"
+  },
+  "Tags": {
+    "ChooseTags": "Seleziona tag",
+    "SearchTag": "Cerca un tag",
+    "Names": {
+      "Pectorals": "Pettorali",
+      "Deltoids": "Deltoidi",
+      "Quadriceps": "Quadricipiti",
+      "Biceps": "Bicipiti",
+      "Triceps": "Tricipiti",
+      "Forearms": "Avambracci",
+      "Hamstrings": "Ischiocrurali",
+      "Abs": "Addominali",
+      "Back": "Dorso",
+      "Trapezius": "Trapezio",
+      "Calves": "Polpacci",
+      "Beginner": "Principiante",
+      "Intermediate": "Intermedio",
+      "Advanced": "Avanzato",
+      "Compound": "Multiarticolare",
+      "Isolation": "Isolamento"
+    },
+    "Categories": {
+      "MuscleGroup": "Gruppo muscolare",
+      "MovementType": "Tipologia di movimento",
+      "Difficulty": "Difficoltà",
+      "Uncategorized": "Altro"
+    }
   },
   "Settings": {
     "Title": "Impostazioni",

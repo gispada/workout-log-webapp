@@ -1,9 +1,18 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store'
-import { AppState } from './app.model'
+import { prop } from '@shared/utils'
+import { AppState, ModalDataById, ModalId } from './app.model'
 
 const selectAppState = createFeatureSelector<AppState>('app')
 
-const selectLoading = createSelector(selectAppState, (state) => state.loading)
+const selectLoading = createSelector(selectAppState, prop('loading'))
 
 export const selectLoadingStatus = (key: string) =>
-  createSelector(selectLoading, (state) => state[key])
+  createSelector(selectLoading, prop(key))
+
+export const selectIsModalVisible = (modalId: ModalId) =>
+  createSelector(selectAppState, ({ modal }) => modal.visible && modal.id === modalId)
+
+export const selectModalData = <T extends ModalId>(modalId: T) =>
+  createSelector(selectAppState, ({ modal }) =>
+    modal.visible && modal.id === modalId ? (modal.data as ModalDataById[T]) : null
+  )

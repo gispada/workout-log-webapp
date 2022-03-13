@@ -6,27 +6,21 @@
 
 <div nz-row [nzGutter]="[24, 24]">
   <div nz-col nzXs="24" nzLg="12">
-    <app-card>
+    <app-card *ngrxLet="draft$ as draft">
       <app-form-item-block label="Name">
-        <input
-          #name
-          type="text"
-          nz-input
-          [value]="(draft$ | async)?.name"
-          (change)="onChange('name', name.value)"
-        />
+        <input type="text" nz-input [ngModel]="draft?.name" />
       </app-form-item-block>
 
       <app-form-item-block label="Description">
-        <textarea nz-input rows="3"></textarea>
+        <textarea nz-input rows="3" [ngModel]="draft?.description"></textarea>
       </app-form-item-block>
 
       <app-form-item-block label="Tags">
         <app-tags-list
-          [tagIds]="['1', '3', '2', '4', '6']"
+          [tagIds]="draft?.tags"
           [interactive]="true"
           (delete)="deleteTag($event)"
-          (add)="addTag()"
+          (add)="addTag(draft?.tags)"
         ></app-tags-list>
       </app-form-item-block>
     </app-card>
@@ -40,6 +34,8 @@
     </app-card>
   </div>
 </div>
+
+<app-tag-chooser-modal></app-tag-chooser-modal>
 
 <ng-template #actions>
   <div class="actions">

@@ -1,12 +1,14 @@
 import { createReducer, on } from '@ngrx/store'
-import { assert } from '@shared/utils'
+import { addToList, assert, changeListItem, removeFromList } from '@shared/utils'
 import {
   exerciseNew,
   exercisesFetchSuccess,
   exerciseBaseDraftChange,
   exercisePrAdded,
   exercisePrRemoved,
-  exercisePrEdited
+  exercisePrEdited,
+  exerciseTagAdded,
+  exerciseTagRemoved
 } from './exercises.actions'
 import { ExercisesState } from './exercises.model'
 
@@ -34,7 +36,7 @@ export const exercisesReducer = createReducer(
       ...state,
       draft: {
         ...state.draft,
-        personalRecords: [...(state.draft.personalRecords || []), payload]
+        personalRecords: addToList(state.draft.personalRecords, payload)
       }
     }
   }),
@@ -44,7 +46,7 @@ export const exercisesReducer = createReducer(
       ...state,
       draft: {
         ...state.draft,
-        personalRecords: state.draft.personalRecords?.filter(({ id }) => id !== payload)
+        personalRecords: removeFromList(state.draft.personalRecords!, ['id', payload])
       }
     }
   }),
@@ -54,10 +56,22 @@ export const exercisesReducer = createReducer(
       ...state,
       draft: {
         ...state.draft,
-        personalRecords: state.draft.personalRecords?.map((pr) =>
-          pr.id === payload.id ? payload : pr
-        )
+        personalRecords: changeListItem(state.draft.personalRecords!, payload, 'id')
       }
+    }
+  }),
+  on(exerciseTagAdded, (state, { payload }) => {
+    assert(state.draft, UNITIALIZED_DRAFT)
+    return {
+      ...state,
+      draft: { ...state.draft, tags: addToList(state.draft.tags, payload) }
+    }
+  }),
+  on(exerciseTagRemoved, (state, { payload }) => {
+    assert(state.draft, UNITIALIZED_DRAFT)
+    return {
+      ...state,
+      draft: { ...state.draft, tags: removeFromList(state.draft.tags!, payload) }
     }
   })
 )

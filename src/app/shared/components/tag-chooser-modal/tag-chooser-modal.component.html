@@ -1,0 +1,50 @@
+<nz-modal
+  [nzVisible]="visible$ | ngrxPush"
+  [nzTitle]="'Tags.ChooseTags' | translate"
+  (nzOnCancel)="modal.close()"
+  (nzOnOk)="modal.close()"
+  [nzWidth]="620"
+  [nzBodyStyle]="{ padding: '0' }"
+  nzCentered
+>
+  <ng-container *nzModalContent>
+    <ng-container *ngrxLet="query$ as q">
+      <div class="input-container">
+        <nz-input-group [nzSuffix]="clearIcon">
+          <input
+            nz-input
+            [placeholder]="'Tags.SearchTag' | translate"
+            autocomplete="off"
+            [ngModel]="q"
+            (ngModelChange)="changeQueryDebounced($event)"
+          />
+        </nz-input-group>
+      </div>
+
+      <div class="tags-container">
+        <div
+          *ngFor="
+            let tagGroup of (translatedTagGroups$ | ngrxPush) ?? [] | filterTagGroups: q;
+            let i = index
+          "
+        >
+          <h4 class="tag-category">{{ tagGroup.category }}</h4>
+          <div class="group-tags-container">
+            <app-tag *ngFor="let tag of tagGroup.tags" [color]="getTagColor(i)">
+              {{ tag.name }}
+            </app-tag>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #clearIcon>
+        <fa-icon
+          *ngIf="q"
+          class="clear-query-icon"
+          icon="circle-xmark"
+          (click)="changeQuery('')"
+        ></fa-icon>
+      </ng-template>
+    </ng-container>
+  </ng-container>
+</nz-modal>

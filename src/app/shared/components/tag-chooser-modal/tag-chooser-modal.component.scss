@@ -1,0 +1,29 @@
+.input-container {
+  padding: 2.4rem;
+  padding-bottom: 0;
+}
+
+.tags-container {
+  padding: 2.4rem;
+  padding-top: 3.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  height: 42rem;
+  overflow-y: auto;
+}
+
+.group-tags-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.tag-category {
+  margin-bottom: 0.6rem;
+}
+
+.clear-query-icon {
+  cursor: pointer;
+  transform: translateY(2px);
+}

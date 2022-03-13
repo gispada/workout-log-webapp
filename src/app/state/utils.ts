@@ -1,12 +1,5 @@
 import { Action } from '@ngrx/store'
-
-type LoadingMeta = { loading: boolean; key: string }
-
-type ActionMeta = LoadingMeta
-
-type ActionData<P> = P extends undefined
-  ? { meta: ActionMeta }
-  : { payload: P; meta: ActionMeta } | { payload: P }
+import { ActionMeta, ActionData, LoadingMeta } from './types'
 
 /**
  * Creates an action's body with the following data:

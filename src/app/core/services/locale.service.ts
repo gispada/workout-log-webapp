@@ -4,6 +4,7 @@ import { en_US, it_IT, NzI18nService, NzI18nInterface } from 'ng-zorro-antd/i18n
 import { enUS, it } from 'date-fns/locale'
 import { AppConfig, APP_CONFIG } from '@config/app'
 import { Dictionary } from '@shared/types'
+import { UserEditableProp } from '@state/types'
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,11 @@ export class LocaleService {
     const { defaultLanguage } = this.appConfig
     this.translate.setDefaultLang(defaultLanguage)
     this.changeLanguage(defaultLanguage)
+  }
+
+  // TODO: this can be done in a better way
+  getEditablePropValueSync(prop: UserEditableProp) {
+    if ('value' in prop) return prop.value
+    return this.translate.instant(prop.i18nValue) as string
   }
 }

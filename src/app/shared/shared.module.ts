@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
 import { FormsModule } from '@angular/forms'
+import { ReactiveComponentModule } from '@ngrx/component'
 import { TranslateModule } from '@ngx-translate/core'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { NzLayoutModule } from 'ng-zorro-antd/layout'
@@ -13,13 +14,13 @@ import { NzInputModule } from 'ng-zorro-antd/input'
 import { NzFormModule } from 'ng-zorro-antd/form'
 import { NzButtonModule } from 'ng-zorro-antd/button'
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number'
-import { NzSpinModule } from 'ng-zorro-antd/spin'
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown'
 import { NzTableModule } from 'ng-zorro-antd/table'
 import { NzTabsModule } from 'ng-zorro-antd/tabs'
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip'
 import { NzGridModule } from 'ng-zorro-antd/grid'
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker'
+import { NzModalModule } from 'ng-zorro-antd/modal'
 
 import {
   ShellComponent,
@@ -32,8 +33,10 @@ import {
   TagComponent,
   PageHeaderComponent,
   FormItemBlockComponent,
-  TagsListComponent
+  TagsListComponent,
+  TagChooserModalComponent
 } from './components'
+import { TranslateEditablePropPipe, FilterTagGroupsPipe } from './pipes'
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import {
     TagComponent,
     PageHeaderComponent,
     FormItemBlockComponent,
-    TagsListComponent
+    TagsListComponent,
+    TagChooserModalComponent,
+    TranslateEditablePropPipe,
+    FilterTagGroupsPipe
   ],
   imports: [
     CommonModule,
@@ -60,10 +66,12 @@ import {
     NzMenuModule,
     NzSelectModule,
     FontAwesomeModule,
-    NzSpinModule,
     NzDropDownModule,
     NzTableModule,
-    NzButtonModule
+    NzButtonModule,
+    NzModalModule,
+    NzInputModule,
+    ReactiveComponentModule
   ],
   exports: [
     NzFormModule,
@@ -85,7 +93,10 @@ import {
     NzGridModule,
     FormItemBlockComponent,
     NzDatePickerModule,
-    TagsListComponent
+    TagsListComponent,
+    TagChooserModalComponent,
+    TranslateEditablePropPipe,
+    ReactiveComponentModule
   ]
 })
 export class SharedModule {}

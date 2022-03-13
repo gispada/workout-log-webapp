@@ -1,4 +1,8 @@
 {
+  "Common": {
+    "Cancel": "Cancel",
+    "Ok": "OK"
+  },
   "Menu": {
     "Dashboard": "Dashboard",
     "Exercises": "Exercises",
@@ -44,6 +48,34 @@
     "Title": "Exercises",
     "SubTitle": "Manage your exercises",
     "AddNew": "New exercise"
+  },
+  "Tags": {
+    "ChooseTags": "Choose tags",
+    "SearchTag": "Search tag",
+    "Names": {
+      "Pectorals": "Pectorals",
+      "Deltoids": "Deltoids",
+      "Quadriceps": "Quadriceps",
+      "Biceps": "Biceps",
+      "Triceps": "Triceps",
+      "Forearms": "Forearms",
+      "Hamstrings": "Hamstrings",
+      "Abs": "Abdominals",
+      "Back": "Back",
+      "Trapezius": "Trapezius",
+      "Calves": "Calves",
+      "Beginner": "Beginner",
+      "Intermediate": "Intermediate",
+      "Advanced": "Advanced",
+      "Compound": "Compound",
+      "Isolation": "Isolation"
+    },
+    "Categories": {
+      "MuscleGroup": "Muscle group",
+      "MovementType": "Movement type",
+      "Difficulty": "Difficulty",
+      "Uncategorized": "Other"
+    }
   },
   "Settings": {
     "Title": "Settings",
