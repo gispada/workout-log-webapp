@@ -9,3 +9,8 @@
   background-color: rgba(colors.$primary, 0.1);
   color: colors.$primary;
 }
+
+.default-color-inverted {
+  background-color: colors.$primary;
+  color: '#fafafa';
+}
