@@ -61,6 +61,12 @@ describe('@shared/utils', () => {
       const expected = [{ name: 'Mary' }]
       expect(addToList(undefined, { name: 'Mary' })).toEqual(expected)
     })
+
+    it('Adds multiple items to an existing list', () => {
+      const list = [{ name: 'John' }]
+      const expected = [{ name: 'John' }, { name: 'Mary' }, { name: 'Jane' }]
+      expect(addToList(list, [{ name: 'Mary' }, { name: 'Jane' }])).toEqual(expected)
+    })
   })
 
   describe("Test 'removeFromList'", () => {
