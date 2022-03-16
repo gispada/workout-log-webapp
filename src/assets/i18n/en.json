@@ -1,7 +1,8 @@
 {
   "Common": {
     "Cancel": "Cancel",
-    "Ok": "OK"
+    "Ok": "OK",
+    "Add": "Add"
   },
   "Menu": {
     "Dashboard": "Dashboard",

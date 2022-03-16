@@ -3,11 +3,11 @@ import { addToList, assert, changeListItem, removeFromList } from '@shared/utils
 import {
   exerciseNew,
   exercisesFetchSuccess,
-  exerciseBaseDraftChange,
+  exercisePropertyChanged,
   exercisePrAdded,
   exercisePrRemoved,
   exercisePrEdited,
-  exerciseTagAdded,
+  exerciseTagsAdded,
   exerciseTagRemoved
 } from './exercises.actions'
 import { ExercisesState } from './exercises.model'
@@ -23,7 +23,7 @@ export const exercisesReducer = createReducer(
     ...state,
     draft: { id: 'new_exercise', name: '', description: '' }
   })),
-  on(exerciseBaseDraftChange, (state, { payload }) => {
+  on(exercisePropertyChanged, (state, { payload }) => {
     assert(state.draft, UNITIALIZED_DRAFT)
     return {
       ...state,
@@ -60,7 +60,7 @@ export const exercisesReducer = createReducer(
       }
     }
   }),
-  on(exerciseTagAdded, (state, { payload }) => {
+  on(exerciseTagsAdded, (state, { payload }) => {
     assert(state.draft, UNITIALIZED_DRAFT)
     return {
       ...state,

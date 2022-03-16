@@ -1,10 +1,17 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+  Input
+} from '@angular/core'
 import { Store } from '@ngrx/store'
 import { TranslateService } from '@ngx-translate/core'
 import { debounce, distinctUntilChanged, map, startWith, Subject, timer } from 'rxjs'
 import { tagsSelectors } from '@state/tags'
-import { ModalService, LocaleService } from '@core/services'
-import { getThemeColor, prop } from '@shared/utils'
+import { LocaleService } from '@core/services'
+import { getThemeColor, prop, toBooleanDictionary, toggleListItem } from '@shared/utils'
+import { Dictionary } from '@shared/types'
 
 type QuerySub = { q: string; debounced?: boolean }
 
@@ -16,8 +23,21 @@ type QuerySub = { q: string; debounced?: boolean }
 })
 export class TagChooserModalComponent {
   private querySubject = new Subject<QuerySub>()
+  tagsToExclude?: Dictionary<boolean>
+  selected: string[] = []
 
-  visible$ = this.modal.isVisible('AddTags')
+  @Input() visible = false
+  @Input() set excluded(value: string[] | undefined) {
+    if (value) {
+      // Hack to avoid changing 'tagsToExclude' while the closing animation is still on
+      setTimeout(() => {
+        this.tagsToExclude = toBooleanDictionary(value)
+      })
+    }
+  }
+
+  @Output() visibleChange = new EventEmitter<boolean>()
+  @Output() selectTags = new EventEmitter<string[]>()
 
   query$ = this.querySubject.pipe(
     startWith<QuerySub>({ q: '' }),
@@ -44,10 +64,13 @@ export class TagChooserModalComponent {
 
   constructor(
     private store: Store,
-    public modal: ModalService,
     public translate: TranslateService,
     private locale: LocaleService
   ) {}
+
+  closeModal() {
+    this.visibleChange.emit(false)
+  }
 
   changeQueryDebounced(q: string) {
     this.querySubject.next({ q, debounced: true })
@@ -57,8 +80,17 @@ export class TagChooserModalComponent {
     this.querySubject.next({ q })
   }
 
+  toggleTagSelection(id: string) {
+    this.selected = toggleListItem(this.selected, id)
+  }
+
   handleOk() {
-    console.log('Do something')
+    this.selectTags.emit(this.selected)
+    this.closeModal()
+  }
+
+  afterClose() {
+    this.selected = []
   }
 
   getTagColor(i: number) {

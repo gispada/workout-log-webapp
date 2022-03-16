@@ -1,10 +1,12 @@
 <nz-modal
-  [nzVisible]="visible$ | ngrxPush"
+  [nzVisible]="visible"
   [nzTitle]="'Tags.ChooseTags' | translate"
-  (nzOnCancel)="modal.close()"
-  (nzOnOk)="modal.close()"
+  [nzOkText]="'Common.Add' | translate"
+  (nzOnCancel)="closeModal()"
+  (nzOnOk)="handleOk()"
   [nzWidth]="620"
   [nzBodyStyle]="{ padding: '0' }"
+  (nzAfterClose)="afterClose()"
   nzCentered
 >
   <ng-container *nzModalContent>
@@ -24,13 +26,19 @@
       <div class="tags-container">
         <div
           *ngFor="
-            let tagGroup of (translatedTagGroups$ | ngrxPush) ?? [] | filterTagGroups: q;
+            let tagGroup of (translatedTagGroups$ | ngrxPush) ?? []
+              | filterTagGroups: q:this.tagsToExclude;
             let i = index
           "
         >
           <h4 class="tag-category">{{ tagGroup.category }}</h4>
           <div class="group-tags-container">
-            <app-tag *ngFor="let tag of tagGroup.tags" [color]="getTagColor(i)">
+            <app-tag
+              *ngFor="let tag of tagGroup.tags"
+              [color]="getTagColor(i)"
+              (click)="toggleTagSelection(tag.id)"
+              [inverted]="selected.includes(tag.id)"
+            >
               {{ tag.name }}
             </app-tag>
           </div>

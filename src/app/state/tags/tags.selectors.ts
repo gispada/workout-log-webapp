@@ -1,7 +1,7 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store'
 import { UserEditableProp } from '@state/types'
 import { Dictionary } from '@shared/types'
-import { keyBy, prop } from '@shared/utils'
+import { addToList, keyBy, prop } from '@shared/utils'
 import { TagsState, Tag } from './tags.model'
 
 type TagsByCategory = Dictionary<{ category: UserEditableProp; tags: Tag[] }>
@@ -33,7 +33,7 @@ export const selectTagsGroupedByCategory = createSelector(
         ...acc,
         [category.id]: {
           category: category.name,
-          tags: [...(acc[category.id]?.tags || []), tag]
+          tags: addToList(acc[category.id]?.tags, tag)
         }
       }
     }, {})

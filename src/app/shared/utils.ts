@@ -29,6 +29,9 @@ export const keyBy = <T extends Dictionary<any>>(
   key: keyof T
 ): Dictionary<T> => list.reduce((acc, item) => ({ ...acc, [item[key]]: item }), {})
 
+export const toBooleanDictionary = (list: (string | number)[]): Dictionary<boolean> =>
+  list.reduce((acc, item) => ({ ...acc, [item]: true }), {})
+
 export const getThemeColor = (i: number) => COLORS[i % COLORS.length]
 
 export const prop =

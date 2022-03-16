@@ -2,8 +2,6 @@ import { createAction } from '@ngrx/store'
 import { withActionData } from '@state/utils'
 import { Exercise, PersonalRecord } from './exercises.model'
 
-type BaseDraftChange = Omit<Exercise, 'id' | 'personalRecords'>
-
 const loading = (value: boolean) => ({ loading: value, key: 'exercises' })
 
 export const exercisesFetch = createAction(
@@ -25,14 +23,14 @@ export const exerciseEditing = createAction(
 
 export const exerciseEditingDone = createAction('[Exercises page] Exercise editing done')
 
-export const exerciseBaseDraftChange = createAction(
-  '[Exercises page] Exercise base draft change',
-  withActionData<Partial<BaseDraftChange>>()
+export const exercisePropertyChanged = createAction(
+  '[Exercises page] Exercise property changed',
+  withActionData<{ name?: string; description?: string }>()
 )
 
-export const exerciseTagAdded = createAction(
-  '[Exercises page] Exercise tag added',
-  withActionData<string>()
+export const exerciseTagsAdded = createAction(
+  '[Exercises page] Exercise tags added',
+  withActionData<string | string[]>()
 )
 
 export const exerciseTagRemoved = createAction(
