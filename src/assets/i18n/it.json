@@ -1,6 +1,8 @@
 {
   "Common": {
     "Cancel": "Annulla",
+    "Save": "Salva",
+    "Delete": "Rimuovi",
     "Ok": "OK",
     "Add": "Aggiungi"
   },
@@ -37,7 +39,8 @@
   "Errors": {
     "InvalidEmail": "Email non valida.",
     "InvalidPassword": "La password deve contenere almeno 6 caratteri.",
-    "InvalidConfirmPassword": "Le password scelte non coincidono."
+    "InvalidConfirmPassword": "Le password scelte non coincidono.",
+    "InvalidExerciseName": "Il nome dell'esercizio è obbligatorio."
   },
   "Messages": {
     "RegistrationSuccess": "Registrazione effettuata! Conferma l'email per iniziare.",
@@ -48,7 +51,11 @@
   "Exercises": {
     "Title": "Esercizi",
     "SubTitle": "Gestisci i tuoi esercizi",
-    "AddNew": "Nuovo esercizio"
+    "AddNew": "Nuovo esercizio",
+    "Name": "Nome",
+    "Description": "Descrizione",
+    "Tags": "Tag",
+    "PersonalRecords": "Record personali"
   },
   "Tags": {
     "ChooseTags": "Seleziona tag",

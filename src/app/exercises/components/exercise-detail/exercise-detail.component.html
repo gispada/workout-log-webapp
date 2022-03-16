@@ -1,35 +1,59 @@
-<app-page-header
-  [goBackTo]="'/' + parentUrl"
-  [pageTitle]="'Exercises.AddNew' | translate"
-  [rightTemplate]="actions"
-></app-page-header>
-
 <ng-container *ngrxLet="draft$ as draft">
+  <app-page-header
+    [goBackTo]="'/' + parentUrl"
+    [pageTitle]="'Exercises.AddNew' | translate"
+    [rightTemplate]="actions"
+  ></app-page-header>
+
   <div nz-row [nzGutter]="[24, 24]">
     <div nz-col nzXs="24" nzLg="12">
-      <app-card>
-        <app-form-item-block label="Name">
-          <input type="text" nz-input [ngModel]="draft?.name" />
-        </app-form-item-block>
+      <form nz-form #form="ngForm">
+        <app-card>
+          <app-form-item-block [label]="'Exercises.Name' | translate">
+            <nz-form-item>
+              <nz-form-control [nzErrorTip]="'Errors.InvalidExerciseName' | translate">
+                <input
+                  type="text"
+                  nz-input
+                  name="name"
+                  autocomplete="off"
+                  [ngModel]="draft?.name"
+                  (ngModelChange)="onChange('name', $event)"
+                  required
+                />
+              </nz-form-control>
+            </nz-form-item>
+          </app-form-item-block>
 
-        <app-form-item-block label="Description">
-          <textarea nz-input rows="3" [ngModel]="draft?.description"></textarea>
-        </app-form-item-block>
+          <app-form-item-block [label]="'Exercises.Description' | translate">
+            <nz-form-item>
+              <nz-form-control>
+                <textarea
+                  nz-input
+                  name="description"
+                  rows="3"
+                  [ngModel]="draft?.description"
+                  (ngModelChange)="onChange('description', $event)"
+                ></textarea>
+              </nz-form-control>
+            </nz-form-item>
+          </app-form-item-block>
 
-        <app-form-item-block label="Tags">
-          <app-tags-list
-            [tagIds]="draft?.tags"
-            [interactive]="true"
-            (delete)="deleteTag($event)"
-            (add)="modalVisible = true"
-          ></app-tags-list>
-        </app-form-item-block>
-      </app-card>
+          <app-form-item-block [label]="'Exercises.Tags' | translate">
+            <app-tags-list
+              [tagIds]="draft?.tags"
+              [interactive]="true"
+              (delete)="deleteTag($event)"
+              (add)="modalVisible = true"
+            ></app-tags-list>
+          </app-form-item-block>
+        </app-card>
+      </form>
     </div>
 
     <div nz-col nzXs="24" nzLg="12">
       <app-card class="personal-records-card">
-        <app-form-item-block label="Personal records">
+        <app-form-item-block [label]="'Exercises.PersonalRecords' | translate">
           <exercises-personal-records></exercises-personal-records>
         </app-form-item-block>
       </app-card>
@@ -41,12 +65,14 @@
     (selectTags)="addTags($event)"
     [excluded]="draft?.tags"
   ></app-tag-chooser-modal>
-</ng-container>
 
-<ng-template #actions>
-  <div class="actions">
-    <button nz-button>Cancel</button>
-    <button nz-button *ngIf="exerciseId">Delete</button>
-    <button nz-button nzType="primary">Save</button>
-  </div>
-</ng-template>
+  <ng-template #actions>
+    <div class="actions">
+      <button nz-button>{{ 'Common.Cancel' | translate }}</button>
+      <button nz-button *ngIf="exerciseId">{{ 'Common.Delete' | translate }}</button>
+      <button nz-button nzType="primary" (click)="saveDraft(form)">
+        {{ 'Common.Save' | translate }}
+      </button>
+    </div>
+  </ng-template>
+</ng-container>

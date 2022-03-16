@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { Store } from '@ngrx/store'
+import { nanoid } from 'nanoid'
 import { toISODate } from '@shared/utils'
 import { PersonalRecord, exercisesActions, exercisesSelectors } from '@state/exercises'
-import { nanoid } from 'nanoid'
 
 const { exercisePrAdded, exercisePrRemoved, exercisePrEdited } = exercisesActions
 

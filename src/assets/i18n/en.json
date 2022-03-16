@@ -1,6 +1,8 @@
 {
   "Common": {
     "Cancel": "Cancel",
+    "Save": "Save",
+    "Delete": "Delete",
     "Ok": "OK",
     "Add": "Add"
   },
@@ -37,7 +39,8 @@
   "Errors": {
     "InvalidEmail": "Invalid email.",
     "InvalidPassword": "Password must be at least 6 characters long.",
-    "InvalidConfirmPassword": "Your passwords do not match."
+    "InvalidConfirmPassword": "Your passwords do not match.",
+    "InvalidExerciseName": "The exercise's name is required."
   },
   "Messages": {
     "RegistrationSuccess": "Registration done! Confirm your email to get started.",
@@ -48,7 +51,11 @@
   "Exercises": {
     "Title": "Exercises",
     "SubTitle": "Manage your exercises",
-    "AddNew": "New exercise"
+    "AddNew": "New exercise",
+    "Name": "Name",
+    "Description": "Description",
+    "Tags": "Tags",
+    "PersonalRecords": "Personal records"
   },
   "Tags": {
     "ChooseTags": "Choose tags",

@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core'
 import { SIGNIN, SIGNUP } from '@config/routes'
 import { userActions } from '@state/user'
 import { appSelectors } from '@state/app'
-import { first } from '@shared/utils'
+import { first, displayInvalidFormControls } from '@shared/utils'
 
 const { emailAndPasswordLogin, emailAndPasswordRegistration } = userActions
 
@@ -56,15 +56,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  displayErrors() {
-    for (const control of Object.values(this.validateForm.controls)) {
-      if (control.invalid) {
-        control.markAsDirty()
-        control.updateValueAndValidity({ onlySelf: true })
-      }
-    }
-  }
-
   submitForm() {
     if (this.validateForm.valid) {
       const payload = {
@@ -74,7 +65,7 @@ export class LoginComponent implements OnInit {
       const action = this.isSignup ? emailAndPasswordRegistration : emailAndPasswordLogin
       this.store.dispatch(action(payload))
     } else {
-      this.displayErrors()
+      displayInvalidFormControls(this.validateForm.controls)
     }
   }
 

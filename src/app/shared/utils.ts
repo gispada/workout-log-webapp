@@ -1,3 +1,4 @@
+import { AbstractControl } from '@angular/forms'
 import { formatISO } from 'date-fns'
 import { Dictionary } from './types'
 
@@ -99,4 +100,13 @@ export function toggleListItem<T, K extends keyof T>(list: T[], item: T, key?: K
   }
   const included = list.includes(item)
   return included ? removeFromList(list, item) : addToList(list, item)
+}
+
+export const displayInvalidFormControls = (controls: Dictionary<AbstractControl>) => {
+  for (const control of Object.values(controls)) {
+    if (control.invalid) {
+      control.markAsDirty()
+      control.updateValueAndValidity({ onlySelf: true })
+    }
+  }
 }

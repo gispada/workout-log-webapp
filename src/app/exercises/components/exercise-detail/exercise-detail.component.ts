@@ -2,8 +2,10 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { TranslateModule } from '@ngx-translate/core'
+import type { NgForm } from '@angular/forms'
 import { EXERCISES } from '@config/routes'
 import { exercisesActions, exercisesSelectors } from '@state/exercises'
+import { displayInvalidFormControls } from '@shared/utils'
 
 const { exerciseNew, exerciseTagRemoved, exerciseTagsAdded, exercisePropertyChanged } =
   exercisesActions
@@ -43,5 +45,13 @@ export class ExerciseDetailComponent implements OnInit {
 
   deleteTag(id: string) {
     this.store.dispatch(exerciseTagRemoved(id))
+  }
+
+  saveDraft(form: NgForm) {
+    if (!form.valid) {
+      return displayInvalidFormControls(form.controls)
+    }
+
+    console.log('SAVE')
   }
 }
