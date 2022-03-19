@@ -53,6 +53,18 @@
 
     <div nz-col nzXs="24" nzLg="12">
       <app-card class="personal-records-card">
+        <app-form-item-block
+          class="unit-of-measure-block"
+          [label]="'Exercises.UnitOfMeasure' | translate"
+        >
+          <app-select
+            width="100%"
+            [options]="(translatedUnitOfMeasures$ | ngrxPush) ?? []"
+            [value]="draft?.unitOfMeasure"
+            (valueChange)="onChange('unitOfMeasure', $event)"
+          ></app-select>
+        </app-form-item-block>
+
         <app-form-item-block [label]="'Exercises.PersonalRecords' | translate">
           <exercises-personal-records></exercises-personal-records>
         </app-form-item-block>

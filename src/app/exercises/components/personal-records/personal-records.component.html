@@ -1,7 +1,8 @@
-<ng-container *ngIf="personalRecords$ | async as prs">
+<ng-container *ngrxLet="personalRecords$ as prs">
   <exercises-personal-record-entry
     *ngFor="let pr of prs; trackBy: prTrackBy"
     [pr]="pr"
+    [unitOfMeasure]="unitOfMeasure$ | ngrxPush"
     (edit)="editPr($event)"
     (delete)="deletePr($event)"
   ></exercises-personal-record-entry>

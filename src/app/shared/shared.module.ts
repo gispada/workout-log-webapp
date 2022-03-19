@@ -36,7 +36,11 @@ import {
   TagsListComponent,
   TagChooserModalComponent
 } from './components'
-import { TranslateEditablePropPipe, FilterTagGroupsPipe } from './pipes'
+import {
+  TranslateEditablePropPipe,
+  FilterTagGroupsPipe,
+  FormatUomValuePipe
+} from './pipes'
 
 @NgModule({
   declarations: [
@@ -53,7 +57,8 @@ import { TranslateEditablePropPipe, FilterTagGroupsPipe } from './pipes'
     TagsListComponent,
     TagChooserModalComponent,
     TranslateEditablePropPipe,
-    FilterTagGroupsPipe
+    FilterTagGroupsPipe,
+    FormatUomValuePipe
   ],
   imports: [
     CommonModule,
@@ -96,7 +101,8 @@ import { TranslateEditablePropPipe, FilterTagGroupsPipe } from './pipes'
     TagsListComponent,
     TagChooserModalComponent,
     TranslateEditablePropPipe,
-    ReactiveComponentModule
+    ReactiveComponentModule,
+    FormatUomValuePipe
   ]
 })
 export class SharedModule {}

@@ -11,7 +11,7 @@ export const selectDraftPersonalRecords = createSelector(
   (draft) => draft?.personalRecords
 )
 
-export const selectUnitOfMeasure = createSelector(
+export const selectDraftUnitOfMeasure = createSelector(
   selectDraft,
   (draft) => draft?.unitOfMeasure
 )

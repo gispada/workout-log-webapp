@@ -13,7 +13,7 @@ const { exercisePrAdded, exercisePrRemoved, exercisePrEdited } = exercisesAction
 })
 export class PersonalRecordsComponent {
   personalRecords$ = this.store.select(exercisesSelectors.selectDraftPersonalRecords)
-  unitOfMeasure$ = this.store.select(exercisesSelectors.selectUnitOfMeasure)
+  unitOfMeasure$ = this.store.select(exercisesSelectors.selectDraftUnitOfMeasure)
 
   constructor(private store: Store) {}
 

@@ -11,7 +11,7 @@ import { LocaleService } from '@core/services'
     [hideArrow]="true"
     [width]="4.6"
   ></app-select>`,
-  styles: ['::ng-deep .ant-select-selection-item { text-align: center }']
+  styles: ['app-select ::ng-deep .ant-select-selection-item { text-align: center }']
 })
 export class LanguageSwitcherComponent {
   constructor(public locale: LocaleService) {}

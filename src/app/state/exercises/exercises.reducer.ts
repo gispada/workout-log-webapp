@@ -1,5 +1,6 @@
 import { createReducer, on } from '@ngrx/store'
-import { addToList, assert, changeListItem, removeFromList } from '@shared/utils'
+import { addToList, changeListItem, removeFromList } from '@shared/utils/lists'
+import { assert } from '@shared/utils/miscellaneous'
 import {
   exerciseNew,
   exercisesFetchSuccess,
@@ -10,7 +11,7 @@ import {
   exerciseTagsAdded,
   exerciseTagRemoved
 } from './exercises.actions'
-import { ExercisesState } from './exercises.model'
+import { ExercisesState, UnitOfMeasure } from './exercises.model'
 
 const UNITIALIZED_DRAFT = 'Trying to edit an exercise draft that was not initialized'
 
@@ -21,7 +22,12 @@ export const exercisesReducer = createReducer(
   on(exercisesFetchSuccess, (state, { payload }) => ({ ...state, exercises: payload })),
   on(exerciseNew, (state) => ({
     ...state,
-    draft: { id: 'new_exercise', name: '', description: '' }
+    draft: {
+      id: 'new_exercise',
+      name: '',
+      description: '',
+      unitOfMeasure: UnitOfMeasure.KG
+    }
   })),
   on(exercisePropertyChanged, (state, { payload }) => {
     assert(state.draft, UNITIALIZED_DRAFT)

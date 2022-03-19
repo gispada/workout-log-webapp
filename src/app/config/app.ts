@@ -1,5 +1,6 @@
 import { InjectionToken } from '@angular/core'
 import { SideMenuItem } from '@shared/types'
+import { UnitOfMeasure } from '@state/exercises'
 import { EXERCISES, HOME, SETTINGS } from './routes'
 
 const languages = [
@@ -48,13 +49,22 @@ const menuItems: SideMenuItem[] = [
   }
 ]
 
+const unitOfMeasure = [
+  UnitOfMeasure.KG,
+  UnitOfMeasure.LBS,
+  UnitOfMeasure.SS,
+  UnitOfMeasure.MM,
+  UnitOfMeasure.HH
+]
+
 // Static app configuration
 export const appConfig = Object.freeze({
   logoUrl: '../../assets/logo.svg',
   title: 'Workout Log Webapp',
   defaultLanguage: 'en',
   languages,
-  menuItems
+  menuItems,
+  unitOfMeasure
 })
 
 export type AppConfig = typeof appConfig

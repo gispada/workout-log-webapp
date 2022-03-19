@@ -4,17 +4,20 @@
       nzFormat="dd MMM yyyy"
       [nzAllowClear]="false"
       [ngModel]="pr.date"
-      (ngModelChange)="onChange({ key: 'date', value: $event })"
+      (ngModelChange)="onChange('date', $event)"
     ></nz-date-picker>
   </div>
 
   <div class="pr">
     <nz-input-number
       [nzMin]="0"
-      [ngModel]="pr.value"
-      (ngModelChange)="onChange({ key: 'value', value: $event })"
+      [ngModel]="pr.value | formatUomValue: unitOfMeasure"
+      (ngModelChange)="onChange('value', $event)"
+      [nzPrecision]="2"
     ></nz-input-number>
-    <p class="pr-unit">{{ pr.unit }}</p>
+    <p *ngIf="unitOfMeasure" class="pr-unit">
+      {{ 'Exercises.UnitsOfMeasure.' + getUomSymbol(unitOfMeasure) | translate }}
+    </p>
   </div>
 
   <div class="actions">

@@ -4,6 +4,10 @@ import { Exercise, PersonalRecord } from './exercises.model'
 
 const loading = (value: boolean) => ({ loading: value, key: 'exercises' })
 
+export type ExerciseSimpleProps = Partial<
+  Pick<Exercise, 'name' | 'description' | 'unitOfMeasure'>
+>
+
 export const exercisesFetch = createAction(
   '[Exercises] Fetch data',
   withActionData(loading(true))
@@ -25,7 +29,7 @@ export const exerciseEditingDone = createAction('[Exercises page] Exercise editi
 
 export const exercisePropertyChanged = createAction(
   '[Exercises page] Exercise property changed',
-  withActionData<{ name?: string; description?: string }>()
+  withActionData<ExerciseSimpleProps>()
 )
 
 export const exerciseTagsAdded = createAction(

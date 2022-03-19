@@ -2,7 +2,14 @@ export type PersonalRecord = {
   id: string
   date: string
   value: number
-  unit: string // TODO: use an enum?
+}
+
+export enum UnitOfMeasure {
+  KG = 'weight:kg',
+  LBS = 'weight:lbs',
+  SS = 'time:ss',
+  MM = 'time:mm',
+  HH = 'time:hh'
 }
 
 export type Exercise = {
@@ -11,6 +18,7 @@ export type Exercise = {
   description?: string
   tags?: string[]
   personalRecords?: PersonalRecord[]
+  unitOfMeasure: UnitOfMeasure
   // hidden: boolean
 }
 

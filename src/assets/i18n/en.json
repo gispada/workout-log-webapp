@@ -55,7 +55,17 @@
     "Name": "Name",
     "Description": "Description",
     "Tags": "Tags",
-    "PersonalRecords": "Personal records"
+    "PersonalRecords": "Personal records",
+    "UnitOfMeasure": "Unit of measure",
+    "UnitsOfMeasure": {
+      "weight": "Weight",
+      "time": "Time",
+      "kg": "Kg",
+      "lbs": "Pounds",
+      "ss": "Seconds",
+      "mm": "Minutes",
+      "hh": "Hours"
+    }
   },
   "Tags": {
     "ChooseTags": "Choose tags",
