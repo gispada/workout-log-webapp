@@ -6,11 +6,11 @@ import {
   Input
 } from '@angular/core'
 import { Store } from '@ngrx/store'
-import { TranslateService } from '@ngx-translate/core'
 import { debounce, distinctUntilChanged, map, startWith, Subject, timer } from 'rxjs'
 import { tagsSelectors } from '@state/tags'
 import { LocaleService } from '@core/services'
-import { getThemeColor, prop, toBooleanDictionary, toggleListItem } from '@shared/utils'
+import { getThemeColor, prop, toBooleanDictionary } from '@shared/utils/miscellaneous'
+import { toggleListItem } from '@shared/utils/lists'
 import { Dictionary } from '@shared/types'
 
 type QuerySub = { q: string; debounced?: boolean }
@@ -62,11 +62,7 @@ export class TagChooserModalComponent {
     )
   )
 
-  constructor(
-    private store: Store,
-    public translate: TranslateService,
-    private locale: LocaleService
-  ) {}
+  constructor(private store: Store, private locale: LocaleService) {}
 
   closeModal() {
     this.visibleChange.emit(false)

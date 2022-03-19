@@ -1,7 +1,8 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store'
 import { UserEditableProp } from '@state/types'
 import { Dictionary } from '@shared/types'
-import { addToList, keyBy, prop } from '@shared/utils'
+import { keyBy, prop } from '@shared/utils/miscellaneous'
+import { addToList } from '@shared/utils/lists'
 import { TagsState, Tag } from './tags.model'
 
 type TagsByCategory = Dictionary<{ category: UserEditableProp; tags: Tag[] }>

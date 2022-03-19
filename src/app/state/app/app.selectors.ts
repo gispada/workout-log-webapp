@@ -1,5 +1,5 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store'
-import { prop } from '@shared/utils'
+import { prop } from '@shared/utils/miscellaneous'
 import { AppState, ModalDataById, ModalId } from './app.model'
 
 const selectAppState = createFeatureSelector<AppState>('app')

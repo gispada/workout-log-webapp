@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { hexToRgba } from '@shared/utils'
+import { hexToRgba } from '@shared/utils/miscellaneous'
 
 @Component({
   selector: 'app-tag',

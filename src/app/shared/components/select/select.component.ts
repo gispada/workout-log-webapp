@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { isFiniteNumber } from '@shared/utils'
+import { isFiniteNumber } from '@shared/utils/miscellaneous'
 import { Nullable } from '@shared/types'
 
 type Option = { label: string; value: string }

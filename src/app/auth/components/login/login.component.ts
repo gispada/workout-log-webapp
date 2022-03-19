@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
 import { Store } from '@ngrx/store'
-import { TranslateService } from '@ngx-translate/core'
 import { SIGNIN, SIGNUP } from '@config/routes'
 import { userActions } from '@state/user'
 import { appSelectors } from '@state/app'
-import { first, displayInvalidFormControls } from '@shared/utils'
+import { first, displayInvalidFormControls } from '@shared/utils/miscellaneous'
 
 const { emailAndPasswordLogin, emailAndPasswordRegistration } = userActions
 
@@ -31,7 +30,6 @@ export class LoginComponent implements OnInit {
   loading$ = this.store.select(appSelectors.selectLoadingStatus('auth'))
 
   constructor(
-    public translate: TranslateService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private store: Store

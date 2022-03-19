@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { nanoid } from 'nanoid'
-import { toISODate } from '@shared/utils'
+import { toISODate } from '@shared/utils/formatting'
 import { PersonalRecord, exercisesActions, exercisesSelectors } from '@state/exercises'
 
 const { exercisePrAdded, exercisePrRemoved, exercisePrEdited } = exercisesActions
@@ -13,6 +13,7 @@ const { exercisePrAdded, exercisePrRemoved, exercisePrEdited } = exercisesAction
 })
 export class PersonalRecordsComponent {
   personalRecords$ = this.store.select(exercisesSelectors.selectDraftPersonalRecords)
+  unitOfMeasure$ = this.store.select(exercisesSelectors.selectUnitOfMeasure)
 
   constructor(private store: Store) {}
 
@@ -26,7 +27,7 @@ export class PersonalRecordsComponent {
 
   addPr() {
     this.store.dispatch(
-      exercisePrAdded({ id: nanoid(), date: toISODate(new Date()), value: 0, unit: 'kg' })
+      exercisePrAdded({ id: nanoid(), date: toISODate(new Date()), value: 0 })
     )
   }
 
