@@ -1,6 +1,5 @@
 import { Component } from '@angular/core'
 import { EXERCISE_NEW } from '@config/routes'
-import { TranslateModule } from '@ngx-translate/core'
 
 type Exercise = {
   name: string
@@ -50,6 +49,4 @@ export class ExercisesListComponent {
       description: 'Lorem ipsum'
     }
   ]
-
-  constructor(public translate: TranslateModule) {}
 }

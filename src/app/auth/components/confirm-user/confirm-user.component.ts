@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { TranslateService } from '@ngx-translate/core'
 import { Store } from '@ngrx/store'
 import { userActions, userSelectors } from '@state/user'
 
@@ -11,11 +10,7 @@ import { userActions, userSelectors } from '@state/user'
 export class ConfirmUserComponent implements OnInit {
   confirmationStatus$ = this.store.select(userSelectors.selectConfirmationStatus)
 
-  constructor(
-    public translate: TranslateService,
-    private route: ActivatedRoute,
-    private store: Store
-  ) {}
+  constructor(private route: ActivatedRoute, private store: Store) {}
 
   ngOnInit() {
     const { queryParamMap } = this.route.snapshot

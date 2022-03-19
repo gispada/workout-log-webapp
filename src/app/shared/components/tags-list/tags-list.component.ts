@@ -8,7 +8,6 @@ import {
 import { Store } from '@ngrx/store'
 import { map, ReplaySubject, switchMap } from 'rxjs'
 import { tagsSelectors } from '@state/tags'
-import { TranslateService } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-tags-list',
@@ -40,5 +39,5 @@ export class TagsListComponent {
     switchMap((tagIds) => this.store.select(tagsSelectors.selectPopulatedTags(tagIds)))
   )
 
-  constructor(private store: Store, private translate: TranslateService) {}
+  constructor(private store: Store) {}
 }
