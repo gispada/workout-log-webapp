@@ -17,7 +17,7 @@
         "plugin:ngrx/recommended"
       ],
       "rules": {
-        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/no-unused-vars": ["warn", { "ignoreRestSiblings": true }],
         "ngrx/on-function-explicit-return-type": "off",
         "import/no-useless-path-segments": "error",
         "import/no-cycle": "error",
