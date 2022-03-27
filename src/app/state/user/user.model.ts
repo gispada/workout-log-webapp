@@ -18,6 +18,7 @@ export type ConfirmationStatus = {
 export type UserState = {
   isLoggedIn: boolean
   profile: Nullable<UserProfile>
+  userId: Nullable<string>
   extraData?: Dictionary<unknown>
   confirmationStatus?: ConfirmationStatus
 }

@@ -4,7 +4,7 @@ import { Dictionary } from '@shared/types'
 import { withActionData } from '../utils'
 import { UserProfile, ConfirmationStatus } from './user.model'
 
-type UserData = { profile: UserProfile; extraData?: Dictionary<unknown> }
+type UserData = { profile: UserProfile; userId: string; extraData?: Dictionary<unknown> }
 
 const loading = (value: boolean) => ({ loading: value, key: 'auth' })
 

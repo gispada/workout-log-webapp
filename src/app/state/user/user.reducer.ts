@@ -7,7 +7,11 @@ import {
 } from './user.actions'
 import { UserState } from './user.model'
 
-const initialState: Readonly<UserState> = { isLoggedIn: false, profile: null }
+const initialState: Readonly<UserState> = {
+  isLoggedIn: false,
+  userId: null,
+  profile: null
+}
 
 export const userReducer = createReducer(
   initialState,

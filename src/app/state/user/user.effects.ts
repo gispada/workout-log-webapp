@@ -46,7 +46,11 @@ export class UserEffects {
       switchMap(() => this.userApi.getCurrentUser()),
       filter(Boolean),
       map((user) =>
-        userInitialized({ profile: user.profile, extraData: user.customData })
+        userInitialized({
+          profile: user.profile,
+          userId: user.id,
+          extraData: user.customData
+        })
       )
     )
   })
@@ -57,7 +61,11 @@ export class UserEffects {
       exhaustMap(({ payload }) =>
         this.userApi.login(payload).pipe(
           map((user) =>
-            loginSuccess({ profile: user.profile, extraData: user.customData })
+            loginSuccess({
+              profile: user.profile,
+              userId: user.id,
+              extraData: user.customData
+            })
           ),
           catchError(({ errorCode }: AuthenticationError) => of(authError(errorCode)))
         )
@@ -105,7 +113,11 @@ export class UserEffects {
       exhaustMap(() =>
         this.userApi.loginWithGoogle().pipe(
           map((user) =>
-            loginSuccess({ profile: user.profile, extraData: user.customData })
+            loginSuccess({
+              profile: user.profile,
+              userId: user.id,
+              extraData: user.customData
+            })
           ),
           catchError(() => of(authError('GoogleLoginAborted')))
         )
