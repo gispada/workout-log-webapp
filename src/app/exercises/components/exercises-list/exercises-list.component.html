@@ -10,18 +10,24 @@
     [allowSelection]="!!exercises?.length"
     [selected]="selected$ | ngrxPush"
     (selectedChange)="selected($event)"
-    [columns]="[
-      { dataKey: 'name', title: 'Exercise', template: this.linkCell },
-      {
-        dataKey: 'description',
-        width: '40%',
-        title: 'Description',
-        template: this.translatedCell
-      },
-      { dataKey: 'tags', title: 'Tags', template: this.tagsCell }
-    ]"
+    [columns]="(translatedColumnDefs$ | ngrxPush) || []"
     [dataSource]="exercises || []"
   >
+    <!-- Custom cell templates for columns with matching dataKey -->
+    <ng-template appTableCellFor="name" let-record="record" let-dataKey="dataKey">
+      <a [routerLink]="record._id" class="link-to-exercise">
+        <span>{{ record[dataKey] | translateEditableProp }}</span>
+        <fa-icon icon="chevron-right"></fa-icon>
+      </a>
+    </ng-template>
+
+    <ng-template appTableCellFor="description" let-record="record" let-dataKey="dataKey">
+      <span>{{ record[dataKey] | translateEditableProp }}</span>
+    </ng-template>
+
+    <ng-template appTableCellFor="tags" let-record="record" let-dataKey="dataKey">
+      <app-tags-list [tagIds]="record[dataKey]" [max]="3"></app-tags-list>
+    </ng-template>
   </app-table>
 </app-card>
 
@@ -52,19 +58,4 @@
       </a>
     </button>
   </div>
-</ng-template>
-
-<ng-template #linkCell let-record="record" let-dataKey="dataKey">
-  <a [routerLink]="record._id" class="link-to-exercise">
-    <span>{{ record[dataKey] | translateEditableProp }}</span>
-    <fa-icon icon="chevron-right"></fa-icon>
-  </a>
-</ng-template>
-
-<ng-template #translatedCell let-record="record" let-dataKey="dataKey">
-  <span>{{ record[dataKey] | translateEditableProp }}</span>
-</ng-template>
-
-<ng-template #tagsCell let-record="record" let-dataKey="dataKey">
-  <app-tags-list [tagIds]="record[dataKey]" [max]="3"></app-tags-list>
 </ng-template>

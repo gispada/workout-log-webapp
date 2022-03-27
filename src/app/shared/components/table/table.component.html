@@ -30,7 +30,7 @@
       <td *ngFor="let column of columns">
         <ng-container
           *ngTemplateOutlet="
-            column.template || defaultCell;
+            customCellTemplates[column.dataKey] || defaultCell;
             context: { record: record, dataKey: column.dataKey }
           "
         ></ng-container>

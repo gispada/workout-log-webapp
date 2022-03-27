@@ -30,6 +30,7 @@ import {
   LanguageSwitcherComponent,
   UserDropdownComponent,
   TableComponent,
+  TableCellForDirective,
   CardComponent,
   TagComponent,
   PageHeaderComponent,
@@ -59,7 +60,8 @@ import {
     TagChooserModalComponent,
     TranslateEditablePropPipe,
     FilterTagGroupsPipe,
-    FormatUomValuePipe
+    FormatUomValuePipe,
+    TableCellForDirective
   ],
   imports: [
     CommonModule,
@@ -104,7 +106,8 @@ import {
     TranslateEditablePropPipe,
     ReactiveComponentModule,
     FormatUomValuePipe,
-    NzPopconfirmModule
+    NzPopconfirmModule,
+    TableCellForDirective
   ]
 })
 export class SharedModule {}

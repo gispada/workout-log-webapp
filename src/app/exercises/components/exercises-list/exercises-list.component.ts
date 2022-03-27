@@ -1,7 +1,10 @@
-import { Component, Inject, OnInit, TemplateRef, ViewChild } from '@angular/core'
-import { EXERCISE_NEW } from '@config/routes'
+import { Component, OnInit } from '@angular/core'
 import { Store } from '@ngrx/store'
-import { TableColumn } from '@shared/types'
+import { TranslateService } from '@ngx-translate/core'
+import { map } from 'rxjs'
+import { Dictionary } from '@shared/types'
+import { EXERCISE_NEW } from '@config/routes'
+import { prop } from '@shared/utils/miscellaneous'
 import { appSelectors } from '@state/app'
 import { exercisesActions, exercisesSelectors } from '@state/exercises'
 
@@ -12,16 +15,30 @@ import { exercisesActions, exercisesSelectors } from '@state/exercises'
 })
 export class ExercisesListComponent implements OnInit {
   newExerciseUrl = EXERCISE_NEW
-  ns = 'Settings.Exercises.'
+
+  private columnDefs = [
+    { dataKey: 'name', i18nTitle: 'Exercises.Name' },
+    { dataKey: 'description', width: '40%', i18nTitle: 'Exercises.Description' },
+    { dataKey: 'tags', i18nTitle: 'Exercises.Tags' }
+  ]
 
   exercises$ = this.store.select(exercisesSelectors.selectExercises)
   selected$ = this.store.select(exercisesSelectors.selectSelectedExercises)
   fetchLoading$ = this.store.select(appSelectors.selectLoadingStatus('exercises.fetch'))
   deleteLoading$ = this.store.select(appSelectors.selectLoadingStatus('exercises.delete'))
 
-  //@ViewChild('firstRow') firstRow?: TemplateRef<any>
+  translatedColumnDefs$ = this.translate
+    .stream(this.columnDefs.map(prop('i18nTitle')))
+    .pipe(
+      map((translations: Dictionary<string>) =>
+        this.columnDefs.map(({ i18nTitle, ...rest }) => ({
+          ...rest,
+          title: translations[i18nTitle]
+        }))
+      )
+    )
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private translate: TranslateService) {}
 
   ngOnInit() {
     this.store.dispatch(exercisesActions.exercisesDataInit())
