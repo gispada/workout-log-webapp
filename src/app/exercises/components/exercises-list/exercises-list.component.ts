@@ -1,52 +1,37 @@
-import { Component } from '@angular/core'
+import { Component, Inject, OnInit, TemplateRef, ViewChild } from '@angular/core'
 import { EXERCISE_NEW } from '@config/routes'
+import { Store } from '@ngrx/store'
+import { TableColumn } from '@shared/types'
+import { appSelectors } from '@state/app'
+import { exercisesActions, exercisesSelectors } from '@state/exercises'
 
-type Exercise = {
-  name: string
-  description: string
-}
 @Component({
   selector: 'exercises-list',
   templateUrl: './exercises-list.component.html',
   styleUrls: ['./exercises-list.component.scss']
 })
-export class ExercisesListComponent {
+export class ExercisesListComponent implements OnInit {
   newExerciseUrl = EXERCISE_NEW
   ns = 'Settings.Exercises.'
 
-  columns = [
-    { dataKey: 'name', title: 'Exercise' },
-    { dataKey: 'description', title: 'Description' },
-    { dataKey: 'tags', title: 'Tags' }
-  ]
-  dataSource: Exercise[] = [
-    {
-      name: 'Squat',
-      description: 'Lorem ipsum'
-    },
-    {
-      name: 'Bench press',
-      description: 'Lorem ipsum'
-    },
-    {
-      name: 'Lat machine',
-      description: 'Lorem ipsum'
-    },
-    {
-      name: 'Bent over row',
-      description: 'Lorem ipsum'
-    },
-    {
-      name: 'Deadlift',
-      description: 'Lorem ipsum'
-    },
-    {
-      name: 'Military press',
-      description: 'Lorem ipsum'
-    },
-    {
-      name: 'T-bar row',
-      description: 'Lorem ipsum'
-    }
-  ]
+  exercises$ = this.store.select(exercisesSelectors.selectExercises)
+  selected$ = this.store.select(exercisesSelectors.selectSelectedExercises)
+  fetchLoading$ = this.store.select(appSelectors.selectLoadingStatus('exercises.fetch'))
+  deleteLoading$ = this.store.select(appSelectors.selectLoadingStatus('exercises.delete'))
+
+  //@ViewChild('firstRow') firstRow?: TemplateRef<any>
+
+  constructor(private store: Store) {}
+
+  ngOnInit() {
+    this.store.dispatch(exercisesActions.exercisesDataInit())
+  }
+
+  selected(selection: string[]) {
+    this.store.dispatch(exercisesActions.exercisesSelectionChanged(selection))
+  }
+
+  deleteSelected() {
+    this.store.dispatch(exercisesActions.selectedExercisesDelete())
+  }
 }

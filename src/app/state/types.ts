@@ -1,4 +1,8 @@
-export type LoadingMeta = { loading: boolean; key: string }
+import type { LoadingKey } from './app'
+
+export type LoadingMeta = { loading: boolean; key: LoadingKey }
+
+export type LoadingMetaCreator = (value: boolean) => LoadingMeta
 
 export type ActionMeta = LoadingMeta
 
@@ -19,3 +23,5 @@ export type UserEditableProp = { i18nValue: string } | { value: string }
 export type Translated<T> = {
   [K in keyof T]: T[K] extends UserEditableProp ? string : T[K]
 }
+
+export type NewEntity<T> = Omit<T, '_id' | 'ownerId'>

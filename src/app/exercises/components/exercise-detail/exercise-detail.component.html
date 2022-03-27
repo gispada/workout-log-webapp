@@ -1,7 +1,7 @@
 <ng-container *ngrxLet="draft$ as draft">
   <app-page-header
     [goBackTo]="'/' + parentUrl"
-    [pageTitle]="'Exercises.AddNew' | translate"
+    [pageTitle]="draft.staticTitle | translateEditableProp"
     [rightTemplate]="actions"
   ></app-page-header>
 
@@ -17,8 +17,8 @@
                   nz-input
                   name="name"
                   autocomplete="off"
-                  [ngModel]="draft?.name"
-                  (ngModelChange)="onChange('name', $event)"
+                  [ngModel]="draft.name | translateEditableProp"
+                  (ngModelChange)="onChange('name', { value: $event })"
                   required
                 />
               </nz-form-control>
@@ -32,8 +32,8 @@
                   nz-input
                   name="description"
                   rows="3"
-                  [ngModel]="draft?.description"
-                  (ngModelChange)="onChange('description', $event)"
+                  [ngModel]="draft.description! | translateEditableProp"
+                  (ngModelChange)="onChange('description', { value: $event })"
                 ></textarea>
               </nz-form-control>
             </nz-form-item>
@@ -41,7 +41,7 @@
 
           <app-form-item-block [label]="'Exercises.Tags' | translate">
             <app-tags-list
-              [tagIds]="draft?.tags"
+              [tagIds]="draft.tags"
               [interactive]="true"
               (delete)="deleteTag($event)"
               (add)="modalVisible = true"
@@ -60,7 +60,7 @@
           <app-select
             width="100%"
             [options]="(translatedUnitOfMeasures$ | ngrxPush) ?? []"
-            [value]="draft?.unitOfMeasure"
+            [value]="draft.unitOfMeasure"
             (valueChange)="onChange('unitOfMeasure', $event)"
           ></app-select>
         </app-form-item-block>
@@ -75,14 +75,31 @@
   <app-tag-chooser-modal
     [(visible)]="modalVisible"
     (selectTags)="addTags($event)"
-    [excluded]="draft?.tags"
+    [excluded]="draft.tags"
   ></app-tag-chooser-modal>
 
   <ng-template #actions>
-    <div class="actions">
-      <button nz-button>{{ 'Common.Cancel' | translate }}</button>
-      <button nz-button *ngIf="exerciseId">{{ 'Common.Delete' | translate }}</button>
-      <button nz-button nzType="primary" (click)="saveDraft(form)">
+    <div class="actions" *ngrxLet="loading$ as l">
+      <button nz-button (click)="cancel()">{{ 'Common.Cancel' | translate }}</button>
+      <div
+        *ngIf="exerciseId"
+        nz-popconfirm
+        [nzPopconfirmTrigger]="l.deleting ? null : 'click'"
+        [nzPopconfirmTitle]="'Exercises.DeleteConfirm' | translate"
+        [nzOkText]="'Common.Yes' | translate"
+        nzPopconfirmPlacement="bottom"
+        (nzOnConfirm)="deleteExercise()"
+      >
+        <button nz-button [nzLoading]="l.deleting">
+          {{ 'Common.Delete' | translate }}
+        </button>
+      </div>
+      <button
+        nz-button
+        nzType="primary"
+        (click)="!l.saving && !l.deleting && saveDraft(form)"
+        [nzLoading]="l.saving"
+      >
         {{ 'Common.Save' | translate }}
       </button>
     </div>

@@ -1,3 +1,4 @@
+import { TemplateRef } from '@angular/core'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table'
 
@@ -18,6 +19,8 @@ export type TableColumn<T> = {
   dataKey: string
   sortOrder?: NzTableSortOrder
   sortFn?: NzTableSortFn<T>
+  width?: string
+  template?: TemplateRef<{ record: T; dataKey: string }>
 }
 
 export type TableData = {

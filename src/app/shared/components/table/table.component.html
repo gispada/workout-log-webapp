@@ -4,22 +4,41 @@
   nzHideOnSinglePage
   [nzFrontPagination]="!!paginationSize"
   [nzPageSize]="paginationSize || 10"
+  [nzLoading]="loading"
 >
   <thead>
     <tr class="header-row">
       <th
-        *ngFor="let column of columns"
-        [nzSortOrder]="column.sortOrder || null"
-        [nzSortFn]="column.sortFn || null"
-      >
+        *ngIf="allowSelection"
+        [nzChecked]="allSelected"
+        [nzIndeterminate]="someSelected"
+        (nzCheckedChange)="onSelectAll($event)"
+      ></th>
+      <th *ngFor="let column of columns" [nzWidth]="column.width ?? null">
         {{ column.title }}
       </th>
     </tr>
   </thead>
 
   <tbody>
-    <tr *ngFor="let record of table.data" class="body-row">
-      <td *ngFor="let column of columns">{{ record[column.dataKey] }}</td>
+    <tr *ngFor="let record of table.data; trackBy: trackBy" class="body-row">
+      <td
+        *ngIf="allowSelection"
+        [nzChecked]="allSelected || !!selected?.includes(record[rowIdKey])"
+        (nzCheckedChange)="onSelectSingle($event, record)"
+      ></td>
+      <td *ngFor="let column of columns">
+        <ng-container
+          *ngTemplateOutlet="
+            column.template || defaultCell;
+            context: { record: record, dataKey: column.dataKey }
+          "
+        ></ng-container>
+      </td>
     </tr>
   </tbody>
 </nz-table>
+
+<ng-template #defaultCell let-record="record" let-dataKey="dataKey">
+  {{ record[dataKey] }}
+</ng-template>

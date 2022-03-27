@@ -2,9 +2,10 @@
   "Common": {
     "Cancel": "Annulla",
     "Save": "Salva",
-    "Delete": "Rimuovi",
+    "Delete": "Elimina",
     "Ok": "OK",
-    "Add": "Aggiungi"
+    "Add": "Aggiungi",
+    "Yes": "Sì"
   },
   "Menu": {
     "Dashboard": "Dashboard",
@@ -46,7 +47,10 @@
     "RegistrationSuccess": "Registrazione effettuata! Conferma l'email per iniziare.",
     "LoginFailed": "L'email o la password non sono validi.",
     "RegistrationExistingEmail": "Questa email è già stata registrata.",
-    "GoogleLoginAborted": "Login con Google annullato."
+    "GoogleLoginAborted": "Login con Google annullato.",
+    "ExerciseNotFound": "Questo esercizio non è stato trovato.",
+    "ExerciseSaved": "Esercizio salvato con successo.",
+    "ExercisesFetchFailed": "Si è verificato un errore durante il caricamento degli esercizi."
   },
   "Exercises": {
     "Title": "Esercizi",
@@ -65,7 +69,10 @@
       "ss": "Secondi",
       "mm": "Minuti",
       "hh": "Ore"
-    }
+    },
+    "DeleteConfirm": "Eliminare l'esercizio?",
+    "DeleteMultipleConfirm": "Eliminare gli esercizi selezionati?",
+    "BenchPress": "Panca piana"
   },
   "Tags": {
     "ChooseTags": "Seleziona tag",

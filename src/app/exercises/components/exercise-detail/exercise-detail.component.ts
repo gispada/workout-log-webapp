@@ -1,18 +1,34 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit
+} from '@angular/core'
+import { ActivatedRoute, Router } from '@angular/router'
 import { Store } from '@ngrx/store'
 import { TranslateService } from '@ngx-translate/core'
-import { map } from 'rxjs'
+import { combineLatest, filter, map } from 'rxjs'
 import type { NgForm } from '@angular/forms'
 import { EXERCISES } from '@config/routes'
 import { exercisesActions, exercisesSelectors } from '@state/exercises'
 import { displayInvalidFormControls } from '@shared/utils/miscellaneous'
 import { Dictionary } from '@shared/types'
 import { AppConfig, APP_CONFIG } from '@config/app'
+import { appSelectors } from '@state/app'
 import type { ExerciseSimpleProps } from '@state/exercises/exercises.actions'
 
-const { exerciseNew, exerciseTagRemoved, exerciseTagsAdded, exercisePropertyChanged } =
-  exercisesActions
+const {
+  exerciseNew,
+  exerciseTagRemoved,
+  exerciseTagsAdded,
+  exercisePropertyChanged,
+  exerciseEditing,
+  newExerciseSave,
+  existingExerciseSave,
+  exerciseDraftCleared,
+  exerciseDelete
+} = exercisesActions
 
 @Component({
   selector: 'exercises-detail',
@@ -20,7 +36,7 @@ const { exerciseNew, exerciseTagRemoved, exerciseTagsAdded, exercisePropertyChan
   styleUrls: ['./exercise-detail.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExerciseDetailComponent implements OnInit {
+export class ExerciseDetailComponent implements OnInit, OnDestroy {
   parentUrl = EXERCISES
   exerciseId = this.route.snapshot.paramMap.get('id')
   modalVisible = false
@@ -36,19 +52,28 @@ export class ExerciseDetailComponent implements OnInit {
     )
   )
 
-  draft$ = this.store.select(exercisesSelectors.selectDraft)
+  draft$ = this.store.select(exercisesSelectors.selectDraft).pipe(filter(Boolean))
+  loading$ = combineLatest({
+    saving: this.store.select(appSelectors.selectLoadingStatus('exercises.save')),
+    deleting: this.store.select(appSelectors.selectLoadingStatus('exercises.delete'))
+  })
 
   constructor(
     @Inject(APP_CONFIG) private appConfig: AppConfig,
     public translate: TranslateService,
     private route: ActivatedRoute,
+    private router: Router,
     private store: Store
   ) {}
 
   ngOnInit() {
-    if (!this.exerciseId) {
-      this.store.dispatch(exerciseNew())
-    }
+    this.store.dispatch(
+      this.exerciseId ? exerciseEditing({ id: this.exerciseId }) : exerciseNew()
+    )
+  }
+
+  ngOnDestroy() {
+    this.store.dispatch(exerciseDraftCleared())
   }
 
   addUomNamespace(x: string) {
@@ -65,7 +90,7 @@ export class ExerciseDetailComponent implements OnInit {
     return [...unitsOfMeasureSet].map(this.addUomNamespace)
   }
 
-  onChange(id: keyof ExerciseSimpleProps, value: string) {
+  onChange<T extends keyof ExerciseSimpleProps>(id: T, value: ExerciseSimpleProps[T]) {
     this.store.dispatch(exercisePropertyChanged({ [id]: value }))
   }
 
@@ -81,7 +106,16 @@ export class ExerciseDetailComponent implements OnInit {
     if (!form.valid) {
       return displayInvalidFormControls(form.controls)
     }
+    this.store.dispatch(this.exerciseId ? existingExerciseSave() : newExerciseSave())
+  }
 
-    console.log('SAVE')
+  deleteExercise() {
+    if (this.exerciseId) {
+      this.store.dispatch(exerciseDelete(this.exerciseId))
+    }
+  }
+
+  cancel() {
+    this.router.navigateByUrl(`/${this.parentUrl}`)
   }
 }

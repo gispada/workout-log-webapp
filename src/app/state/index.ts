@@ -1,6 +1,6 @@
 import { routerReducer } from '@ngrx/router-store'
 import { appReducer, AppEffects } from './app'
-import { exercisesReducer } from './exercises'
+import { ExercisesEffects, exercisesReducer } from './exercises'
 import { tagsReducer } from './tags'
 import { userReducer, UserEffects } from './user'
 
@@ -14,7 +14,7 @@ export const reducers = {
   tags: tagsReducer
 }
 
-export const effects = [AppEffects, UserEffects]
+export const effects = [AppEffects, UserEffects, ExercisesEffects]
 
 // Exclude NgRx router slice, its type is not inferred correctly with ReturnType
 export type RootState = {

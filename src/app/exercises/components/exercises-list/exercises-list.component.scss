@@ -1,0 +1,14 @@
+@use '~/src/style/colors';
+
+.link-to-exercise {
+  span {
+    color: colors.$light-text;
+    font-weight: 500;
+    margin-right: 0.6rem;
+  }
+}
+
+.table-actions {
+  display: flex;
+  gap: 2rem;
+}

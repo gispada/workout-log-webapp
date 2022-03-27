@@ -1,12 +1,12 @@
 import { createAction } from '@ngrx/store'
 import { Credentials, EmailConfirmParams } from '@core/types/api'
 import { Dictionary } from '@shared/types'
-import { withActionData } from '../utils'
+import { withActionData, loadingMetaFactory } from '../utils'
 import { UserProfile, ConfirmationStatus } from './user.model'
 
 type UserData = { profile: UserProfile; userId: string; extraData?: Dictionary<unknown> }
 
-const loading = (value: boolean) => ({ loading: value, key: 'auth' })
+const [loading] = loadingMetaFactory(['auth'])
 
 export const userInitialized = createAction(
   '[Auth] User initialized',

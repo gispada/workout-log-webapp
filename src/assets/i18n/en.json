@@ -4,7 +4,8 @@
     "Save": "Save",
     "Delete": "Delete",
     "Ok": "OK",
-    "Add": "Add"
+    "Add": "Add",
+    "Yes": "Yes"
   },
   "Menu": {
     "Dashboard": "Dashboard",
@@ -46,7 +47,10 @@
     "RegistrationSuccess": "Registration done! Confirm your email to get started.",
     "LoginFailed": "Email or password are not valid.",
     "RegistrationExistingEmail": "This email has already been registered.",
-    "GoogleLoginAborted": "Login with Google canceled."
+    "GoogleLoginAborted": "Login with Google canceled.",
+    "ExerciseNotFound": "This exercise could not be found.",
+    "ExerciseSaved": "Exercise saved successfully.",
+    "ExercisesFetchFailed": "An error occurred while fetching exercises."
   },
   "Exercises": {
     "Title": "Exercises",
@@ -65,7 +69,10 @@
       "ss": "Seconds",
       "mm": "Minutes",
       "hh": "Hours"
-    }
+    },
+    "DeleteConfirm": "Delete this exercise?",
+    "DeleteMultipleConfirm": "Delete selected exercises?",
+    "BenchPress": "Bench press"
   },
   "Tags": {
     "ChooseTags": "Choose tags",

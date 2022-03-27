@@ -1,19 +1,70 @@
 <app-page-header [pageTitle]="'Exercises.Title' | translate"></app-page-header>
 
-<app-card [cardTitle]="'Exercises.SubTitle' | translate" [rightTemplate]="addExercise">
-  <app-table [columns]="columns" [dataSource]="dataSource"></app-table>
+<app-card
+  *ngrxLet="exercises$ as exercises"
+  [cardTitle]="'Exercises.SubTitle' | translate"
+  [rightTemplate]="addExercise"
+>
+  <app-table
+    [loading]="fetchLoading$ | ngrxPush"
+    [allowSelection]="!!exercises?.length"
+    [selected]="selected$ | ngrxPush"
+    (selectedChange)="selected($event)"
+    [columns]="[
+      { dataKey: 'name', title: 'Exercise', template: this.linkCell },
+      {
+        dataKey: 'description',
+        width: '40%',
+        title: 'Description',
+        template: this.translatedCell
+      },
+      { dataKey: 'tags', title: 'Tags', template: this.tagsCell }
+    ]"
+    [dataSource]="exercises || []"
+  >
+  </app-table>
 </app-card>
 
 <ng-template #addExercise>
-  <button
-    nz-button
-    nzType="primary"
-    class="icon-button"
-    nz-tooltip
-    [nzTooltipTitle]="'Exercises.AddNew' | translate"
-  >
-    <a [routerLink]="newExerciseUrl">
-      <fa-icon icon="plus"></fa-icon>
-    </a>
-  </button>
+  <div class="table-actions" *ngrxLet="deleteLoading$ as deleting">
+    <div
+      *ngIf="(selected$ | ngrxPush)?.length"
+      nz-popconfirm
+      [nzPopconfirmTrigger]="deleting ? null : 'click'"
+      [nzPopconfirmTitle]="'Exercises.DeleteMultipleConfirm' | translate"
+      [nzOkText]="'Common.Yes' | translate"
+      (nzOnConfirm)="deleteSelected()"
+      nzPopconfirmPlacement="bottom"
+    >
+      <button nz-button class="icon-button" [nzLoading]="deleting">
+        <fa-icon *ngIf="!deleting" icon="trash-can"></fa-icon>
+      </button>
+    </div>
+    <button
+      nz-button
+      nzType="primary"
+      class="icon-button"
+      nz-tooltip
+      [nzTooltipTitle]="'Exercises.AddNew' | translate"
+    >
+      <a [routerLink]="newExerciseUrl">
+        <fa-icon icon="plus"></fa-icon>
+      </a>
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #linkCell let-record="record" let-dataKey="dataKey">
+  <a [routerLink]="record._id" class="link-to-exercise">
+    <span>{{ record[dataKey] | translateEditableProp }}</span>
+    <fa-icon icon="chevron-right"></fa-icon>
+  </a>
+</ng-template>
+
+<ng-template #translatedCell let-record="record" let-dataKey="dataKey">
+  <span>{{ record[dataKey] | translateEditableProp }}</span>
+</ng-template>
+
+<ng-template #tagsCell let-record="record" let-dataKey="dataKey">
+  <app-tags-list [tagIds]="record[dataKey]" [max]="3"></app-tags-list>
 </ng-template>

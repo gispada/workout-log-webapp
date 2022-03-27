@@ -39,7 +39,12 @@ body {
 }
 
 .icon-button {
-  padding: .4rem 1rem;
-  font-size: 1.8rem;
+  // padding: .4rem 1rem;
+  padding: 0;
+  width: 3.6rem;
   line-height: 1;
+}
+
+.ant-btn-loading {
+  pointer-events: none;
 }
