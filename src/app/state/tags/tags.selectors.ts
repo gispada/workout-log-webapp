@@ -65,7 +65,9 @@ export const selectGroupedTagsWithAllCategories = createSelector(
 
 export const selectPopulatedTags = (tagIds: string[]) =>
   createSelector(selectTagsById, (tagsById) => {
-    return tagIds.map((id) => tagsById[id])
+    return tagIds
+      .filter((id) => !!tagsById[id]) // Ignore deleted tags, for now...
+      .map((id) => tagsById[id])
   })
 
 export const selectDraft = createSelector(selectTagsState, prop('draft'))
