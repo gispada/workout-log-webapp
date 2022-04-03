@@ -26,7 +26,11 @@ export type Collection = 'exercises' | 'tags'
 
 export type MongoDBFilter = Realm.Services.MongoDB.Filter
 
+export type MongoDBUpdate = Realm.Services.MongoDB.Update
+
 export type DocumentWithObjectId = Realm.Services.MongoDB.Document<BSON.ObjectId | string>
+
+// The following utils are not used
 
 /**
  * Changes every property in T that is of type `ObjectId` to string.

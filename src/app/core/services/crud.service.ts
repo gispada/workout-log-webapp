@@ -2,6 +2,7 @@ import { BSON } from 'realm-web'
 import { from, map } from 'rxjs'
 import { Collection, DocumentWithObjectId } from '@core/types/api'
 import { NewEntity } from '@state/types'
+import { Dictionary } from '@shared/types'
 import { RealmService } from './realm.service'
 
 type BaseCrudEntity = DocumentWithObjectId & { ownerId: string }
@@ -42,6 +43,10 @@ export class ApiCrudService<T extends BaseCrudEntity> {
         { ...document, _id: objectId }
       )
     ).pipe(map((result) => (result ? document : null)))
+  }
+
+  updateMany(filter: Dictionary<string | number>, update: Dictionary<any>) {
+    return from(this.realm.updateMany(this.collectionName, filter, update))
   }
 
   delete(ids: string | string[]) {

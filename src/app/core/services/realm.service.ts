@@ -5,7 +5,8 @@ import {
   Credentials,
   DocumentWithObjectId,
   EmailConfirmParams,
-  MongoDBFilter
+  MongoDBFilter,
+  MongoDBUpdate
 } from '../types/api'
 
 const REALM_APP_ID = process.env['REALM_APP_ID']!
@@ -79,6 +80,16 @@ export class RealmService {
     document: T
   ) {
     return this.db!.collection<T>(collection).findOneAndReplace(filter, document)
+  }
+
+  updateMany<T extends DocumentWithObjectId>(
+    collection: string,
+    filter: MongoDBFilter,
+    update: MongoDBUpdate
+  ) {
+    return this.db!.collection<T>(collection).updateMany(filter, update, {
+      upsert: false
+    })
   }
 
   deleteOne<T extends DocumentWithObjectId>(collection: string, filter: MongoDBFilter) {
