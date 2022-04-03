@@ -41,7 +41,8 @@
     "InvalidEmail": "Email non valida.",
     "InvalidPassword": "La password deve contenere almeno 6 caratteri.",
     "InvalidConfirmPassword": "Le password scelte non coincidono.",
-    "InvalidExerciseName": "Il nome dell'esercizio è obbligatorio."
+    "InvalidExerciseName": "Il nome dell'esercizio è obbligatorio.",
+    "InvalidTagName": "Il nome del tag è obbligatorio."
   },
   "Messages": {
     "RegistrationSuccess": "Registrazione effettuata! Conferma l'email per iniziare.",
@@ -75,8 +76,16 @@
     "BenchPress": "Panca piana"
   },
   "Tags": {
+    "Title": "Tag",
+    "SubTitle": "Gestisci i tuoi tag",
+    "AddNew": "Nuovo tag",
+    "EditTag": "Modifica tag",
     "ChooseTags": "Seleziona tag",
     "SearchTag": "Cerca un tag",
+    "Name": "Nome",
+    "Category": "Categoria",
+    "CreateAsCategory": "Crea categoria",
+    "DeleteMultipleConfirm": "Eliminare i tag selezionati?",
     "Names": {
       "Pectorals": "Pettorali",
       "Deltoids": "Deltoidi",
@@ -103,11 +112,6 @@
     }
   },
   "Settings": {
-    "Title": "Impostazioni",
-    "Tags": {
-      "TabTitle": "Tag",
-      "Title": "Gestisci i tuoi tag",
-      "AddNew": "Nuovo tag"
-    }
+    "Title": "Impostazioni"
   }
 }

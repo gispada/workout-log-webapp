@@ -22,6 +22,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid'
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker'
 import { NzModalModule } from 'ng-zorro-antd/modal'
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm'
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox'
 
 import {
   ShellComponent,
@@ -36,7 +37,8 @@ import {
   PageHeaderComponent,
   FormItemBlockComponent,
   TagsListComponent,
-  TagChooserModalComponent
+  TagChooserModalComponent,
+  ListActionsComponent
 } from './components'
 import {
   TranslateEditablePropPipe,
@@ -61,7 +63,8 @@ import {
     TranslateEditablePropPipe,
     FilterTagGroupsPipe,
     FormatUomValuePipe,
-    TableCellForDirective
+    TableCellForDirective,
+    ListActionsComponent
   ],
   imports: [
     CommonModule,
@@ -79,7 +82,9 @@ import {
     NzButtonModule,
     NzModalModule,
     NzInputModule,
-    ReactiveComponentModule
+    ReactiveComponentModule,
+    NzToolTipModule,
+    NzPopconfirmModule
   ],
   exports: [
     NzFormModule,
@@ -107,7 +112,10 @@ import {
     ReactiveComponentModule,
     FormatUomValuePipe,
     NzPopconfirmModule,
-    TableCellForDirective
+    TableCellForDirective,
+    NzModalModule,
+    NzCheckboxModule,
+    ListActionsComponent
   ]
 })
 export class SharedModule {}

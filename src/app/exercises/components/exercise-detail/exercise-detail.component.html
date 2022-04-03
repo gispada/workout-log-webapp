@@ -59,6 +59,7 @@
         >
           <app-select
             width="100%"
+            size="default"
             [options]="(translatedUnitOfMeasures$ | ngrxPush) ?? []"
             [value]="draft.unitOfMeasure"
             (valueChange)="onChange('unitOfMeasure', $event)"

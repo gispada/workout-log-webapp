@@ -1,98 +1,90 @@
 import { createReducer, on } from '@ngrx/store'
-import { TagsState } from './tags.model'
+import { removeFromList, toggleListItem } from '@shared/utils/lists'
+import { assert } from '@shared/utils/miscellaneous'
+import {
+  draftCleared,
+  existingTagEntityToDraft,
+  newTagEntityToDraft,
+  selectedTagsDeleteSuccess,
+  tagDeleteSuccess,
+  tagEntityEdited,
+  tagSaveSuccess,
+  tagsFetchSuccess,
+  toggleTagModal,
+  toggleTagSelection,
+  toggleTagType
+} from './tags.actions'
+import { Category, Tag, TagEntity, TagEntityDraft, TagsState } from './tags.model'
 
-const tagsMock = [
-  {
-    id: '1',
-    name: { i18nValue: 'Tags.Names.Pectorals' },
-    category: 'c1'
-  },
-  {
-    id: '2',
-    name: { i18nValue: 'Tags.Names.Deltoids' },
-    category: 'c1'
-  },
-  {
-    id: '3',
-    name: { i18nValue: 'Tags.Names.Quadriceps' },
-    category: 'c1'
-  },
-  {
-    id: '4',
-    name: { i18nValue: 'Tags.Names.Triceps' },
-    category: 'c1'
-  },
-  {
-    id: '5',
-    name: { i18nValue: 'Tags.Names.Forearms' },
-    category: 'c1'
-  },
-  {
-    id: '6',
-    name: { i18nValue: 'Tags.Names.Hamstrings' },
-    category: 'c1'
-  },
-  {
-    id: '7',
-    name: { i18nValue: 'Tags.Names.Abs' },
-    category: 'c1'
-  },
-  {
-    id: '8',
-    name: { i18nValue: 'Tags.Names.Back' },
-    category: 'c1'
-  },
-  {
-    id: '9',
-    name: { i18nValue: 'Tags.Names.Trapezius' },
-    category: 'c1'
-  },
-  {
-    id: '10',
-    name: { i18nValue: 'Tags.Names.Calves' },
-    category: 'c1'
-  },
-  {
-    id: '1000',
-    name: { value: 'Collo' },
-    category: 'c1'
-  },
-  {
-    id: '11',
-    name: { i18nValue: 'Tags.Names.Beginner' },
-    category: 'c2'
-  },
-  {
-    id: '12',
-    name: { i18nValue: 'Tags.Names.Intermediate' },
-    category: 'c2'
-  },
-  {
-    id: '13',
-    name: { i18nValue: 'Tags.Names.Advanced' },
-    category: 'c2'
-  },
-  {
-    id: '14',
-    name: { i18nValue: 'Tags.Names.Compound' },
-    category: 'c3'
-  },
-  {
-    id: '15',
-    name: { i18nValue: 'Tags.Names.Isolation' },
-    category: 'c3'
-  }
-]
-
-const categoriesMock = [
-  { id: 'c1', name: { i18nValue: 'Tags.Categories.MuscleGroup' } },
-  { id: 'c2', name: { i18nValue: 'Tags.Categories.Difficulty' } },
-  { id: 'c3', name: { i18nValue: 'Tags.Categories.MovementType' } }
-]
+const UNITIALIZED_DRAFT = 'Trying to edit a tag draft that was not initialized'
 
 const initialState: Readonly<TagsState> = {
-  tags: tagsMock,
-  categories: categoriesMock
+  tags: [],
+  categories: [],
+  selected: [],
+  tagModalOpened: false
 }
 
-export const tagsReducer = createReducer(initialState)
+const groupEntityByType = (entities: TagEntity[]) => {
+  return entities.reduce<[Tag[], Category[]]>(
+    (acc, entity) => {
+      const [tags, categories] = acc
+      if (entity.type === 'tag') return [[...tags, entity], categories]
+      if (entity.type === 'category') return [tags, [...categories, entity]]
+      return acc
+    },
+    [[], []]
+  )
+}
+
+export const tagsReducer = createReducer(
+  initialState,
+  on(tagsFetchSuccess, (state, { payload }) => {
+    const [tags, categories] = groupEntityByType(payload)
+    return { ...state, tags, categories }
+  }),
+  on(newTagEntityToDraft, (state) => ({
+    ...state,
+    tagModalOpened: true,
+    draft: { name: { value: '' }, type: 'tag' }
+  })),
+  on(existingTagEntityToDraft, (state, { payload }) => ({
+    ...state,
+    tagModalOpened: true,
+    draft: payload
+  })),
+  on(tagEntityEdited, (state, { payload }) => {
+    assert(state.draft, UNITIALIZED_DRAFT)
+    return {
+      ...state,
+      draft: { ...state.draft, ...payload }
+    }
+  }),
+  on(toggleTagType, (state) => {
+    assert(state.draft, UNITIALIZED_DRAFT)
+    const isTag = state.draft.type === 'tag'
+    const newDraft = {
+      ...state.draft,
+      type: isTag ? 'category' : 'tag'
+    } as TagEntityDraft
+    if (isTag) {
+      // Remove category when switching from tag to category
+      // Setting it to undefined is not enough, as the API layer will convert undefined to null
+      delete (newDraft as Tag).category
+    }
+    return { ...state, draft: newDraft }
+  }),
+  on(toggleTagSelection, (state, { payload }) => ({
+    ...state,
+    selected: toggleListItem(state.selected || [], payload)
+  })),
+  on(tagSaveSuccess, (state) => ({ ...state, tagModalOpened: false })),
+  on(tagDeleteSuccess, (state, { payload }) => ({
+    ...state,
+    tagModalOpened: false,
+    selected: removeFromList(state.selected, payload)
+  })),
+  on(selectedTagsDeleteSuccess, (state) => ({ ...state, selected: [] })),
+  on(toggleTagModal, (state) => ({ ...state, tagModalOpened: !state.tagModalOpened })),
+  on(draftCleared, (state) => ({ ...state, draft: undefined }))
+)

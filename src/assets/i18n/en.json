@@ -41,7 +41,8 @@
     "InvalidEmail": "Invalid email.",
     "InvalidPassword": "Password must be at least 6 characters long.",
     "InvalidConfirmPassword": "Your passwords do not match.",
-    "InvalidExerciseName": "The exercise's name is required."
+    "InvalidExerciseName": "The exercise's name is required.",
+    "InvalidTagName": "The tag's name is required."
   },
   "Messages": {
     "RegistrationSuccess": "Registration done! Confirm your email to get started.",
@@ -75,8 +76,16 @@
     "BenchPress": "Bench press"
   },
   "Tags": {
+    "Title": "Tags",
+    "SubTitle": "Manage your tags",
+    "AddNew": "New tag",
+    "EditTag": "Edit tag",
     "ChooseTags": "Choose tags",
     "SearchTag": "Search tag",
+    "Name": "Name",
+    "Category": "Category",
+    "CreateAsCategory": "Create category",
+    "DeleteMultipleConfirm": "Delete selected tags?",
     "Names": {
       "Pectorals": "Pectorals",
       "Deltoids": "Deltoids",
@@ -103,11 +112,6 @@
     }
   },
   "Settings": {
-    "Title": "Settings",
-    "Tags": {
-      "TabTitle": "Tags",
-      "Title": "Manage your tags",
-      "AddNew": "New tag"
-    }
+    "Title": "Settings"
   }
 }

@@ -3,7 +3,7 @@
 <app-card
   *ngrxLet="exercises$ as exercises"
   [cardTitle]="'Exercises.SubTitle' | translate"
-  [rightTemplate]="addExercise"
+  [rightTemplate]="exercisesActions"
 >
   <app-table
     [loading]="fetchLoading$ | ngrxPush"
@@ -31,31 +31,13 @@
   </app-table>
 </app-card>
 
-<ng-template #addExercise>
-  <div class="table-actions" *ngrxLet="deleteLoading$ as deleting">
-    <div
-      *ngIf="(selected$ | ngrxPush)?.length"
-      nz-popconfirm
-      [nzPopconfirmTrigger]="deleting ? null : 'click'"
-      [nzPopconfirmTitle]="'Exercises.DeleteMultipleConfirm' | translate"
-      [nzOkText]="'Common.Yes' | translate"
-      (nzOnConfirm)="deleteSelected()"
-      nzPopconfirmPlacement="bottom"
-    >
-      <button nz-button class="icon-button" [nzLoading]="deleting">
-        <fa-icon *ngIf="!deleting" icon="trash-can"></fa-icon>
-      </button>
-    </div>
-    <button
-      nz-button
-      nzType="primary"
-      class="icon-button"
-      nz-tooltip
-      [nzTooltipTitle]="'Exercises.AddNew' | translate"
-    >
-      <a [routerLink]="newExerciseUrl">
-        <fa-icon icon="plus"></fa-icon>
-      </a>
-    </button>
-  </div>
+<ng-template #exercisesActions>
+  <app-list-actions
+    [newEntityText]="'Exercises.AddNew' | translate"
+    [newEntityUrl]="newExerciseUrl"
+    [showDeleteButton]="!!(selected$ | ngrxPush)?.length"
+    [deleteLoading]="deleteLoading$ | ngrxPush"
+    [deleteEntityConfirmText]="'Exercises.DeleteMultipleConfirm' | translate"
+    (delete)="deleteSelected()"
+  ></app-list-actions>
 </ng-template>

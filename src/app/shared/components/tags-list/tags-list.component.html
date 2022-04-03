@@ -8,7 +8,7 @@
   <ng-container *ngIf="data.tags.length > 0">
     <app-tag *ngFor="let tag of data.tags">
       <span>{{ tag.name | translateEditableProp }}</span>
-      <span *ngIf="interactive" class="remove-button" (click)="delete.emit(tag.id)">
+      <span *ngIf="interactive" class="remove-button" (click)="delete.emit(tag._id)">
         <fa-icon icon="xmark"></fa-icon>
       </span>
     </app-tag>

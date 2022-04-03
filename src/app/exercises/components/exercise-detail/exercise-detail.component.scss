@@ -1,3 +1,5 @@
+@use '~/src/style/colors';
+
 ::ng-deep app-card .card-content {
   display: flex;
   flex-direction: column;
@@ -12,7 +14,7 @@
 ::ng-deep .form-item-block {
   input,
   textarea {
-    color: #a0a0ac;
+    color: colors.$light-text;
   }
 }
 

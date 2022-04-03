@@ -1,0 +1,44 @@
+<div class="list-actions">
+  <div
+    *ngIf="showDeleteButton"
+    nz-popconfirm
+    [nzPopconfirmTrigger]="deleteLoading ? null : 'click'"
+    [nzPopconfirmTitle]="deleteEntityConfirmText"
+    [nzOkText]="deleteEntityOkText || ('Common.Yes' | translate)"
+    [nzCancelText]="deleteEntityCancelText"
+    (nzOnConfirm)="delete.emit()"
+    nzPopconfirmPlacement="bottom"
+  >
+    <button nz-button class="icon-button" [nzLoading]="deleteLoading">
+      <fa-icon *ngIf="!deleteLoading" icon="trash-can"></fa-icon>
+    </button>
+  </div>
+
+  <!--  <button
+    *ngIf="showEditButton"
+    nz-button
+    class="icon-button"
+    nz-tooltip
+    [nzLoading]="editLoading"
+    [nzTooltipTitle]="editEntityText"
+  >
+    <fa-icon *ngIf="!editLoading" icon="pen"></fa-icon>
+  </button> -->
+
+  <button
+    nz-button
+    nzType="primary"
+    class="icon-button"
+    nz-tooltip
+    [nzTooltipTitle]="newEntityText"
+    (click)="!newEntityUrl ? add.emit() : null"
+  >
+    <fa-icon *ngIf="!newEntityUrl; else addNewRedirect" icon="plus"></fa-icon>
+  </button>
+</div>
+
+<ng-template #addNewRedirect>
+  <a [routerLink]="newEntityUrl">
+    <fa-icon icon="plus"></fa-icon>
+  </a>
+</ng-template>

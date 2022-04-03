@@ -1,0 +1,75 @@
+<nz-modal
+  *ngrxLet="draft$ as draft"
+  [nzVisible]="visible$ | ngrxPush"
+  [nzTitle]="getModalTitle(draft) | translate"
+  (nzOnCancel)="closeModal()"
+  (nzAfterClose)="afterClose()"
+  nzCentered
+>
+  <form nz-form #form="ngForm">
+    <div *nzModalContent class="tag-modal-content">
+      <div class="field">
+        <nz-form-item>
+          <nz-form-control [nzErrorTip]="'Errors.InvalidTagName' | translate">
+            <p>{{ 'Tags.Name' | translate }}</p>
+            <input
+              nz-input
+              name="name"
+              autocomplete="off"
+              [ngModel]="draft!.name | translateEditableProp"
+              (ngModelChange)="editTagProperty({ name: { value: $event } })"
+              required
+            />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div class="field" *ngIf="isTagType(draft!)">
+        <p>{{ 'Tags.Category' | translate }}</p>
+        <app-select
+          size="default"
+          width="100%"
+          [value]="draft.category || ''"
+          (valueChange)="editTagProperty({ category: $event })"
+          [options]="(categoryOptions$ | ngrxPush) || []"
+        ></app-select>
+      </div>
+    </div>
+  </form>
+
+  <div class="tag-modal-footer" *nzModalFooter>
+    <div *ngIf="!isExistingTag(draft!)">
+      <label
+        nz-checkbox
+        [nzChecked]="draft!.type === 'category'"
+        (nzCheckedChange)="toggleTagType()"
+      >
+        {{ 'Tags.CreateAsCategory' | translate }}
+      </label>
+    </div>
+
+    <div class="actions" *ngrxLet="loading$ as l">
+      <button nz-button nzType="default" (click)="closeModal()">
+        {{ 'Common.Cancel' | translate }}
+      </button>
+      <button
+        *ngIf="isExistingTag(draft!)"
+        nz-button
+        nzType="default"
+        nzDanger
+        [nzLoading]="l.deleting"
+        (click)="!l.saving && !l.deleting && deleteTag()"
+      >
+        {{ 'Common.Delete' | translate }}
+      </button>
+      <button
+        nz-button
+        nzType="primary"
+        [nzLoading]="l.saving"
+        (click)="!l.saving && !l.deleting && saveTag(form)"
+      >
+        {{ 'Common.Save' | translate }}
+      </button>
+    </div>
+  </div>
+</nz-modal>

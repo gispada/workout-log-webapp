@@ -1,0 +1,43 @@
+@use '~/src/style/colors';
+
+.tags-group {
+  h4 {
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 4rem;
+  }
+}
+
+.tags-section {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+app-tag {
+  cursor: pointer;
+}
+
+.selection-checkbox {
+  margin-right: 1rem;
+}
+
+.edit-category-icon {
+  display: none;
+  padding-left: 0.4rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+h4:hover .edit-category-icon {
+  display: inline;
+}
+
+.empty-tags {
+  padding: 2rem;
+  text-align: center;
+  color: colors.$light-text;
+}

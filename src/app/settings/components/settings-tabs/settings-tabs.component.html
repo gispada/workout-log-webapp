@@ -1,7 +1,13 @@
-<app-page-header [pageTitle]="'Settings.Title' | translate"></app-page-header>
+<app-shell>
+  <app-page-header [pageTitle]="'Settings.Title' | translate"></app-page-header>
 
-<nz-tabset>
-  <nz-tab [nzTitle]="'Settings.Tags.TabTitle' | translate">
-    <settings-tags></settings-tags>
-  </nz-tab>
-</nz-tabset>
+  <nz-tabset>
+    <nz-tab nzTitle="Profile">
+      <settings-profile></settings-profile>
+    </nz-tab>
+
+    <nz-tab [nzTitle]="'Tags.Title' | translate">
+      <settings-tags></settings-tags>
+    </nz-tab>
+  </nz-tabset>
+</app-shell>

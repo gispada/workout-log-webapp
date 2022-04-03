@@ -9,7 +9,7 @@ import { Store } from '@ngrx/store'
 import { debounce, distinctUntilChanged, map, startWith, Subject, timer } from 'rxjs'
 import { tagsSelectors } from '@state/tags'
 import { LocaleService } from '@core/services'
-import { getThemeColor, prop, toBooleanDictionary } from '@shared/utils/miscellaneous'
+import { prop, toBooleanDictionary } from '@shared/utils/miscellaneous'
 import { toggleListItem } from '@shared/utils/lists'
 import { Dictionary } from '@shared/types'
 
@@ -52,12 +52,13 @@ export class TagChooserModalComponent {
   // Warning: this stream may not react to language change!
   translatedTagGroups$ = this.tagGroups$.pipe(
     map((groups) =>
-      groups.map(({ tags, category }) => ({
-        category: this.locale.getEditablePropValueSync(category),
+      groups.map(({ tags, category, color }) => ({
+        category: this.locale.getEditablePropValueSync(category.name),
         tags: tags.map((tag) => ({
           ...tag,
           name: this.locale.getEditablePropValueSync(tag.name)
-        }))
+        })),
+        color
       }))
     )
   )
@@ -87,9 +88,5 @@ export class TagChooserModalComponent {
 
   afterClose() {
     this.selected = []
-  }
-
-  getTagColor(i: number) {
-    return getThemeColor(i)
   }
 }

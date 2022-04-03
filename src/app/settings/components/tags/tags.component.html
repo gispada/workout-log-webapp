@@ -1,5 +1,58 @@
-<app-card cardTitle="Tags">
-  <app-tag>Chest</app-tag>
-  <app-tag color="#ffa500">Abs</app-tag>
-  <app-tag color="#7265e3">Biceps</app-tag>
-</app-card>
+<ng-container *ngrxLet="selected$ as selected">
+  <app-card [cardTitle]="'Tags.SubTitle' | translate" [rightTemplate]="tagsActions">
+    <ng-container *ngrxLet="tagsByCategory$ as tagsGroups">
+      <ng-container *ngIf="tagsGroups.length > 0; else emptyData">
+        <div
+          class="tags-group"
+          *ngFor="let group of tagsGroups; trackBy: categoryTrackBy"
+        >
+          <h4>
+            {{ group.category.name | translateEditableProp }}
+            <fa-icon
+              *ngIf="group.category._id !== '_uncategorized_'"
+              class="edit-category-icon"
+              icon="pen"
+              (click)="setTagToEdit(group.category)"
+              [title]="'Tags.EditTag' | translate"
+            ></fa-icon>
+          </h4>
+
+          <div class="tags-section">
+            <app-tag
+              *ngFor="let tag of group.tags; trackBy: tagTrackBy"
+              [color]="group.color"
+              (click)="setTagToEdit(tag)"
+            >
+              <label
+                nz-checkbox
+                class="selection-checkbox"
+                [nzChecked]="selected.includes(tag._id)"
+                (nzCheckedChange)="toggleTag(tag._id)"
+              ></label>
+              <span>{{ tag.name | translateEditableProp }}</span>
+            </app-tag>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </app-card>
+
+  <ng-template #tagsActions>
+    <app-list-actions
+      [newEntityText]="'Tags.AddNew' | translate"
+      [showDeleteButton]="selected.length > 0"
+      [deleteLoading]="deleteLoading$ | ngrxPush"
+      [deleteEntityConfirmText]="'Tags.DeleteMultipleConfirm' | translate"
+      (add)="setTagToEdit()"
+      (delete)="deleteSelected()"
+    ></app-list-actions>
+  </ng-template>
+</ng-container>
+
+<tags-edit-modal></tags-edit-modal>
+
+<ng-template #emptyData>
+  <div class="empty-tags">
+    <p>Add new tags to categorize exercises and workouts and to get better statistics.</p>
+  </div>
+</ng-template>

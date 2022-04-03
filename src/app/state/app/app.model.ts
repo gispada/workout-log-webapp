@@ -10,3 +10,6 @@ export type LoadingKey =
   | 'exercises.fetch'
   | 'exercises.save'
   | 'exercises.delete'
+  | 'tags.fetch'
+  | 'tags.save'
+  | 'tags.delete'

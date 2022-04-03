@@ -1,3 +1,5 @@
 export * from './tags.model'
 export { tagsReducer } from './tags.reducer'
+export { TagsEffects } from './tags.effects'
 export * as tagsSelectors from './tags.selectors'
+export * as tagsActions from './tags.actions'

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Exercise } from '@state/exercises'
-import { Tag } from '@state/tags'
+import { TagEntity } from '@state/tags'
 import { ApiCrudService } from './crud.service'
 import { RealmService } from './realm.service'
 
@@ -13,11 +13,11 @@ export class ExercisesApiService extends ApiCrudService<Exercise> {
   }
 }
 
-/* @Injectable({
+@Injectable({
   providedIn: 'root'
 })
-export class TagsApiService extends ApiCrudService<Tag> {
+export class TagsApiService extends ApiCrudService<TagEntity> {
   constructor(realm: RealmService) {
     super(realm, 'tags')
   }
-} */
+}

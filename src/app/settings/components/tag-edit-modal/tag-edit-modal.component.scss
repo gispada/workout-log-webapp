@@ -1,0 +1,19 @@
+.tag-modal-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.field {
+  p {
+    margin-bottom: 0.4rem;
+  }
+}
+
+.tag-modal-footer {
+  display: flex;
+  align-items: center;
+
+  .actions {
+    flex: 1;
+  }
+}

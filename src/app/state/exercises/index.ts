@@ -1,5 +1,5 @@
 export * from './exercises.model'
 export { exercisesReducer } from './exercises.reducer'
-export { ExercisesEffects } from './exercises.effect'
+export { ExercisesEffects } from './exercises.effects'
 export * as exercisesActions from './exercises.actions'
 export * as exercisesSelectors from './exercise.selectors'

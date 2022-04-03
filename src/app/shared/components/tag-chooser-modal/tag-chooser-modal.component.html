@@ -35,9 +35,9 @@
           <div class="group-tags-container">
             <app-tag
               *ngFor="let tag of tagGroup.tags"
-              [color]="getTagColor(i)"
-              (click)="toggleTagSelection(tag.id)"
-              [inverted]="selected.includes(tag.id)"
+              [color]="tagGroup.color"
+              (click)="toggleTagSelection(tag._id)"
+              [inverted]="selected.includes(tag._id)"
             >
               {{ tag.name }}
             </app-tag>
