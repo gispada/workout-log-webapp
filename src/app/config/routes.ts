@@ -10,6 +10,11 @@ export const EXERCISES = 'exercises'
 export const EXERCISE_NEW = 'new'
 export const EXERCISE_DETAIL = ':id'
 
+// Workouts
+export const WORKOUTS = 'workouts'
+export const WORKOUT_NEW = 'new'
+export const WORKOUT_DETAIL = ':id'
+
 export const SETTINGS = 'settings'
 
 export const HOME = ''

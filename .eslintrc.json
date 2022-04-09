@@ -34,7 +34,7 @@
           "error",
           {
             "type": "element",
-            "prefix": ["app", "settings", "exercises", "auth", "tags"],
+            "prefix": ["app", "settings", "exercises", "auth", "tags", "workouts"],
             "style": "kebab-case"
           }
         ]

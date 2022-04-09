@@ -111,6 +111,10 @@
       "Uncategorized": "Altro"
     }
   },
+  "Workouts": {
+    "Title": "Allenamenti",
+    "SubTitle": "Gestisci i tuoi allenamenti"
+  },
   "Settings": {
     "Title": "Impostazioni"
   }

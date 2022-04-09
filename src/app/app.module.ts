@@ -14,6 +14,7 @@ import { AuthModule } from '@auth/auth.module'
 import { DashboardModule } from '@dashboard/dashboard.module'
 import { SettingsModule } from '@settings/settings.module'
 import { ExercisesModule } from '@exercises/exercises.module'
+import { WorkoutsModule } from '@workouts/workouts.module'
 import { appConfig, APP_CONFIG } from '@config/app'
 import { icons } from '@config/icons'
 import { AppRoutingModule } from './app-routing.module'
@@ -31,6 +32,7 @@ const featureModules = [
   AuthModule,
   DashboardModule,
   ExercisesModule,
+  WorkoutsModule,
   SettingsModule
 ]
 
