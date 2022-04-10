@@ -1,4 +1,4 @@
-<div class="card-container">
+<div class="card-container" [ngStyle]="fullHeight ? { height: '100%' } : null">
   <div class="card-header" *ngIf="cardTitle || cardSubtitle">
     <div class="left">
       <h2 *ngIf="cardTitle">{{ cardTitle }}</h2>

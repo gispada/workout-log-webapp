@@ -9,4 +9,5 @@ export class CardComponent {
   @Input() cardTitle?: string
   @Input() cardSubtitle?: string
   @Input() rightTemplate?: TemplateRef<null>
+  @Input() fullHeight = false
 }

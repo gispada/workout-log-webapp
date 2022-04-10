@@ -22,6 +22,7 @@ export class TagsListComponent {
     this.tagIdsSubject.next(value || [])
   }
   @Input() interactive = false
+  @Input() inverted = false
   @Input() max?: number
 
   @Output() delete = new EventEmitter<string>()
