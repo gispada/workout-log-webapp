@@ -1,0 +1,16 @@
+<article class="workout-card-container">
+  <img *ngIf="imageUrl" [src]="imageUrl" [alt]="name" />
+
+  <div class="backdrop"></div>
+
+  <div class="content">
+    <div class="info-section">
+      <h2>{{ name }}</h2>
+      <p *ngIf="description">{{ description }}</p>
+    </div>
+
+    <div *ngIf="tags" class="tags-section">
+      <app-tags-list [tagIds]="tags" [inverted]="false" [max]="3"></app-tags-list>
+    </div>
+  </div>
+</article>

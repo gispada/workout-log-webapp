@@ -1,0 +1,8 @@
+<div class="set-info">
+  <div *ngIf="number" class="number" [class.bottom-space]="!!set">{{ number }}</div>
+
+  <p *ngIf="set">
+    <span class="value">{{ getValue() }} </span>
+    <span *ngIf="set.intensity" class="intensity"> @ {{ set.intensity }}%</span>
+  </p>
+</div>

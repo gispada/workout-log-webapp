@@ -3,22 +3,22 @@ import { RouterModule, Routes } from '@angular/router'
 import { UserLoggedInGuard } from '@auth/guards'
 import { WORKOUTS, WORKOUT_DETAIL, WORKOUT_NEW } from '@config/routes'
 import { AppWorkoutsComponent } from './workouts.component'
-import { WorkoutsListComponent } from './components'
+import { WorkoutDetailComponent, WorkoutsListComponent } from './components'
 
 const routes: Routes = [
   {
     path: WORKOUTS,
     component: AppWorkoutsComponent,
-    canActivate: [UserLoggedInGuard],
+    // canActivate: [UserLoggedInGuard],
     children: [
       {
         path: '',
         component: WorkoutsListComponent
-      }
-      /* {
+      },
+      {
         path: WORKOUT_NEW,
         component: WorkoutDetailComponent
-      },
+      } /*
       {
         path: WORKOUT_DETAIL,
         component: WorkoutDetailComponent

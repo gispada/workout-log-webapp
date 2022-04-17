@@ -16,7 +16,9 @@ import {
   faCircleXmark,
   faChevronRight,
   faTrashCan,
-  faPen
+  faPen,
+  faPenToSquare,
+  faGripVertical
 } from '@fortawesome/free-solid-svg-icons'
 
 export const icons = [
@@ -38,5 +40,7 @@ export const icons = [
   faCircleXmark,
   faChevronRight,
   faTrashCan,
-  faPen
+  faPen,
+  faPenToSquare,
+  faGripVertical
 ]

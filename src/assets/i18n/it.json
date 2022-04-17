@@ -42,7 +42,8 @@
     "InvalidPassword": "La password deve contenere almeno 6 caratteri.",
     "InvalidConfirmPassword": "Le password scelte non coincidono.",
     "InvalidExerciseName": "Il nome dell'esercizio è obbligatorio.",
-    "InvalidTagName": "Il nome del tag è obbligatorio."
+    "InvalidTagName": "Il nome del tag è obbligatorio.",
+    "InvalidWorkoutName": "Il nome dell'allenamento è obbligatorio."
   },
   "Messages": {
     "RegistrationSuccess": "Registrazione effettuata! Conferma l'email per iniziare.",
@@ -113,7 +114,12 @@
   },
   "Workouts": {
     "Title": "Allenamenti",
-    "SubTitle": "Gestisci i tuoi allenamenti"
+    "SubTitle": "Gestisci i tuoi allenamenti",
+    "AddNew": "Nuovo allenamento",
+    "Name": "Nome",
+    "Description": "Descrizione",
+    "Tags": "Tag",
+    "ImageUrl": "Immagine di copertina"
   },
   "Settings": {
     "Title": "Impostazioni"

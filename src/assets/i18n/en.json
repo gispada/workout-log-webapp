@@ -42,7 +42,8 @@
     "InvalidPassword": "Password must be at least 6 characters long.",
     "InvalidConfirmPassword": "Your passwords do not match.",
     "InvalidExerciseName": "The exercise's name is required.",
-    "InvalidTagName": "The tag's name is required."
+    "InvalidTagName": "The tag's name is required.",
+    "InvalidWorkoutName": "The workout's name is required."
   },
   "Messages": {
     "RegistrationSuccess": "Registration done! Confirm your email to get started.",
@@ -113,7 +114,12 @@
   },
   "Workouts": {
     "Title": "Workouts",
-    "SubTitle": "Manage your workouts"
+    "SubTitle": "Manage your workouts",
+    "AddNew": "New workout",
+    "Name": "Name",
+    "Description": "Description",
+    "Tags": "Tags",
+    "ImageUrl": "Cover image"
   },
   "Settings": {
     "Title": "Settings"

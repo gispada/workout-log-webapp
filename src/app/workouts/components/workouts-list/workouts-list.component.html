@@ -1,3 +1,20 @@
 <app-page-header [pageTitle]="'Workouts.Title' | translate"></app-page-header>
 
-<app-card [cardTitle]="'Workouts.SubTitle' | translate"> <p>Workouts</p></app-card>
+<app-card [cardTitle]="'Workouts.SubTitle' | translate" [rightTemplate]="workoutsActions">
+  <div class="workouts-grid">
+    <workouts-workout-card
+      *ngFor="let workout of workouts"
+      [name]="workout.name"
+      [description]="workout.description"
+      [imageUrl]="workout.imageUrl"
+      [tags]="workout.tags"
+    ></workouts-workout-card>
+  </div>
+</app-card>
+
+<ng-template #workoutsActions>
+  <app-list-actions
+    [newEntityText]="'Workouts.AddNew' | translate"
+    [newEntityUrl]="newWorkoutUrl"
+  ></app-list-actions>
+</ng-template>

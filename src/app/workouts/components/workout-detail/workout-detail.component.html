@@ -1,0 +1,67 @@
+<app-page-header
+  [goBackTo]="'/' + parentUrl"
+  [pageTitle]="'Workouts.AddNew' | translate"
+></app-page-header>
+
+<div nz-row [nzGutter]="[24, 24]">
+  <div nz-col nzXs="24" nzLg="12">
+    <form nz-form #form="ngForm">
+      <app-card>
+        <app-form-item-block [label]="'Workouts.Name' | translate">
+          <nz-form-item>
+            <nz-form-control [nzErrorTip]="'Errors.InvalidWorkoutName' | translate">
+              <input type="text" nz-input name="name" autocomplete="off" required />
+            </nz-form-control>
+          </nz-form-item>
+        </app-form-item-block>
+
+        <app-form-item-block [label]="'Workouts.Description' | translate">
+          <textarea nz-input name="description" rows="2"></textarea>
+        </app-form-item-block>
+      </app-card>
+    </form>
+  </div>
+
+  <div nz-col nzXs="24" nzLg="12">
+    <app-card [fullHeight]="true">
+      <app-form-item-block [label]="'Workouts.ImageUrl' | translate">
+        <nz-form-item>
+          <nz-form-control>
+            <input
+              type="text"
+              nz-input
+              name="imageUrl"
+              placeholder="https://link-to-image/workout.png"
+              autocomplete="off"
+          /></nz-form-control>
+        </nz-form-item>
+      </app-form-item-block>
+
+      <app-form-item-block [label]="'Workouts.Tags' | translate">
+        <app-tags-list
+          [tagIds]="[]"
+          [interactive]="true"
+          (add)="tagsModalVisible = true"
+        ></app-tags-list>
+      </app-form-item-block>
+    </app-card>
+  </div>
+
+  <div nz-col nzSpan="24">
+    <app-card cardTitle="Esercizi" [rightTemplate]="exerciseButtons">
+      <workouts-exercise-entry
+        *ngFor="let exercise of exercises"
+        [exercise]="exercise"
+      ></workouts-exercise-entry>
+    </app-card>
+  </div>
+</div>
+
+<app-tag-chooser-modal
+  [(visible)]="tagsModalVisible"
+  (selectTags)="addTags($event)"
+></app-tag-chooser-modal>
+
+<ng-template #exerciseButtons>
+  <button nz-button nzType="primary">Aggiungi</button>
+</ng-template>

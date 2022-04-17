@@ -1,0 +1,101 @@
+@use '~/src/style/colors';
+
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+
+.exercise-entry {
+  position: relative;
+  overflow: hidden;
+  background-color: #0e0f18;
+  padding: 1.6rem 2rem;
+  border-radius: 1rem;
+  display: flex;
+  gap: 2rem;
+
+  &:hover .actions-right {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.content {
+  flex: 1;
+  gap: 2rem;
+  display: flex;
+  overflow-x: auto;
+}
+
+.title {
+  width: 26rem;
+  flex-shrink: 0;
+  // position: sticky;
+  // left: 0;
+}
+
+.exercise-sets-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.sequence-sets-container {
+  display: grid;
+  grid-auto-rows: minmax(3.2rem, auto);
+  align-items: center;
+  column-gap: 2rem;
+}
+
+.sequence-type {
+  color: colors.$primary;
+}
+
+.pause {
+  margin-left: auto;
+}
+
+.divider {
+  height: 100%;
+  border-right: 1px solid colors.$border;
+}
+
+.actions-left,
+.actions-right {
+  gap: 1rem;
+}
+
+.actions-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  padding: 0 2rem;
+  transform: translateX(100%);
+  background-color: rgba(14, 15, 24, .7);
+  opacity: 0;
+  transition: transform 0.2s, opacity 0.2s;
+  border-top-left-radius: 4rem;
+  border-bottom-left-radius: 4rem;
+}
+
+.drag-handle {
+  cursor: grab;
+}
+
+.action {
+  cursor: pointer;
+}
+
+.delete-icon {
+  color: colors.$danger-dark;
+}
+
+/* @media screen and (max-width: 1023px) {
+  .content,
+  .exercise-sets-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+} */

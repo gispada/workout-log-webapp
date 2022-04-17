@@ -1,0 +1,5 @@
+.workouts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+  gap: 3.2rem;
+}

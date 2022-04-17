@@ -4,10 +4,23 @@ import { FormsModule } from '@angular/forms'
 import { SharedModule } from '@shared/shared.module'
 import { WorkoutsRoutingModule } from './workouts-routing.module'
 import { AppWorkoutsComponent } from './workouts.component'
-import { WorkoutsListComponent } from './components'
+import {
+  WorkoutsListComponent,
+  WorkoutCardComponent,
+  WorkoutDetailComponent,
+  SetInfoComponent,
+  ExerciseEntryComponent
+} from './components'
 
 @NgModule({
-  declarations: [AppWorkoutsComponent, WorkoutsListComponent],
+  declarations: [
+    AppWorkoutsComponent,
+    WorkoutsListComponent,
+    WorkoutCardComponent,
+    WorkoutDetailComponent,
+    ExerciseEntryComponent,
+    SetInfoComponent
+  ],
   imports: [CommonModule, SharedModule, WorkoutsRoutingModule, FormsModule],
   exports: []
 })

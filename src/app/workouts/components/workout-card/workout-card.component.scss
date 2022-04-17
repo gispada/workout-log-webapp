@@ -1,0 +1,55 @@
+@use '~/src/style/extensions';
+
+.workout-card-container {
+  border-radius: 1rem;
+  overflow: hidden;
+  height: 26rem;
+  cursor: pointer;
+  position: relative;
+
+  img {
+    @extend %absolute-fill;
+    object-fit: cover;
+    transition: transform .2s ease-out;
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.1);
+    }
+    .backdrop {
+      opacity: 0.85;
+    }
+  }
+}
+
+.backdrop {
+  @extend %absolute-fill;
+  background-color: black;
+  opacity: 0.7;
+  transition: opacity .2s;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  z-index: 5;
+  padding: 2.4rem;
+}
+
+.info-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  p {
+    margin-top: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+}

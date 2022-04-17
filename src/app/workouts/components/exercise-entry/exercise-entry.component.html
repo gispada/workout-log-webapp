@@ -1,0 +1,68 @@
+<div class="exercise-entry">
+  <div class="actions-left flex-center">
+    <fa-icon class="drag-handle" icon="grip-vertical"></fa-icon>
+    <label nz-checkbox></label>
+  </div>
+
+  <div class="content">
+    <ng-container
+      *ngTemplateOutlet="
+        isSequence ? sequenceTemplate : singleTemplate;
+        context: { $implicit: exercise }
+      "
+    ></ng-container>
+
+    <!--  <div *ngIf="exercise.pause" class="pause flex-center">
+      <div>
+        <p>Pause</p>
+        <p>{{ exercise.pause }} seconds</p>
+      </div>
+    </div> -->
+  </div>
+
+  <div class="actions-right flex-center">
+    <fa-icon class="action" icon="pen-to-square" size="lg"></fa-icon>
+    <fa-icon class="action delete-icon" icon="xmark" size="lg"></fa-icon>
+  </div>
+</div>
+
+<ng-template #singleTemplate let-exercise>
+  <div class="exercise-sets-container">
+    <h4 class="title">{{ exercise.name }}</h4>
+
+    <ng-container *ngFor="let set of exercise.sets; let i = index; let last = last">
+      <workouts-set-info
+        [number]="exercise.sets.length > 1 ? i + 1 : undefined"
+        [set]="set"
+      ></workouts-set-info>
+      <div *ngIf="!last" class="divider"></div>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #sequenceTemplate let-exercise>
+  <div
+    class="sequence-sets-container"
+    [ngStyle]="{
+      'grid-template-columns': 'repeat(' + numberOfSets + ', auto)'
+    }"
+  >
+    <span class="sequence-type">Superset</span>
+
+    <ng-container
+      *ngFor="let set of exercise.exercises[0].sets; let i = index; let last = last"
+    >
+      <workouts-set-info [number]="i + 1"></workouts-set-info>
+      <div *ngIf="!last" class="divider"></div>
+    </ng-container>
+
+    <ng-container *ngFor="let exercise of exercise.exercises">
+      <h4 class="title">{{ exercise.name }}</h4>
+
+      <ng-container *ngFor="let set of exercise.sets; let last = last">
+        <workouts-set-info [set]="set"></workouts-set-info>
+        <div *ngIf="!last" class="divider"></div>
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-template>
